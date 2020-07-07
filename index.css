@@ -30,7 +30,11 @@ border: 5px solid white;
 display: block;
 width: 120px;
 height: 120px;
-background-image: linear-gradient(to top right, #19668D, #22AB93);
+background-color: #19668D;
+background-image: url(stone.jpg);
+
+
+/*background-image: linear-gradient(to top right, #19668D, #22AB93); */
 box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 
 }
@@ -38,14 +42,14 @@ box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 .red .back{
     background-color: #F44336;
 
-    border: 0;
+    border: 5px solid white;
     width: 130px;
     height: 130px;
 }
 
 .green .back{
     background-color: #5AD66f;
-    border: 0;
+    border: 5px solid white;
     width: 130px;
     height: 130px;
 }
@@ -85,8 +89,8 @@ transform: rotateY(180deg);
 
 .emo {
 align-self: center;
-margin: 0 auto 0 auto;
-font-size: 75px;
+margin: 0 3px 0 3px;
+font-size: 17px;
 
 }
 
@@ -125,7 +129,7 @@ color: #434344;
 .result {
     display: none;
     grid-template-rows: auto auto;
-    background-color: #fff;
+    
     min-width: 350px;
     justify-content: space-around;
     padding: 30px 0 30px 0;
@@ -138,7 +142,7 @@ color: #434344;
         left: 50%;
         transform: translate(-50%, -50%);
         grid-template-rows: auto auto;
-        background-color: #fff;
+        background-color: rgba(0, 0, 0, 0.2);
         min-width: 350px;
         justify-content: space-around;
         padding: 30px 0 30px 0;
@@ -148,7 +152,7 @@ color: #434344;
 
 
 button {
-    margin-top: 40px;
+    margin-top: 120px;
     background-image: linear-gradient(to right, #19668D, #22AB93);
     /*height: 40px;*/
     font-family: Arial, sans-serif;font-size: 20px;font-style: normal;font-variant: normal;font-weight: 700;line-height: 47px;color: #fff;
@@ -179,17 +183,22 @@ margin-right: 30px;
 .win {
     display: inline-block;
     font-family: Arial, sans-serif; font-size: 48px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 48px;
-    color: #434344;
+    color: #F44336;
+
+     
+
+
 
 }
 .win1 {
     display: inline-block;
 
     font-family: Arial, sans-serif; font-size: 48px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 48px;
-    color: #434344;
+    color: #F44336;
     
     animation: dance 0.7s 0s infinite alternate;
     animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+     /*   box-shadow: 1px 1px 10px rgba(0, 0, 255, .2);*/
 }
 .win2 {
     display: inline-block;
@@ -200,25 +209,28 @@ margin-right: 30px;
     font-variant: normal;
     font-weight: 700;   
     line-height: 48px;
-    color: #434344;
+    color: #F44336;
     animation: dance 0.7s 0.15s infinite alternate;
     animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      /*  box-shadow: 1px 1px 10px rgba(0, 0, 255, .2);*/
 }
 .win3 {
     display: inline-block;
 
     font-family: Arial, sans-serif; font-size: 48px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 48px;
-    color: #434344;
+    color: #F44336;
     animation: dance 0.7s 0.30s infinite alternate;
     animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      /*  box-shadow: 1px 1px 10px rgba(0, 0, 255, .2); */
 }
 .win4 {
     display: inline-block;
 
     font-family: Arial, sans-serif; font-size: 48px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 48px;
-    color: #434344;
+    color: #F44336;
     animation: dance 0.7s 0.45s infinite alternate;
     animation-timing-function: cubic-bezier(0.19, 1, 0.22, 0.9);
+   /*     box-shadow: 1px 1px 10px rgba(0, 0, 255, .2); */
 
 }
 

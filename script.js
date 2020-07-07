@@ -27,7 +27,7 @@ var turned;
 
 var emo = [];
 
-var mm = ['🐶','🐱','🐭','🐹','🐰','🐻','🐼','🐨','🐯','🦁','🐮','🐷','🐸','🐙','🐵','🦄','🐞','🦀','🐟','🐊','🐓','🦃']; 
+var mm = ['Здравствуйте, я рыбка с голубыми глазами','Привет, я гигантская улитка','Доброе утро, я улыбчивый крокодил','Ха-ха-ха, ты попалась. Я - дракон!','Рады вас видеть, мы скользкие ящерицы','Я дракон, ты попалась!','Спокойной ночи, я задумчивый головастик','Тише! Я черный шуршащий уж','Здравствуйте, я стремительная саламандра!','Приятно познакомиться, меня зовут каракатица','Добрый день! Я прыгучий кузнечик','Привет! Я морская свинка!']; 
 var mmj=[];
 var mmjSelect =[];
 
@@ -67,6 +67,80 @@ endButton.addEventListener('click', stopGame);
 
         console.log('CLICK!!!');
             startTimer();
+
+
+            this.classList.toggle('turn'); //перевернули карту
+
+            var text2=this.querySelector(".emo").innerHTML;
+
+            if (text2.includes("дракон")) {
+                
+                turned = gameField.querySelectorAll(".turn"); //поиск перевернутых карт
+                var tl = turned.length;
+
+               // for (var i=0;i<tl;i++) {
+
+                  
+
+                    this.classList.add('red');// }
+
+
+                result='WIN';
+                setTimeout(function(){
+                    clearInterval(timerID);
+                    clearTimeout(timeoutID);
+
+                    document.querySelector('.win1').innerHTML='С';
+                    document.querySelector('.win2').innerHTML='Т';
+                    document.querySelector('.win3').innerHTML='О';
+                    document.querySelector('.win4').innerHTML='П';
+
+
+
+                    document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
+                    document.querySelector('.film').classList.add('show');
+                    document.querySelector('.result').classList.add('show');
+                             
+                },500);
+
+            } else {
+                this.classList.add('green');
+
+
+                            var green =gameField.querySelectorAll('.green').length;
+
+            if (green==12) {
+                
+                result='WIN';
+                setTimeout(function(){
+                    clearInterval(timerID);
+                    clearTimeout(timeoutID);
+
+                    document.querySelector('.win1').innerHTML='У';
+                    document.querySelector('.win2').innerHTML='Р';
+                    document.querySelector('.win3').innerHTML='А';
+                    document.querySelector('.win4').innerHTML='!';
+
+
+
+                    document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
+                    document.querySelector('.film').classList.add('show');
+                    document.querySelector('.result').classList.add('show');
+                             
+                },500);
+               };
+            }
+
+
+/*
+
+            if (this.classList.contains('turn')) { //проверяем, перевер
+                  this.classList.toggle('turn');
+                  this.classList.remove('green');
+
+
+
+
 
             turned = gameField.querySelectorAll(".turn"); //поиск перевернутых карт
 
@@ -169,7 +243,7 @@ endButton.addEventListener('click', stopGame);
                };
 
 
-
+*/
 
             } //конец функции обработки клика
 
@@ -180,9 +254,9 @@ endButton.addEventListener('click', stopGame);
     
                 if (counter==1) {
 
-                    distribute();
+              //      distribute();
 
-                    time.setMinutes(1);
+                    time.setMinutes(9);
                     time.setSeconds(0);
                     var minutes =time.getMinutes();
                     var seconds=time.getSeconds();
@@ -227,7 +301,7 @@ endButton.addEventListener('click', stopGame);
                         };     
                         
                         //остановка таймера через 60 сек
-                    }, 60000);
+                    }, 1200000);
 
                  //   setTimeout(() => {if(result=='LOSS') {
                         
@@ -271,7 +345,7 @@ var mmj=mm.slice();
 
 
 
-    for (var n=0; n<6;n++) {
+    for (var n=0; n<12;n++) {
 
         m=mmj.length;
         j = Math.random()*m;
@@ -284,7 +358,7 @@ var mmj=mm.slice();
     };
     
     
-    var mmjSelect = mmjSelect.concat(mmjSelect); //удваиваем массив с выбранными эмоджи, чтобы каждой было по паре и всего 12
+    //var mmjSelect = mmjSelect.concat(mmjSelect); //удваиваем массив с выбранными эмоджи, чтобы каждой было по паре и всего 12
     
     var mmjSelectShuffled = shuffle(mmjSelect); // перемещиваем в случайном порядке
     
