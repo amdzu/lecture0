@@ -301,7 +301,7 @@ endButton.addEventListener('click', stopGame);
                         };     
                         
                         //остановка таймера через 60 сек
-                    }, 1200000);
+                    }, 12000000);
 
                  //   setTimeout(() => {if(result=='LOSS') {
                         
