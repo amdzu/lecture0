@@ -109,7 +109,7 @@ endButton.addEventListener('click', stopGame);
 
                             var green =gameField.querySelectorAll('.green').length;
 
-            if (green==12) {
+            if (green==10) {
                 
                 result='WIN';
                 setTimeout(function(){
@@ -125,6 +125,7 @@ endButton.addEventListener('click', stopGame);
 
                     document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
                     document.querySelector('.film').classList.add('show');
+                    document.querySelector('.message').classList.add('show1');
                     document.querySelector('.result').classList.add('show');
                              
                 },500);
@@ -331,6 +332,7 @@ function stopGame() { //функция обработки клика по кно
 
     document.querySelector('.result').classList.remove('show');
     document.querySelector('.film').classList.remove('show');  
+    document.querySelector('.message').classList.remove('show1');  
     document.querySelector('.time').innerHTML='00:00';
     result='LOSS';
     counter=0;
