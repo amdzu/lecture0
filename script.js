@@ -111,7 +111,7 @@ endButton.addEventListener('click', stopGame);
 
                             var green =gameField.querySelectorAll('.green').length;
 
-            if (green==10) {
+            if (green==9) {
                 
                 result='WIN';
                 setTimeout(function(){
