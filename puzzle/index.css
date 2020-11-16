@@ -55,11 +55,16 @@ body{
     z-index: 999;
         }
 
+    .cardWrapper:hover{
+    cursor: pointer;
+    }
+
     #c1 {
 
     /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
 
      background-color: #FFAEBC;
+     text-transform: uppercase;
 
     }
 
@@ -73,33 +78,60 @@ body{
     }
 
     #c2 {
-     color: #363131;
-         background-color: #A0E7E5;
-         
+        background-color: #A0E7E5;
+
+         text-transform: uppercase;
     }
+
+
+    #c2:hover {
+    
+    animation: fadeoutText2 .5s; /***Transition delay 3s fadeout is class***/
+    animation-fill-mode: forwards;
+
+         background-color: #A0E7E5;
+
+    }
+
+
+
 
     #c3 {
-             color: #363131;
 
          background-color: #B4F8C8;
-         
+         text-transform: uppercase;
     }
 
-.highlighter {
-    animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
+    #c3:hover {
+    
+    animation: fadeoutText3 .5s; /***Transition delay 3s fadeout is class***/
+    animation-fill-mode: forwards;
 
-    -moz-animation: fadeoutBg 3s; /* Firefox */
-    -webkit-animation: fadeoutBg 3s; /* Safari and Chrome */
-    -o-animation: fadeoutBg 3s; /* Opera */
-}
+         background-color: #B4F8C8;
+
+    }
+
+
+
 
 
 @keyframes fadeoutText {
+
     from { color: #363131; } /** from color **/
     to { color: #FFAEBC; } /** to color **/
 }
 
+@keyframes fadeoutText2 {
+    
+    from { color: #363131; } /** from color **/
+    to { color: #A0E7E5; } /** to color **/
+}
 
+@keyframes fadeoutText3 {
+    
+    from { color: #363131; } /** from color **/
+    to { color: #B4F8C8; } /** to color **/
+}
 
 
 
@@ -154,9 +186,7 @@ body{
                 transform: rotateY(180deg);
     }
     
-    .cardWrapper:hover{
-    cursor: pointer;
-    }
+
     
     .front, .back {
     position: absolute;

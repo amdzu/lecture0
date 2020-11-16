@@ -11,125 +11,82 @@ function shuffle(arr){ //функция случайного перемешив�
 	return arr;
 }
 
-var result='LOSS';
-var counter=0;
-var timerID;
-var timeoutID;
-
-var time = new Date();
-
-//time.setMinutes(1);
-//time.setSeconds(0);
+var txt1, txt2, txt3, j=0, l=0, m=0;  
 
 
 var gameField = document.querySelector('.gameField');
-var turned;
-
-var emo = [];
-
-var mm = ['Привет, я умный шимпанзе!','Добрый день, мы полосатые змейки!','Доброе утро, я гордая гусеница!','Ха-ха-ха, ты попалась. Я - дракон!','Здравствуй, я огромный кит!','Я дракон, ты попалась!','Осторожно, это я - сонный ленивец!','Эй, не провались в болото. Я белая цапля!','Узнала меня? Я зубастая акула!','Не подходи близко, я питон!','Угощайся вкусными листьями, я коала!','Хи-хи-хи, я дракончик!']; 
-
-/*var mm = ['Здравствуйте, я рыбка с голубыми глазами','Привет, я гигантская улитка','Доброе утро, я улыбчивый крокодил','Ха-ха-ха, ты попалась. Я - дракон!','Рады вас видеть, мы скользкие ящерицы','Я дракон, ты попалась!','Спокойной ночи, я задумчивый головастик','Тише! Я черный шуршащий уж','Здравствуйте, я стремительная саламандра!','Приятно познакомиться, меня зовут каракатица','Добрый день! Я прыгучий кузнечик','Привет! Я морская свинка!']; */
-var mmj=[];
-var mmjSelect =[];
-
-var m,j,k,p;
-
-distribute();
 
 
 
 
-
-
+var textsC1 = ['При','Пере','От','За','Про','Над']; 
+var textsC2 = ['беж','прыг','ныр','дума','кип','нюх']; 
+var textsC3 = ['ала','нет','нул','ете','ел','зай']; 
 
 //Обработка клика по карте
 
-        var cardList = document.querySelectorAll(".cardWrapper");
-        var l = cardList.length;
+  //      var cardList = document.querySelectorAll(".cardWrapper");
+  //      var l = cardList.length;
 
-        for (var i=0;i<l;i++) {
+ //       for (var i=0;i<l;i++) {
 
-            //var crd = cardList[i];
-
-            cardList[i].addEventListener('click', clickHandler);
-        };
-
-
-// Обработка клика по кнопке завершения игры
-
-var endButton = document.querySelector('.btn');
-
-endButton.addEventListener('click', stopGame);
+//            cardList[i].addEventListener('click', clickHandler(i));
+ //       };
 
 
 
+        var c1=document.getElementById('c1');
 
-        function clickHandler() { //начало функции обработки клика по карте
+            console.log(c1);
 
-        console.log('CLICK!!!');
-            startTimer();
+        var c2=document.getElementById('c2');
+        var c3=document.getElementById('c3');
 
+c1.addEventListener('click', clickHandlerC1);
 
-            this.classList.toggle('turn'); //перевернули карту
+c2.addEventListener('click', clickHandlerC2);
 
+c3.addEventListener('click', clickHandlerC3);
 
+function clickHandlerC1() { //начало функции обработки клика по карте
+
+var i=textsC1.length-1;
+
+j=j+1;
+if(j>i) {j=0;};
+txt1=textsC1[j];
+
+    console.log(j);
+
+    c1.innerHTML=txt1; 
 
             } //конец функции обработки клика
 
 
+function clickHandlerC2() { //начало функции обработки клика по карте
 
+var i=textsC2.length-1;
 
+l=l+1;
+if(l>i) {l=0;};
+txt2=textsC2[l];
 
-function stopGame() { //функция обработки клика по кнопке завершения игры
+    console.log(l);
 
-    for (i=0;i<l;i++) {
-        cardList[i].classList.remove('turn', 'fix', 'red', 'green');
-        cardList[i].addEventListener('click',clickHandler);
-    };
+    c2.innerHTML=txt2; 
 
-    document.querySelector('.result').classList.remove('show');
-    document.querySelector('.film').classList.remove('show');  
-    document.querySelector('.message').classList.remove('show1');  
-    document.querySelector('.time').innerHTML='00:00';
-    result='LOSS';
-    counter=0;
-    //setTimeout(distribute(),500);
-   
-}
+            } //конец функции обработки клика
 
+function clickHandlerC3() { //начало функции обработки клика по карте
 
-function distribute() {
-var mmjSelect=[];
-var mmj=mm.slice();
+var i=textsC3.length-1;
 
+m=m+1;
+if(m>i) {m=0;};
+txt3=textsC3[m];
 
+    console.log(m);
 
-    for (var n=0; n<12;n++) {
+    c3.innerHTML=txt3; 
 
-        m=mmj.length;
-        j = Math.random()*m;
-        k = Math.floor(j);
-    
-        p = mmj[k];
-    
-        mmjSelect.push(p);
-        mmj.splice(k,1);
-    };
-    
-    
-    //var mmjSelect = mmjSelect.concat(mmjSelect); //удваиваем массив с выбранными эмоджи, чтобы каждой было по паре и всего 12
-    
-    var mmjSelectShuffled = shuffle(mmjSelect); // перемещиваем в случайном порядке
-    
-    
-    var backCards=document.querySelectorAll(".emo"); // выбираем все divы для вставления эмоджи
-    var ll = backCards.length;
-    
-    for (var kk=0; kk<ll;kk++) {
-        emo[kk]=backCards[kk];
-        emo[kk].innerHTML = mmjSelectShuffled[kk];
-    };
-
-
-}
+            } //конец функции обработки клика
