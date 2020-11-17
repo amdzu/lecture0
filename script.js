@@ -11,10 +11,20 @@ function shuffle(arr){ //функция случайного перемешив�
 	return arr;
 }
 
+
 var result='LOSS';
 var counter=0;
 var timerID;
 var timeoutID;
+var monster;
+
+
+//monster = document.getElementById("monster");
+
+//console.log(monster);
+
+
+
 
 var time = new Date();
 
@@ -93,6 +103,13 @@ endButton.addEventListener('click', stopGame);
             var text2=this.querySelector(".emo").innerHTML;
 
             if (text2.includes("чудовище")) {
+//   ПОЯВЛЕНИЕ ЧУДОВИЩА
+
+//monster = document.getElementById("monster");
+      //      monster = document.getElementById("monster");
+      //      console.log(monster);
+     //       monster.classList.add('show');
+//   ПОЯВЛЕНИЕ ЧУДОВИЩА
                 
                 turned = gameField.querySelectorAll(".turn"); //поиск перевернутых карт
                 var tl = turned.length;

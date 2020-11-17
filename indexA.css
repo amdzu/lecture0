@@ -27,6 +27,29 @@ body{
             perspective: 600px;
     
     }
+
+    #monster {
+
+    position: fixed;
+    top:50%;
+    left: 50%;
+
+    transform: translate(-50%,-50%);
+
+    width: 595px;
+    height: 440px;
+    display: none;
+
+    background-image: url("stones-167089_640.jpg");
+
+    }
+
+    #monster.show {
+        display: block;
+    }
+
+
+
     .gameField > *:nth-child(1) {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
