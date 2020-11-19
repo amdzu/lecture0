@@ -19,9 +19,15 @@ var gameField = document.querySelector('.gameField');
 
 
 
-var textsC1 = ['При','Пере','От','За','Про','Над']; 
-var textsC2 = ['беж','прыг','ныр','дума','кип','нюх']; 
-var textsC3 = ['ала','нет','нул','ете','ел','зай']; 
+var textsC1 = ['При','Пере','пре','про','По']; 
+var textsC2 =['став', 'держ', 'дал', 'рез', 'знал', 'лож']
+var textsC3 = ['ав', 'ив',  'ув', 'яв', 'ев', 'ная', 'ную', 'ной', 'ном', 'ному', 'ный', 'ными', 'ных', 'ным', 'ными']
+
+
+
+//c1.innerHTML=textsC1[0];
+//c2.innerHTML=textsC2[0];
+//c3.innerHTML=textsC3[0];
 
 //Обработка клика по карте
 
@@ -36,9 +42,6 @@ var textsC3 = ['ала','нет','нул','ете','ел','зай'];
 
 
         var c1=document.getElementById('c1');
-
-            console.log(c1);
-
         var c2=document.getElementById('c2');
         var c3=document.getElementById('c3');
 
