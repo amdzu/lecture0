@@ -20,6 +20,14 @@ body{
 
 
     }
+
+    .input {
+position: absolute;
+bottom:-500px;
+left:50px;
+
+    }
+
     .gameField {
     position: fixed;
     display: -webkit-box;

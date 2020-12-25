@@ -11,20 +11,10 @@ function shuffle(arr){ //функция случайного перемешив�
 	return arr;
 }
 
-
 var result='LOSS';
 var counter=0;
 var timerID;
 var timeoutID;
-var monster;
-
-
-//monster = document.getElementById("monster");
-
-//console.log(monster);
-
-
-
 
 var time = new Date();
 
@@ -34,6 +24,7 @@ var time = new Date();
 
 var gameField = document.querySelector('.gameField');
 var turned;
+var audio;
 
 var emo = [];
 
@@ -56,19 +47,34 @@ var emo = [];
  /*var mm =['написала','шепнула', 'накопила', 'закрыла', 'повела', 'cказала', 'зевнула', 'опустила', 'пробежала', 'ахнула', 'решила', 'чудовище']; */
 
 
-var mm =['Помыл', 'перемыл', 'Положил', 'переложил', 'Подумал', 'передумал', 'Пошла', 'перешла', 'Погрызли', 'перегрызли','чудовище','чудовище'];
+
+
+/*var mm =['Помыл', 'перемыл', 'Положил', 'переложил', 'Подумал', 'передумал', 'Пошла', 'перешла', 'Погрызли', 'перегрызли','чудовище','чудовище'];*/
+
+
+
+
+var mm = ['ходил','водил','спутник','правильный','доставка','сказал','выход','поводок','спутал','правда','чудовище','чудовище'];
+
+
 
 var mmj=[];
 var mmjSelect =[];
 
 var m,j,k,p;
 
+var monster = document.getElementById("monster");
+
+monster.addEventListener("click",clickHandlerMonster);
+
+
+function clickHandlerMonster() {
+    this.classList.remove("show");
+    audio.pause();
+}
+
+
 distribute();
-
-
-
-
-
 
 
 //Обработка клика по карте
@@ -104,13 +110,9 @@ endButton.addEventListener('click', stopGame);
             var text2=this.querySelector(".emo").innerHTML;
 
             if (text2.includes("чудовище")) {
-//   ПОЯВЛЕНИЕ ЧУДОВИЩА
 
-//monster = document.getElementById("monster");
-      //      monster = document.getElementById("monster");
-      //      console.log(monster);
-     //       monster.classList.add('show');
-//   ПОЯВЛЕНИЕ ЧУДОВИЩА
+
+
                 
                 turned = gameField.querySelectorAll(".turn"); //поиск перевернутых карт
                 var tl = turned.length;
@@ -137,6 +139,15 @@ endButton.addEventListener('click', stopGame);
                     document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
                     document.querySelector('.film').classList.add('show');
                     document.querySelector('.result').classList.add('show');
+
+                    //   ПОЯВЛЕНИЕ ЧУДОВИЩА
+//monster = document.getElementById("monster");
+
+            monster.classList.add('show');
+            audio = new Audio('growl.mp3');
+            audio.play();
+//   ПОЯВЛЕНИЕ ЧУДОВИЩА
+
                              
                 },500);
 
@@ -170,118 +181,6 @@ endButton.addEventListener('click', stopGame);
             }
 
 
-/*
-
-            if (this.classList.contains('turn')) { //проверяем, перевер
-                  this.classList.toggle('turn');
-                  this.classList.remove('green');
-
-
-
-
-
-            turned = gameField.querySelectorAll(".turn"); //поиск перевернутых карт
-
-                var tl = turned.length;
-               // console.log(tl);
-
-                if (tl == 0) {              //до клика ни одна карта не перевернута
-                   // console.log(tl, this);
-                    this.classList.toggle('turn');
-                };
-
-                if (tl==1 && this.classList.contains('turn')) { //второй клик по единственной перевернутой карте
-                  this.classList.toggle('turn');
-                  this.classList.remove('green');
-               } else {
-                   
-                if (tl==1 && !this.classList.contains('turn')) { // одна карта перевернута, клик по другой карте
-                  this.classList.toggle('turn');
-                  this.classList.remove('green');
-
-                  var text1=turned[0].querySelector(".emo").innerHTML;
-
-                    var text2=this.querySelector(".emo").innerHTML;
-
-
-
-                    if (text1 !== text2) {  //если текст карт отличается, они краснеют
-
-
-                        this.classList.remove('green');
-                        turned[0].classList.remove('green'); 
-
-                        this.classList.add('red');
-                        turned[0].classList.add('red');  
-                    } 
-                    
-                    else { 
-                        if(text1 == text2) {  //если тексты карт НЕ отличаются, они зеленеют
-
-                        this.classList.add('green');
-                        turned[0].classList.add('green');
-                        this.removeEventListener('click', clickHandler);
-                        turned[0].removeEventListener('click', clickHandler);
-                    
-                    }
-                    }
-                }
-            };//конец else
-
-            if (tl==2 && !this.classList.contains('turn') && !this.classList.contains('fix')) { //до клика переверенуты две карты с красным фоном
-
-                if (turned[0].classList.contains('red')) {
-
-                    this.classList.toggle('turn');
-                    this.classList.remove('green');
-                    this.classList.remove('red');
-
-                    turned[0].classList.toggle('turn');
-                    turned[1].classList.toggle('turn');
-                    turned[0].classList.toggle('red');
-                    turned[1].classList.toggle('red');
-
-                }
-
-                if (turned[0].classList.contains('green')) {
-
-                   this.classList.toggle('turn');
-                   turned[0].classList.toggle('turn');
-                   turned[1].classList.toggle('turn');
-
-                   turned[0].classList.add('fix');
-                   turned[1].classList.add('fix');
-
-                  }
-
-            }
-
-
-            var green =gameField.querySelectorAll('.green').length;
-
-            if (green==12) {
-                
-                result='WIN';
-                setTimeout(function(){
-                    clearInterval(timerID);
-                    clearTimeout(timeoutID);
-
-                    document.querySelector('.win1').innerHTML='W';
-                    document.querySelector('.win2').innerHTML='i';
-                    document.querySelector('.win3').innerHTML='n';
-                    document.querySelector('.win4').innerHTML='';
-
-
-
-                    document.querySelector('.warn').innerHTML='PLAY AGAIN';
-                    document.querySelector('.film').classList.add('show');
-                    document.querySelector('.result').classList.add('show');
-                             
-                },500);
-               };
-
-
-*/
 
             } //конец функции обработки клика
 
@@ -341,16 +240,7 @@ endButton.addEventListener('click', stopGame);
                         //остановка таймера через 60 сек
                     }, 12000000);
 
-                 //   setTimeout(() => {if(result=='LOSS') {
-                        
-                  //      document.querySelector('.win').innerHTML='LOSE';
-                  //      document.querySelector('.warn').innerHTML='TRY AGAIN';
-                  //      document.querySelector('.film').classList.add('show');
-                  //      document.querySelector('.result').classList.add('show');
-                    
-                  //  };     
 
-                  //  }, 60300);
                                
     
                 };  
@@ -371,9 +261,10 @@ function stopGame() { //функция обработки клика по кно
     document.querySelector('.film').classList.remove('show');  
     document.querySelector('.message').classList.remove('show1');  
     document.querySelector('.time').innerHTML='00:00';
+    monster.classList.remove("show");
     result='LOSS';
     counter=0;
-    //setTimeout(distribute(),500);
+
    
 }
 
@@ -397,7 +288,7 @@ var mmj=mm.slice();
     };
     
     
-    //var mmjSelect = mmjSelect.concat(mmjSelect); //удваиваем массив с выбранными эмоджи, чтобы каждой было по паре и всего 12
+ 
     
     var mmjSelectShuffled = shuffle(mmjSelect); // перемещиваем в случайном порядке
     
