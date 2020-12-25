@@ -26,10 +26,10 @@ body {
     -webkit-transform: translate(-50%,-50%);
         -ms-transform: translate(-50%,-50%);
             transform: translate(-50%,-50%);
-    width: 512px;
-    height: 413px;
+    width: 650px;
+    height: 482px;
     display: none;
-    background-image: url("dragon1.gif");
+    background-image: url("witch.gif");
      z-index: 2000;
      cursor: pointer;
 
@@ -43,25 +43,26 @@ body {
     .gameField {
     position: relative;
     margin: 40px auto 10px auto;
-    width: 750px;
-    height: 515px;
-    background-color: #F8D210;
+    width: 870px;
+    height: 475px;
+
+    border: 5px solid white;
+    background-color: white;
     display: -ms-grid;
     display: grid;
-    -ms-grid-rows:110px 25px 110px 25px 110px 25px 110px;
-    grid-template-rows:110px 25px 110px 25px 110px 25px 110px;
-    -ms-grid-columns:130px 25px 130px 25px 130px 25px 130px 25px 130px;
-    grid-template-columns:130px 25px 130px 25px 130px 25px 130px 25px 130px;
+    -ms-grid-rows:115px 5px 115px 5px 115px 5px 115px;
+    grid-template-rows:115px 5px 115px 5px 115px 5px 115px;
+    -ms-grid-columns:170px 5px 170px 5px 170px 5px 170px 5px 170px;
+    grid-template-columns:170px 5px 170px 5px 170px 5px 170px 5px 170px;
     -webkit-perspective: 600px;
             perspective: 600px;
-    
     }
     
     .cardWrapper {
-    position: relative;
+    position: relative;	
     display: block;
-    width: 130px;
-    height: 110px;
+    width: 170px;
+    height: 115px;
     -webkit-transition: -webkit-transform 1s;
     transition: -webkit-transform 1s;
     -o-transition: transform 1s;
@@ -70,12 +71,13 @@ body {
     -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
     }
+
     .card {
    /* border-radius: 9px;*/
-    border: 5px solid #F8D210;
+   /* border: 5px solid #F8D210;*/
     display: block;
-    width: 120px;
-    height: 100px;
+    width: 170px;
+    height: 115px;
     background-color: #F8D210;
     background-image: url(stone.jpg);
     
@@ -89,16 +91,16 @@ body {
     .red .back{
         background-color: #FA26A0;
     
-       border: 5px solid #F8D210;
-        width: 120px;
-        height: 100px;
+     /*  border: 5px solid #F8D210;*/
+        width: 170px;
+        height: 115px;
     }
     
     .green .back{
         background-color: #ECF87F;
-        border: 5px solid #F8D210;
-        width: 120px;
-        height: 10  0px;
+    /*    border: 5px solid #F8D210;*/
+        width: 170px;
+        height: 115px;
     }
     
     /*.red .card {
@@ -147,7 +149,7 @@ body {
         -ms-grid-row-align: center;
         align-self: center;
     margin: 0 auto 0 auto;
-    font-size: 19px; /* уменьшить, если надо много текста*/
+    font-size: 18px; /* уменьшить, если надо много текста*/
     text-align: center;
     text-transform: uppercase;
     
@@ -216,7 +218,7 @@ body {
     h1{
     margin-top: 40px;
     font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
-    color: #434344;
+    color: white;
     }
     
     

@@ -56,6 +56,14 @@ var emo = [];
 
 var mm = ['ходилЛ','водилЛ','спутникЛ','правильныйЛ','доставкаЛ','сказалЛ','выходЛ','поводок','спутал','правда','чудовище','чудовище','ходил','водил','спутник','правильный','доставка','сказал','доставка','сказал'];
 
+
+var mm = ['Солажение','пдаение','обсуджеени','предсавтление','осевщение','Загдляение','Вдоховнение','Сожаление','представление','приготовление','Заглядение','падение','обсуждение','Отвращение','освещение','превращение','Свечение','получение','вручение','Вдохновение']; 
+
+
+
+
+
+
 var err=[];
 
 for (var iii=0;iii<7;iii++) { 
@@ -110,6 +118,37 @@ endButton.addEventListener('click', stopGame);
             startTimer();
 
 
+                var green = gameField.querySelectorAll(".green");
+                var red = gameField.querySelectorAll(".red"); //поиск перевернутых карт
+
+                console.log("green", green);
+
+                var gl = green.length;
+                var rl = red.length;
+
+                console.log("gl", gl);
+
+                    for (var i=0;i<gl;i++) {
+
+
+                    	console.log("green[i]",green[i],i);
+
+                        green[i].classList.remove('green');
+                        /*cardList[i].addEventListener('click',clickHandler);*/
+                    };
+                    for (var i=0;i<rl;i++) {
+
+
+                    	console.log("green[i]",green[i],i);
+
+                        red[i].classList.remove('red');
+                        /*cardList[i].addEventListener('click',clickHandler);*/
+                    };
+
+
+
+
+
             this.classList.toggle('turn'); //перевернули карту
 
             var text2=this.querySelector(".emo").innerHTML;
@@ -119,9 +158,13 @@ endButton.addEventListener('click', stopGame);
             if (err.includes(text2)) {
 
 
-                turned = gameField.querySelectorAll(".turn"); //поиск перевернутых карт
+                turned = gameField.querySelectorAll(".red"); //поиск перевернутых карт
+
+                console.log("turned", turned);
+
                 var tl = turned.length;
 
+                console.log("tl", tl);
 
                     for (i=0;i<tl;i++) {
                         turned[i].classList.remove('turn', 'fix', 'red', 'green');
