@@ -79,7 +79,8 @@ body {
     width: 170px;
     height: 115px;
     background-color: #F8D210;
-    background-image: url(stone.jpg);
+
+
     
     
     /*background-image: linear-gradient(to top right, #19668D, #22AB93); */
@@ -88,6 +89,16 @@ body {
 
     }
     
+
+    .num{
+
+    	position: absolute;
+    	left: 82px;
+    	top: 5px;
+    	color: #F51720;
+    	font-weight: 700;
+	  }
+
     .red .back{
         background-color: #FA26A0;
     
