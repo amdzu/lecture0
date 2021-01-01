@@ -11,60 +11,126 @@ function shuffle(arr){ //функция случайного перемешив�
 	return arr;
 }
 
-function myMoveLeft() {
   var elem = document.getElementById("c3"); 
+//********************************************************
+//ФУНКЦИЯ ОПРЕДЕЛЕНИЯ КООРДИНАТ ОТ ДОКУМЕНТА
+	function offset(el) {
+    var rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+}
+
+// example use
+
+var elemOffset = offset(elem);
+console.log(elemOffset.left, elemOffset.top);
+
+//**********************************************************
+
+
+function myMoveLeft() {
+
   //var target = document.getElementById("c16"); 
 
-  var pos=0;  
 
 
+//******************************************************************************
+//ОПРЕДЕЛЕНИЯ КООРДИНАТ ОТ РОДИТЕЛЯ
   //координаты верхней карты (от родителя)
   var posTop=elem.offsetTop;
   var posLeft=elem.offsetLeft;
+  var elemWidth=elem.offsetWidth;
+  var elemHeight=elem.offsetHeight;
+
+  console.log('elemWidth= ',elemWidth,' elemHeight= ',elemHeight);
 
   //координаты нижней карты, по которой кликнули
   var posTopTarget=this.offsetTop;
   var posLeftTarget=this.offsetLeft;
 
+//*************************************************************************
+  var moveTop=posTopTarget-posTop-elemHeight-3;
 
-  var moveTop=posTopTarget-posTop;
-  var moveLeft=posLeftTarget-posLeft;
+	var moveLeft=posLeftTarget-posLeft;
 
-  var moveTopAbs=Math.abs(moveTop);
-  var moveLeftAbs=Math.abs(moveLeft);
+if (moveLeft<0){
+  var moveLeft=posLeftTarget-posLeft+elemWidth/2;};
+if (moveLeft>0){
+  var moveLeft=posLeftTarget-posLeft-elemWidth/2;};
 
-  var scale=moveLeftAbs/moveTopAbs;
-  var moveLeftBigger=true;
+
+  if (moveLeft>0) {moveLeft=moveLeft-3;}; 
+  if (moveLeft<0) {moveLeft=moveLeft+3;};
+
+
+
+
+  console.log('posTop= ',posTop,' posLeft= ',posLeft);
+  console.log('posTopTarget= ',posTopTarget,' posLeftTarget= ',posLeftTarget);
+  console.log('moveTop= ',moveTop,' moveLeft= ',moveLeft);
+
+
+ // var moveTopAbs=Math.abs(moveTop);
+ // var moveLeftAbs=Math.abs(moveLeft);
+
+  //var scale=moveLeftAbs/moveTopAbs;
+  //var moveLeftBigger=true;
   
-  if (scale<1) {
-    scale=1/scale; 
-    moveLeftBigger=false;
-    };
+  //if (scale<1) {
+  //  scale=1/scale; 
+  //  moveLeftBigger=false;
+  //  };
 
-  console.log('scale= ',scale, 'moveLeftBigger =',moveLeftBigger);
-
-
+  //console.log('scale= ',scale, 'moveLeftBigger =',moveLeftBigger);
 
 
 
-console.log('pos= ',posTop,posLeft);
-console.log('posTarget= ',posTopTarget,posLeftTarget);
 
 
+//console.log('pos= ',posTop,posLeft);
+//console.log('posTarget= ',posTopTarget,posLeftTarget);
+var step=0;
 
-  var id = setInterval(frame, 3);
+let start = Date.now(); // remember start time
+
+  var timerA = setInterval(frame, 3);
 
 
   function frame() {
-    if (elem.style.top == posTopTarget) {
-      clearInterval(id);
-    } else {
-    pos++; 
-      elem.style.top = pos + 'px'; 
-      elem.style.left = pos + 'px'; 
-    }
+
+	let timePassed = Date.now() - start;	
+
+
+  if (step >= 300) {
+    clearInterval(timerA); // finish the animation after 2 seconds
+    return;
   }
+
+  // draw the animation at the moment timePassed
+  draw(timePassed);
+
 }
+
+// as timePassed goes from 0 to 2000
+// left gets values from 0px to 400px
+function draw(timePassed) {
+
+//Работает:
+//  elem.style.left = posLeft - timePassed / 2 + 'px';
+//  elem.style.top = posTop + timePassed/2 + 'px';
+
+step++;
+
+
+
+elem.style.left = posLeft + moveLeft/300*step + 'px';
+elem.style.top = posTop + moveTop/300*step + 'px';
+console.log('step = ',step, ' elem.style.left= ',elem.style.left,' elem.style.top=',elem.style.top);
+
+}
+}
+
 
 
 
@@ -126,8 +192,17 @@ distribute();
 
 //Обработка клика по нижней левой карте
 
-var leftCard = document.getElementById("c16");
-leftCard.addEventListener('click', myMoveLeft);
+var cards=document.querySelectorAll("div.cardWrapper");
+var cardsNumber=cards.length;
+
+for (var l=0;l<cardsNumber;l++) {
+
+	cards[l].addEventListener('click', myMoveLeft);
+};
+
+
+//var leftCard = document.getElementById("c16");
+//leftCard.addEventListener('click', myMoveLeft);
         
 
 

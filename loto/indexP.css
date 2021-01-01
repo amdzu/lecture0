@@ -65,6 +65,9 @@ body {
     transition: transform 1s, -webkit-transform 1s;
     -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
+
+
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
 
     .card {
@@ -166,6 +169,7 @@ body {
             position: absolute;
             left: 50%;
             transform: translate(-50%,0);
+            z-index: 1000;
     }
     #c16{   position: absolute;
             top: 100%;
@@ -175,6 +179,10 @@ body {
             top: 100%; left: 50%;
             transform: translate(-50%,-100%);}
   
+    #c19{position: absolute;
+            top: 100%; left: 70%;
+            transform: translate(-50%,-100%);}
+
 
     #c20{position: absolute;
             top: 100%; left: 100%;
