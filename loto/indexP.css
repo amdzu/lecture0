@@ -76,7 +76,7 @@ body {
     display: block;
     width: 170px;
     height: 115px;
-    background-color: #F8D210;
+   /* background-color: #F8D210;
 
 
     
@@ -98,7 +98,7 @@ body {
 	  }
 
     .red .back{
-        background-color: #FA26A0;
+    /*    background-color: #FA26A0;
     
      /*  border: 5px solid #F8D210;*/
         width: 170px;
@@ -106,7 +106,7 @@ body {
     }
     
     .green .back{
-        background-color: #ECF87F;
+     /*   background-color: #ECF87F;
     /*    border: 5px solid #F8D210;*/
         width: 170px;
         height: 115px;
@@ -148,7 +148,7 @@ body {
     display: -ms-flexbox;
     display: flex;
     background-image: none;
-    background-color: #2FF3E0;
+    /*background-color: #2FF3E0;
    /* -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg); */
     }
@@ -163,31 +163,105 @@ body {
     text-transform: uppercase;
     
     }
+    .down {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    margin: 0 auto 0 auto;
+    font-size: 18px; /* уменьшить, если надо много текста*/
+    text-align: center;
+    text-transform: uppercase;
+    
+    }
     
 
-    #c3 {
+
+    .top {display: block;
             position: absolute;
             left: 50%;
             transform: translate(-50%,0);
-            z-index: 1000;
-    }
+           /* z-index: 1600;*/
+background-color: orange;
+
+        }
+
+     #top1 {
+     	z-index: 50;
+     }
+     #top2 {
+     	z-index: 49;
+     }
+     #top3 {
+     	z-index: 48;
+     }
+     #top4 {
+     	z-index: 47;
+     }
+     #top5 {
+     	z-index: 46;
+     }
+
+     #top6 {
+     	z-index: 45;
+     }
+     #top7 {
+     	z-index: 44;
+     }
+     #top8 {
+     	z-index: 43;
+     }
+     #top9 {
+     	z-index: 42;
+     }
+     #top10 {
+     	z-index: 41;
+     }
+
+          #top11 {
+     	z-index: 40;
+     }
+     #top12 {
+     	z-index: 39;
+     }
+     #top13 {
+     	z-index: 38;
+     }
+     #top14 {
+     	z-index: 37;
+     }
+     #top15 {
+     	z-index: 36;
+     }
+
+
+
+
+
+
     #c16{   position: absolute;
+    		background-color:  #ac92eb;
             top: 100%;
             transform: translate(0,-100%);}
 
+    #c17{   position: absolute;
+    		background-color:  #4fc1e8;
+            top: 100%;left: 25%;
+            transform: translate(-25%,-100%);}
+
     #c18{position: absolute;
+    		background-color:  #a0d568;
             top: 100%; left: 50%;
             transform: translate(-50%,-100%);}
   
     #c19{position: absolute;
-            top: 100%; left: 70%;
-            transform: translate(-50%,-100%);}
-
+    		background-color:  #ffce54;
+            top: 100%; left: 75%;
+            transform: translate(-75%,-100%);}
 
     #c20{position: absolute;
+    		background-color:  #ed5564;
             top: 100%; left: 100%;
             transform: translate(-100%,-100%);}
-
 
     h1{
     margin-top: 40px;

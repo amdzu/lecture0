@@ -11,7 +11,6 @@ function shuffle(arr){ //функция случайного перемешив�
 	return arr;
 }
 
-  var elem = document.getElementById("c3"); 
 //********************************************************
 //ФУНКЦИЯ ОПРЕДЕЛЕНИЯ КООРДИНАТ ОТ ДОКУМЕНТА
 	function offset(el) {
@@ -21,75 +20,122 @@ function shuffle(arr){ //функция случайного перемешив�
     return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 }
 
-// example use
-
-var elemOffset = offset(elem);
-console.log(elemOffset.left, elemOffset.top);
-
-//**********************************************************
+var nTopCard=-1;
 
 
 function myMoveLeft() {
+
+var answer=false;
+
+var typ=this.id; //ID элемента, по которому кликнули
+
+//var qq=document.getElementById(typ);
+//console.log(qq, 'classList ',qq.classList);
+//var wwww=qq.classList.value.includes('one');
+//console.log(wwww);
+
+
+
+
+
+nTopCard++;
+
+//var elem = document.getElementById("top1"); 
+var elem=topCards[nTopCard];
+var selector='#'+elem.id+' .card .emo';
+
+console.log(selector);
+
+
+var textTop=document.querySelector(selector).innerHTML; //Текст верхней карты
+console.log(textTop);
+
+
+
+if(document.getElementById(typ).classList.value.includes('one')){
+
+	if (mm1.includes(textTop)) {answer=true; elem.classList.add('one'); }
+};
+if(document.getElementById(typ).classList.value.includes('two')){
+
+	if (mm2.includes(textTop)) {answer=true; elem.classList.add('two');}
+};
+if(document.getElementById(typ).classList.value.includes('three')){
+
+	if (mm3.includes(textTop)) {answer=true; elem.classList.add('three');}
+};
+if(document.getElementById(typ).classList.value.includes('four')){
+
+	if (mm4.includes(textTop)) {answer=true; elem.classList.add('four');}
+};
+if(document.getElementById(typ).classList.value.includes('five')){
+
+	if (mm5.includes(textTop)) {answer=true; elem.classList.add('five');}
+};
+
+console.log('Answer= ',answer);
+console.log('mm1 ',mm1,'mm2 ',mm2,'mm3 ',mm3,'mm4 ',mm4,'mm5',mm5);
+
+
+
+
+
+if(answer==true){
+	elem.addEventListener('click',myMoveLeft);
+	topCards[nTopCard].style.zIndex = "1500"; 
+};
+if(answer==false){
+nTopCard--;
+}
+
+
+
+
+var elemOffset = offset(elem);
+//console.log(elemOffset.left, elemOffset.top);
 
   //var target = document.getElementById("c16"); 
 
 
 
 //******************************************************************************
-//ОПРЕДЕЛЕНИЯ КООРДИНАТ ОТ РОДИТЕЛЯ
+//ОПРЕДЕЛЕНИЕ КООРДИНАТ ОТ РОДИТЕЛЯ
   //координаты верхней карты (от родителя)
   var posTop=elem.offsetTop;
   var posLeft=elem.offsetLeft;
+
+  var posTopDoc=elemOffset.top; //относительно документа
+  var posLeftDoc=elemOffset.left;//относительно документа
+
+
   var elemWidth=elem.offsetWidth;
   var elemHeight=elem.offsetHeight;
 
-  console.log('elemWidth= ',elemWidth,' elemHeight= ',elemHeight);
+  //console.log('elemWidth= ',elemWidth,' elemHeight= ',elemHeight);
 
   //координаты нижней карты, по которой кликнули
   var posTopTarget=this.offsetTop;
   var posLeftTarget=this.offsetLeft;
 
+  var targetOffset=offset(this);
+
+  var posTopTargetDoc=targetOffset.top; //таргет относительно документа
+  var posLeftTargetDoc=targetOffset.left;
+
+  //console.log('targetOffset ',targetOffset.left, targetOffset.top);
+
+
 //*************************************************************************
-  var moveTop=posTopTarget-posTop-elemHeight-3;
+  //var moveTop=posTopTarget-posTop-elemHeight-3;
 
-	var moveLeft=posLeftTarget-posLeft;
+	//var moveLeft=posLeftTarget-posLeft;
 
-if (moveLeft<0){
-  var moveLeft=posLeftTarget-posLeft+elemWidth/2;};
-if (moveLeft>0){
-  var moveLeft=posLeftTarget-posLeft-elemWidth/2;};
-
+var moveTop=posTopTargetDoc-posTopDoc;
+var moveLeft=posLeftTargetDoc-posLeftDoc;
 
   if (moveLeft>0) {moveLeft=moveLeft-3;}; 
   if (moveLeft<0) {moveLeft=moveLeft+3;};
 
-
-
-
-  console.log('posTop= ',posTop,' posLeft= ',posLeft);
-  console.log('posTopTarget= ',posTopTarget,' posLeftTarget= ',posLeftTarget);
-  console.log('moveTop= ',moveTop,' moveLeft= ',moveLeft);
-
-
- // var moveTopAbs=Math.abs(moveTop);
- // var moveLeftAbs=Math.abs(moveLeft);
-
-  //var scale=moveLeftAbs/moveTopAbs;
-  //var moveLeftBigger=true;
-  
-  //if (scale<1) {
-  //  scale=1/scale; 
-  //  moveLeftBigger=false;
-  //  };
-
-  //console.log('scale= ',scale, 'moveLeftBigger =',moveLeftBigger);
-
-
-
-
-
-//console.log('pos= ',posTop,posLeft);
-//console.log('posTarget= ',posTopTarget,posLeftTarget);
 var step=0;
 
 let start = Date.now(); // remember start time
@@ -109,26 +155,46 @@ let start = Date.now(); // remember start time
 
   // draw the animation at the moment timePassed
   draw(timePassed);
-
 }
 
-// as timePassed goes from 0 to 2000
-// left gets values from 0px to 400px
+
+var middleLeft=0;
+var middleTop=0;
+
 function draw(timePassed) {
-
-//Работает:
-//  elem.style.left = posLeft - timePassed / 2 + 'px';
-//  elem.style.top = posTop + timePassed/2 + 'px';
-
 step++;
 
-
+console.log('ANSWER=   ',answer);
+if(answer==true) {
 
 elem.style.left = posLeft + moveLeft/300*step + 'px';
 elem.style.top = posTop + moveTop/300*step + 'px';
-console.log('step = ',step, ' elem.style.left= ',elem.style.left,' elem.style.top=',elem.style.top);
-
+console.log('step ',step,' elem.style.top',elem.style.top);
 }
+
+
+if(answer==false) {
+	
+	if (step<=150) {
+
+		elem.style.left = posLeft + moveLeft/300*step + 'px';
+		elem.style.top = posTop + moveTop/300*step + 'px';
+		middleLeft=posLeft + moveLeft/300*step;
+		middleTop=posTop + moveTop/300*step;
+		console.log('step ',step,' elem.style.top',elem.style.top);
+
+
+	}
+	if (step>150) {
+		elem.style.left = middleLeft - moveLeft/600*step + 'px';
+		elem.style.top = middleTop - moveTop/600*step + 'px';
+						console.log('step ',step,' elem.style.top',elem.style.top);
+
+	}
+}
+
+	}
+
 }
 
 
@@ -155,9 +221,14 @@ var emo = [];
 var foundMistake;
 
 
+var mm1=["красный","желтый","зеленый","черный","синий"];
+var mm2=["Вася","Петя","Маша","Коля","Исаак"];
+var mm3=["огурец","помидор","яблоко","арбуз","слива"];
+var mm4=["лев","тигр","мышь","заяц","слон"];
+var mm5=["один","два","три","четыре","пять"];
 
-/*Превые 7 слов - с ошибками!!!!*/
-var mm = ['Солажение','пдаение','обсуджеени','предсавтление','осевщение','Загдляение','Вдоховнение','Сожаление','представление','приготовление','Заглядение','падение','обсуждение','Отвращение','освещение','превращение','Свечение','получение','вручение','Вдохновение']; 
+var mm=mm1.concat(mm2,mm3,mm4,mm5);
+
 
 
 var nMistakes=7;
@@ -190,15 +261,20 @@ function clickHandlerMonster() {
 distribute();
 
 
-//Обработка клика по нижней левой карте
+//Обработка клика по нижней  карте
 
-var cards=document.querySelectorAll("div.cardWrapper");
+var cards=document.querySelectorAll("div.btm");
 var cardsNumber=cards.length;
 
 for (var l=0;l<cardsNumber;l++) {
 
 	cards[l].addEventListener('click', myMoveLeft);
 };
+
+
+var topCards=document.querySelectorAll("div.top");
+var topCardsNumber=topCards.length;
+
 
 
 //var leftCard = document.getElementById("c16");
