@@ -21,6 +21,8 @@ function shuffle(arr){ //функция случайного перемешив�
 }
 
 var nTopCard=-1;
+var audio = new Audio('fail.mp3');
+var audio1 = new Audio('success.mp3');
 
 
 function myMoveLeft() {
@@ -142,13 +144,15 @@ let start = Date.now(); // remember start time
 
   var timerA = setInterval(frame, 1);
 
+var nIter=250; //КОЛИЧЕСТВО ШАГОВ В АНИМАЦИИ
+
 
   function frame() {
 
 	let timePassed = Date.now() - start;	
 
 
-  if (step >= 500) {
+  if (step >= nIter) {
     clearInterval(timerA); // finish the animation after 2 seconds
     return;
   }
@@ -158,27 +162,35 @@ let start = Date.now(); // remember start time
 }
 
 
+
+
 var middleLeft=0;
 var middleTop=0;
 
 function draw(timePassed) {
-step++;
 
+
+step++;
+console.log(timePassed);
 console.log('ANSWER=   ',answer);
 if(answer==true) {
 
-elem.style.left = posLeft + moveLeft/500*step + 'px';
-elem.style.top = posTop + moveTop/500*step + 'px';
+if(step==nIter-3) {
+    audio1.play();
+}
+
+elem.style.left = posLeft + moveLeft/nIter*step + 'px';
+elem.style.top = posTop + moveTop/nIter*step + 'px';
 console.log('step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 }
 
 
 if(answer==false) {
 	
-	if (step<=250) {
+	if (step<=nIter/2) {
 
-		elem.style.left = posLeft + moveLeft/500*step + 'px';
-		elem.style.top = posTop + moveTop/500*step + 'px';
+		elem.style.left = posLeft + moveLeft/nIter*step + 'px';
+		elem.style.top = posTop + moveTop/nIter*step + 'px';
 	//	middleLeft=posLeft + moveLeft/500*step;
 	//	middleTop=posTop + moveTop/500*step;
 	//	if(step==250) {middleLeft=elem.style.left; middleTop=elem.style.top; console.log(middleLeft,middleTop);};
@@ -187,11 +199,14 @@ if(answer==false) {
 
 
 	}
-	if (step>250) {
+	if (step>nIter/2) {
 
+        if(step==nIter/2+1) {audio.play();};
+            
+       
 		
-		elem.style.left = posLeft + moveLeft/500*(250)- moveLeft/500*(step-250) + 'px';
-		elem.style.top = posTop + moveTop/500*(250)- moveTop/500*(step-250) + 'px';
+		elem.style.left = posLeft + moveLeft/2- moveLeft/nIter*(step-nIter/2) + 'px';
+		elem.style.top = posTop + moveTop/2- moveTop/nIter*(step-nIter/2) + 'px';
 						console.log(posLeft,posTop,moveLeft,moveTop,	'step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 
 	}
@@ -219,7 +234,7 @@ var time = new Date();
 
 var gameField = document.querySelector('.gameField');
 var turned;
-var audio;
+
 
 var emo = [];
 var foundMistake;
@@ -401,8 +416,7 @@ endButton.addEventListener('click', stopGame);
 //monster = document.getElementById("monster");
 
             monster.classList.add('show');
-            audio = new Audio('growl.mp3');
-            audio.play();
+
 //   ПОЯВЛЕНИЕ ЧУДОВИЩА
 
                              

@@ -15,30 +15,10 @@
 body {
     margin: 0;
     text-align: center;
-     background-color: #FA26A0;
+     background-color: #C55FFC;
+     /*background-image: url('back.jpg');*/
      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
-
-    #monster {
-    position: fixed;
-    top:50%;
-    left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-    width: 650px;
-    height: 482px;
-    display: none;
-    background-image: url("witch.gif");
-     z-index: 2000;
-     cursor: pointer;
-
-    }
-
-    #monster.show {
-        display: block;
-    }
-
 
     .gameField {
     position: relative;
@@ -56,7 +36,7 @@ body {
     .cardWrapper {
     position: absolute;	
     display: block;
-    width: 170px;
+    width: 160px;
     height: 115px;
     -webkit-transition: -webkit-transform 1s;
     transition: -webkit-transform 1s;
@@ -65,10 +45,9 @@ body {
     transition: transform 1s, -webkit-transform 1s;
     -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
-
-
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
+
+
 
     .card {
    /* border-radius: 9px;*/
@@ -181,7 +160,7 @@ body {
             left: 50%;
             transform: translate(-50%,0);
            /* z-index: 1600;*/
-background-color: orange;
+background-color: #C55FFC;
 
         }
 
@@ -234,39 +213,92 @@ background-color: orange;
      }
 
 
-
-
-
-
     #c16{   position: absolute;
-    		background-color:  #ac92eb;
+    		
             top: 100%;
             transform: translate(0,-100%);}
 
     #c17{   position: absolute;
-    		background-color:  #4fc1e8;
+    		
             top: 100%;left: 25%;
             transform: translate(-25%,-100%);}
 
     #c18{position: absolute;
-    		background-color:  #a0d568;
+    		
             top: 100%; left: 50%;
             transform: translate(-50%,-100%);}
   
     #c19{position: absolute;
-    		background-color:  #ffce54;
+    		
             top: 100%; left: 75%;
             transform: translate(-75%,-100%);}
 
     #c20{position: absolute;
-    		background-color:  #ed5564;
+    		
             top: 100%; left: 100%;
             transform: translate(-100%,-100%);}
+
+    .one {
+        /*background-color:  #ac92eb;*/
+        background-color:  #8744E0;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .two {
+        background-color:  #4fc1e8;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+    .three {
+        background-color:  #a0d568;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+    .four {
+        background-color:  #ffce54;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+    .five {
+        background-color:  #ed5564;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);      
+    }
+
+    .l1 {
+            margin-top: 40px;
+    font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
+        display: inline-block;
+        color:  #8744E0;
+    }
+
+    .l2 {
+            margin-top: 40px;
+    font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
+                display: inline-block;
+        color:  #4fc1e8;
+    }
+    .l3 {
+            margin-top: 40px;
+    font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
+                display: inline-block;
+        color:  #a0d568;
+
+    }
+    .l4 {
+            margin-top: 40px;
+    font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
+                display: inline-block;
+        color:  #ffce54;
+    }
+    .l5 {
+            margin-top: 40px;
+    font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
+                display: inline-block;
+        color:  #ed5564;  
+    }
+
 
     h1{
     margin-top: 40px;
     font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
-    color: white;
+    color: grey;
     }
     
     
