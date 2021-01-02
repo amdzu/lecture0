@@ -140,7 +140,7 @@ var step=0;
 
 let start = Date.now(); // remember start time
 
-  var timerA = setInterval(frame, 3);
+  var timerA = setInterval(frame, 1);
 
 
   function frame() {
@@ -148,7 +148,7 @@ let start = Date.now(); // remember start time
 	let timePassed = Date.now() - start;	
 
 
-  if (step >= 300) {
+  if (step >= 500) {
     clearInterval(timerA); // finish the animation after 2 seconds
     return;
   }
@@ -167,28 +167,32 @@ step++;
 console.log('ANSWER=   ',answer);
 if(answer==true) {
 
-elem.style.left = posLeft + moveLeft/300*step + 'px';
-elem.style.top = posTop + moveTop/300*step + 'px';
-console.log('step ',step,' elem.style.top',elem.style.top);
+elem.style.left = posLeft + moveLeft/500*step + 'px';
+elem.style.top = posTop + moveTop/500*step + 'px';
+console.log('step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 }
 
 
 if(answer==false) {
 	
-	if (step<=150) {
+	if (step<=250) {
 
-		elem.style.left = posLeft + moveLeft/300*step + 'px';
-		elem.style.top = posTop + moveTop/300*step + 'px';
-		middleLeft=posLeft + moveLeft/300*step;
-		middleTop=posTop + moveTop/300*step;
-		console.log('step ',step,' elem.style.top',elem.style.top);
+		elem.style.left = posLeft + moveLeft/500*step + 'px';
+		elem.style.top = posTop + moveTop/500*step + 'px';
+	//	middleLeft=posLeft + moveLeft/500*step;
+	//	middleTop=posTop + moveTop/500*step;
+	//	if(step==250) {middleLeft=elem.style.left; middleTop=elem.style.top; console.log(middleLeft,middleTop);};
+	//	console.log('step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
+						console.log(posLeft,posTop,moveLeft,moveTop,	'step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 
 
 	}
-	if (step>150) {
-		elem.style.left = middleLeft - moveLeft/600*step + 'px';
-		elem.style.top = middleTop - moveTop/600*step + 'px';
-						console.log('step ',step,' elem.style.top',elem.style.top);
+	if (step>250) {
+
+		
+		elem.style.left = posLeft + moveLeft/500*(250)- moveLeft/500*(step-250) + 'px';
+		elem.style.top = posTop + moveTop/500*(250)- moveTop/500*(step-250) + 'px';
+						console.log(posLeft,posTop,moveLeft,moveTop,	'step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 
 	}
 }
