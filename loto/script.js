@@ -1,6 +1,131 @@
 'use strict';
 
-function shuffle(arr){ //функция случайного перемешивания массива
+
+
+
+function readFile(input) {
+  let file = input.files[0];
+
+  let reader = new FileReader();
+
+  reader.readAsText(file);
+
+  reader.onload = function() {
+
+
+  	var res = reader.result;
+
+  	fromFile = res.replace(/(\r\n|\n|\r)/gm,":");
+
+  	fromFile = fromFile.replace(/\s+/g," ");
+  	//console.log(fromFile);
+
+console.log(fromFile);
+
+var imported=fromFile.split(':');
+
+mm0=imported[0].split(',');
+mm1=imported[1].split(',');
+mm2=imported[2].split(',');
+mm3=imported[3].split(',');
+mm4=imported[4].split(',');
+mm5=imported[5].split(',');
+
+
+
+
+var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
+var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
+var bottomCard2=document.querySelector('#c18 .card .down').innerHTML=mm0[2];
+var bottomCard3=document.querySelector('#c19 .card .down').innerHTML=mm0[3];
+var bottomCard4=document.querySelector('#c20 .card .down').innerHTML=mm0[4];
+
+
+
+console.log(mm1);
+
+start();
+
+
+  };
+
+  reader.onerror = function() {
+    console.log(reader.error);
+  };
+
+}
+
+
+//****** Чтение данных из текстового файла на сервере для начальной установки 
+
+
+function getFileFromServer() {
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+
+       var	result = xhr.responseText;
+       readFileInitial(result);
+
+        }
+    }
+    xhr.open('GET', 'test.html');
+    xhr.send();
+
+
+}
+
+
+function readFileInitial(result) {
+
+  	var res = result;
+
+  	fromFile = res.replace(/(\r\n|\n|\r)/gm,":");
+
+  	fromFile = fromFile.replace(/\s+/g," ");
+  	//console.log(fromFile);
+
+console.log(fromFile);
+
+var imported=fromFile.split(':');
+
+
+mm1=imported[1].split(',');
+mm2=imported[2].split(',');
+mm3=imported[3].split(',');
+mm4=imported[4].split(',');
+mm5=imported[5].split(',');
+
+
+
+
+
+console.log(mm1);
+
+start();
+
+
+
+}
+//***********************КОНЕЦ начального чтения
+
+
+
+
+
+
+
+
+
+
+
+
+//*********************************************************
+//функция случайного перемешивания массива
+
+function shuffle(arr){ 
 	var j, temp;
 	for(var i = arr.length - 1; i > 0; i--){
 		j = Math.floor(Math.random()*(i + 1));
@@ -11,38 +136,35 @@ function shuffle(arr){ //функция случайного перемешив�
 	return arr;
 }
 
+
+
 //********************************************************
 //ФУНКЦИЯ ОПРЕДЕЛЕНИЯ КООРДИНАТ ОТ ДОКУМЕНТА
-	function offset(el) {
+function offset(el) {
     var rect = el.getBoundingClientRect(),
     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 }
-
-var nTopCard=-1;
-var audio = new Audio('fail.mp3');
-var audio1 = new Audio('success.mp3');
+//*********************************************************
 
 
+// myMoveLeft***************************************************************************
 function myMoveLeft() {
+
+var inputFile=document.querySelector('input').disabled=true;
+//inputFile.classList.add('none');
+
+
 
 var answer=false;
 
 var typ=this.id; //ID элемента, по которому кликнули
 
-//var qq=document.getElementById(typ);
-//console.log(qq, 'classList ',qq.classList);
-//var wwww=qq.classList.value.includes('one');
-//console.log(wwww);
-
-
-
 
 
 nTopCard++;
 
-//var elem = document.getElementById("top1"); 
 var elem=topCards[nTopCard];
 var selector='#'+elem.id+' .card .emo';
 
@@ -94,10 +216,6 @@ nTopCard--;
 
 
 var elemOffset = offset(elem);
-//console.log(elemOffset.left, elemOffset.top);
-
-  //var target = document.getElementById("c16"); 
-
 
 
 //******************************************************************************
@@ -124,13 +242,9 @@ var elemOffset = offset(elem);
   var posTopTargetDoc=targetOffset.top; //таргет относительно документа
   var posLeftTargetDoc=targetOffset.left;
 
-  //console.log('targetOffset ',targetOffset.left, targetOffset.top);
-
 
 //*************************************************************************
-  //var moveTop=posTopTarget-posTop-elemHeight-3;
 
-	//var moveLeft=posLeftTarget-posLeft;
 
 var moveTop=posTopTargetDoc-posTopDoc;
 var moveLeft=posLeftTargetDoc-posLeftDoc;
@@ -166,7 +280,7 @@ var nIter=250; //КОЛИЧЕСТВО ШАГОВ В АНИМАЦИИ
 
 var middleLeft=0;
 var middleTop=0;
-
+//ФУНКЦИЯ ИЗМЕНЯЕТ КООРДИНАТЫ ВЕРХНЕЙ КАРТЫ**************************************************************************************************
 function draw(timePassed) {
 
 
@@ -214,358 +328,31 @@ if(answer==false) {
 
 	}
 
+//****************************************************************************************
+
 }
 
+// FUNCTION myMoveLeft *******************************************************
 
 
 
 
-
-var result='LOSS';
-var counter=0;
-var timerID;
-var timeoutID;
-
-var time = new Date();
-
-//time.setMinutes(1);
-//time.setSeconds(0);
-
-
-var gameField = document.querySelector('.gameField');
-var turned;
-
-
-var emo = [];
-var foundMistake;
-
-
-var mm1=["красный","желтый","зеленый","черный","синий"];
-var mm2=["Вася","Петя","Маша","Коля","Исаак"];
-var mm3=["огурец","помидор","яблоко","арбуз","слива"];
-var mm4=["лев","тигр","мышь","заяц","слон"];
-var mm5=["один","два","три","четыре","пять"];
-
-var mm=mm1.concat(mm2,mm3,mm4,mm5);
-
-
-
-var nMistakes=7;
-
-
-
-var err=[];
-
-for (var iii=0;iii<nMistakes;iii++) { 
-    err[iii]=mm[iii];
-    };
-
-
-var mmj=[];
-var mmjSelect =[];
-
-var m,j,k,p;
-
-var monster = document.getElementById("monster");
-
-monster.addEventListener("click",clickHandlerMonster);
-
-
-function clickHandlerMonster() {
-    this.classList.remove("show");
-    audio.pause();
-}
-
-
-distribute();
-
-
-//Обработка клика по нижней  карте
-
-var cards=document.querySelectorAll("div.btm");
-var cardsNumber=cards.length;
-
-for (var l=0;l<cardsNumber;l++) {
-
-	cards[l].addEventListener('click', myMoveLeft);
-};
-
-
-var topCards=document.querySelectorAll("div.top");
-var topCardsNumber=topCards.length;
-
-
-
-//var leftCard = document.getElementById("c16");
-//leftCard.addEventListener('click', myMoveLeft);
-        
-
-
-// Обработка клика по кнопке завершения игры
-
-var endButton = document.querySelector('.btn');
-
-endButton.addEventListener('click', stopGame);
-
-
-
-
-        function clickHandler() { //начало функции обработки клика по карте
-
-        console.log('CLICK!!!');
-            startTimer();
-
-
-                var green = gameField.querySelectorAll(".green");
-                var red = gameField.querySelectorAll(".red"); //поиск перевернутых карт
-
-                console.log("green", green);
-
-                var gl = green.length;
-                var rl = red.length;
-
-                console.log("gl", gl);
-
-                    for (var i=0;i<gl;i++) {
-
-
-                    	console.log("green[i]",green[i],i);
-
-                        green[i].classList.remove('green');
-                        /*cardList[i].addEventListener('click',clickHandler);*/
-                    };
-                    for (var i=0;i<rl;i++) {
-
-
-                    	console.log("green[i]",green[i],i);
-
-                        red[i].classList.remove('red');
-                        /*cardList[i].addEventListener('click',clickHandler);*/
-                    };
-
-
-
-
-
-            this.classList.toggle('turn'); //перевернули карту
-
-            var text2=this.querySelector(".emo").innerHTML; //проверяем, есть ли ошибка в тексте
-
-            foundMistake=false;
-
-            //console.log("text2 ",text2);
-
-            for (var k=0;k<nMistakes;k++) {
-
-            if (err[k].includes(text2)) { //Берем не все содержимое карточки, а выбрасываем 4 символа слева, чтобы номер карточки не мешал
-
-            	foundMistake=true;
-
-            	//console.log("k ",k," text2.slice(4)",text2.slice(4));
-
-            }
-
-            };
-
-
-
-
-
-            if (foundMistake) {
-
-
-                turned = gameField.querySelectorAll(".red"); //поиск перевернутых карт
-
-                console.log("turned", turned);
-
-                var tl = turned.length;
-
-                console.log("tl", tl);
-
-                    for (i=0;i<tl;i++) {
-                        turned[i].classList.remove('turn', 'fix', 'red', 'green');
-                        /*cardList[i].addEventListener('click',clickHandler);*/
-                    };
-                
-
-
-               // for (var i=0;i<tl;i++) {
-
-                  
-
-                    this.classList.add('red');// }
-
-
-                result='WIN';
-                setTimeout(function(){
-                    clearInterval(timerID);
-                    clearTimeout(timeoutID);
-
-                    document.querySelector('.win1').innerHTML='С';
-                    document.querySelector('.win2').innerHTML='Т';
-                    document.querySelector('.win3').innerHTML='О';
-                    document.querySelector('.win4').innerHTML='П';
-
-
-
-                 /*   document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
-                    document.querySelector('.film').classList.add('show');
-                    document.querySelector('.result').classList.add('show');*/
-
-                    //   ПОЯВЛЕНИЕ ЧУДОВИЩА
-//monster = document.getElementById("monster");
-
-            monster.classList.add('show');
-
-//   ПОЯВЛЕНИЕ ЧУДОВИЩА
-
-                             
-                },500);
-
-            } else {
-
-
-                this.classList.add('green');
-
-
-                            var green =gameField.querySelectorAll('.green').length;
-
-            if (green==11) {
-                
-                result='WIN';
-                setTimeout(function(){
-                    clearInterval(timerID);
-                    clearTimeout(timeoutID);
-
-                    document.querySelector('.win1').innerHTML='У';
-                    document.querySelector('.win2').innerHTML='Р';
-                    document.querySelector('.win3').innerHTML='А';
-                    document.querySelector('.win4').innerHTML='!';
-
-
-
-                    document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
-                    document.querySelector('.film').classList.add('show');
-                    document.querySelector('.message').classList.add('show1');
-                    document.querySelector('.result').classList.add('show');
-                             
-                },500);
-               };
-            }
-
-
-
-            } //конец функции обработки клика
-
-
-            function startTimer() {  //Функция запуска управления таймером
-                counter = counter+1; //номер клика
-                console.log('counter ',counter);
-    
-                if (counter==1) {
-
-              //      distribute();
-
-                    time.setMinutes(9);
-                    time.setSeconds(0);
-                    var minutes =time.getMinutes();
-                    var seconds=time.getSeconds();
-                    if(minutes<10) {minutes='0'+minutes;} else {minutes=String(minutes);};
-                    if(seconds<10) {seconds='0'+seconds;} else {seconds=String(seconds);};
-                    var timeS=minutes+':'+seconds;
-                    var timer =document.querySelector('.time');
-                    timer.innerHTML=timeS;
-    
-    
-                    timerID=setInterval(function(){ //запуск таймера
-                        
-                        time.setSeconds(time.getSeconds()-1);
-        
-                        //console.log(time);
-                        
-                        var minutes = time.getMinutes();
-                        var seconds = time.getSeconds();
-                        if(minutes<10) {minutes='0'+minutes;} else {minutes=String(minutes);};
-                        if(seconds<10) {seconds='0'+seconds;} else {seconds=String(seconds);};
-                        timeS=minutes+':'+seconds;
-                        timer = document.querySelector('.time');
-                        timer.innerHTML=timeS;                       
-                    }, 1000);
-    
-                    timeoutID=setTimeout(() => {
-                        
-                        clearInterval(timerID); 
-                        if(result=='LOSS') {
-                            document.querySelector('.win1').innerHTML='L';
-                            document.querySelector('.win2').innerHTML='o';
-                            document.querySelector('.win3').innerHTML='s';
-                            document.querySelector('.win4').innerHTML='e';
-
-
-
-
-                            document.querySelector('.warn').innerHTML='TRY AGAIN';
-                            document.querySelector('.film').classList.add('show');
-                            document.querySelector('.result').classList.add('show');
-                        
-                        };     
-                        
-                        //остановка таймера через 60 сек
-                    }, 12000000);
-
-
-                               
-    
-                };  
-
-
-    
-            }; //конец функции управления таймером
-
-
-function stopGame() { //функция обработки клика по кнопке завершения игры
-
-    for (i=0;i<l;i++) {
-        cardList[i].classList.remove('turn', 'fix', 'red', 'green');
-        cardList[i].addEventListener('click',clickHandler);
-    };
-
-    document.querySelector('.result').classList.remove('show');
-    document.querySelector('.film').classList.remove('show');  
-    document.querySelector('.message').classList.remove('show1');  
-    document.querySelector('.time').innerHTML='00:00';
-    monster.classList.remove("show");
-    result='LOSS';
-    counter=0;
-
-   
-}
-
-
+//***РАСПРДЕЛЕНИЕ ТЕКСТА ПО КАРТАМ***********************************************************
 function distribute() {
 var mmjSelect=[];
 var mmj=mm.slice();
-
-
 
     for (var n=0; n<20;n++) {
 
         m=mmj.length;
         j = Math.random()*m;
         k = Math.floor(j);
-    
         p = mmj[k];
-    
         mmjSelect.push(p);
         mmj.splice(k,1);
     };
-    
-    
- 
-    
+
     var mmjSelectShuffled = shuffle(mmjSelect); // перемещиваем в случайном порядке
-    
-    
     var backCards=document.querySelectorAll(".emo"); // выбираем все divы для вставления эмоджи
     var ll = backCards.length;
     
@@ -573,6 +360,67 @@ var mmj=mm.slice();
         emo[kk]=backCards[kk];
         emo[kk].innerHTML = mmjSelectShuffled[kk];
     };
+}
+//******************************************************************************************
 
+function start () {
+
+
+mm=mm1.concat(mm2,mm3,mm4,mm5);
+
+audio = new Audio('fail.mp3');
+audio1 = new Audio('success.mp3');
+
+distribute();
+
+//Обработка клика по нижней  карте
+
+cards=document.querySelectorAll("div.btm");
+cardsNumber=cards.length;
+
+for (var l=0;l<cardsNumber;l++) {
+
+	cards[l].addEventListener('click', myMoveLeft);
+};
+
+
+topCards=document.querySelectorAll("div.top");
+topCardsNumber=topCards.length;
 
 }
+
+//********* enf of function Start************
+
+
+
+var fromFile;
+var mm,mm0,mm1,mm2,mm3,mm4,mm5;
+var audio,audio1;
+var nTopCard;
+var emo = [];
+var mmj=[];
+var mmjSelect =[];
+var m,j,k,p;
+var topCards,topCardsNumber,cardsNumber,cards;
+nTopCard=-1;
+
+mm0=['Цвета','Имена','Овощи',"Звери","Числа"];
+mm1=["красный","желтый","зеленый","черный","синий"];
+mm2=["Вася","Петя","Маша","Коля","Исаак"];
+mm3=["огурец","помидор","яблоко","арбуз","слива"];
+mm4=["лев","тигр","мышь","заяц","слон"];
+mm5=["один","два","три","четыре","пять"];
+
+var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
+var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
+var bottomCard2=document.querySelector('#c18 .card .down').innerHTML=mm0[2];
+var bottomCard3=document.querySelector('#c19 .card .down').innerHTML=mm0[3];
+var bottomCard4=document.querySelector('#c20 .card .down').innerHTML=mm0[4];
+
+
+
+
+
+//readFileInitial();
+
+start();
