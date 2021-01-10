@@ -42,7 +42,7 @@ var bottomCard4=document.querySelector('#c20 .card .down').innerHTML=mm0[4];
 
 
 
-console.log(mm1);
+//console.log(mm1);
 
 start();
 
@@ -102,7 +102,7 @@ mm5=imported[5].split(',');
 
 
 
-console.log(mm1);
+//console.log(mm1);
 
 start();
 
@@ -168,11 +168,11 @@ nTopCard++;
 var elem=topCards[nTopCard];
 var selector='#'+elem.id+' .card .emo';
 
-console.log(selector);
+console.log('selector= ',selector,' nTopCard= ',nTopCard);
 
 
 var textTop=document.querySelector(selector).innerHTML; //Текст верхней карты
-console.log(textTop);
+console.log('textTop ',textTop);
 
 
 
@@ -198,7 +198,7 @@ if(document.getElementById(typ).classList.value.includes('five')){
 };
 
 console.log('Answer= ',answer);
-console.log('mm1 ',mm1,'mm2 ',mm2,'mm3 ',mm3,'mm4 ',mm4,'mm5',mm5);
+//console.log('mm1 ',mm1,'mm2 ',mm2,'mm3 ',mm3,'mm4 ',mm4,'mm5',mm5);
 
 
 
@@ -206,7 +206,10 @@ console.log('mm1 ',mm1,'mm2 ',mm2,'mm3 ',mm3,'mm4 ',mm4,'mm5',mm5);
 
 if(answer==true){
 	elem.addEventListener('click',myMoveLeft);
+
 	topCards[nTopCard].style.zIndex = "1500"; 
+console.log('nTopCard= ',nTopCard,' Zindex 1500')
+
 };
 if(answer==false){
 nTopCard--;
@@ -285,8 +288,8 @@ function draw(timePassed) {
 
 
 step++;
-console.log(timePassed);
-console.log('ANSWER=   ',answer);
+//console.log(timePassed);
+//console.log('ANSWER=   ',answer);
 if(answer==true) {
 
 if(step==nIter-3) {
@@ -295,7 +298,7 @@ if(step==nIter-3) {
 
 elem.style.left = posLeft + moveLeft/nIter*step + 'px';
 elem.style.top = posTop + moveTop/nIter*step + 'px';
-console.log('step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
+//console.log('step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 }
 
 
@@ -309,7 +312,7 @@ if(answer==false) {
 	//	middleTop=posTop + moveTop/500*step;
 	//	if(step==250) {middleLeft=elem.style.left; middleTop=elem.style.top; console.log(middleLeft,middleTop);};
 	//	console.log('step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
-						console.log(posLeft,posTop,moveLeft,moveTop,	'step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
+			//			console.log(posLeft,posTop,moveLeft,moveTop,	'step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 
 
 	}
@@ -321,7 +324,7 @@ if(answer==false) {
 		
 		elem.style.left = posLeft + moveLeft/2- moveLeft/nIter*(step-nIter/2) + 'px';
 		elem.style.top = posTop + moveTop/2- moveTop/nIter*(step-nIter/2) + 'px';
-						console.log(posLeft,posTop,moveLeft,moveTop,	'step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
+				//		console.log(posLeft,posTop,moveLeft,moveTop,	'step ',step,' elem.style.top',elem.style.top, ' elem.style.left',elem.style.left);
 
 	}
 }
@@ -342,7 +345,7 @@ function distribute() {
 var mmjSelect=[];
 var mmj=mm.slice();
 
-    for (var n=0; n<20;n++) {
+    for (var n=0; n<51;n++) {
 
         m=mmj.length;
         j = Math.random()*m;
@@ -387,6 +390,8 @@ for (var l=0;l<cardsNumber;l++) {
 topCards=document.querySelectorAll("div.top");
 topCardsNumber=topCards.length;
 
+console.log('topCardsNumber= ',topCardsNumber);
+
 }
 
 //********* enf of function Start************
@@ -404,12 +409,12 @@ var m,j,k,p;
 var topCards,topCardsNumber,cardsNumber,cards;
 nTopCard=-1;
 
-mm0=['Цвета','Имена','Овощи',"Звери","Числа"];
-mm1=["красный","желтый","зеленый","черный","синий"];
-mm2=["Вася","Петя","Маша","Коля","Исаак"];
-mm3=["огурец","помидор","яблоко","арбуз","слива"];
-mm4=["лев","тигр","мышь","заяц","слон"];
-mm5=["один","два","три","четыре","пять"];
+mm0=['Цвета','Имена','Овощи',"Звери","Числа",'Цвета','Имена','Овощи',"Звери","Числа"];
+mm1=["красный","желтый","зеленый","черный","синий","красный","желтый","зеленый","черный","синий"];
+mm2=["Вася","Петя","Маша","Коля","Исаак","Вася","Петя","Маша","Коля","Исаак"];
+mm3=["огурец","помидор","яблоко","арбуз","слива","огурец","помидор","яблоко","арбуз","слива"];
+mm4=["лев","тигр","мышь","заяц","слон","лев","тигр","мышь","заяц","слон"];
+mm5=["один","два","три","четыре","пять","один","два","три","четыре","пять"];
 
 var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
 var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
