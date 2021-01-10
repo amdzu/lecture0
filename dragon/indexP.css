@@ -321,7 +321,7 @@ body {
         -ms-grid-row-align: center;
         align-self: center;
     margin: 0 auto 0 auto;
-    font-size: 19px; /* уменьшить, если надо много текста*/
+    font-size: 14px; /* уменьшить, если надо много текста*/
     text-align: center;
     text-transform: uppercase;
     
