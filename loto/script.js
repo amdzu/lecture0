@@ -345,7 +345,7 @@ function distribute() {
 var mmjSelect=[];
 var mmj=mm.slice();
 
-    for (var n=0; n<51;n++) {
+    for (var n=0; n<50;n++) {
 
         m=mmj.length;
         j = Math.random()*m;
@@ -356,13 +356,26 @@ var mmj=mm.slice();
     };
 
     var mmjSelectShuffled = shuffle(mmjSelect); // перемещиваем в случайном порядке
+
+    //var lengthOfMmjSelect=mmjSelect.length;
+
+//var lengthOfMm=mm.length;
+//var lengthOfmmj=mmj.length;
+
+    //var lengthOfMmjSelectShuffled=mmjSelectShuffled.length;
+
     var backCards=document.querySelectorAll(".emo"); // выбираем все divы для вставления эмоджи
     var ll = backCards.length;
+
+  //  console.log('lengthOfMm= ',lengthOfMm,' lengthOfmmj= ',lengthOfmmj,'m= ',m,' ll= ',ll,' lengthOfMmjSelect= ',lengthOfMmjSelect,' lengthOfMmjSelectShuffled= ',lengthOfMmjSelectShuffled);
     
     for (var kk=0; kk<ll;kk++) {
         emo[kk]=backCards[kk];
         emo[kk].innerHTML = mmjSelectShuffled[kk];
+      //  console.log(emo[kk].innerHTML);
     };
+
+
 }
 //******************************************************************************************
 
@@ -409,12 +422,22 @@ var m,j,k,p;
 var topCards,topCardsNumber,cardsNumber,cards;
 nTopCard=-1;
 
-mm0=['Цвета','Имена','Овощи',"Звери","Числа",'Цвета','Имена','Овощи',"Звери","Числа"];
+/*mm0=['Цвета','Имена','Овощи',"Звери","Числа",'Цвета','Имена','Овощи',"Звери","Числа"];
 mm1=["красный","желтый","зеленый","черный","синий","красный","желтый","зеленый","черный","синий"];
 mm2=["Вася","Петя","Маша","Коля","Исаак","Вася","Петя","Маша","Коля","Исаак"];
 mm3=["огурец","помидор","яблоко","арбуз","слива","огурец","помидор","яблоко","арбуз","слива"];
 mm4=["лев","тигр","мышь","заяц","слон","лев","тигр","мышь","заяц","слон"];
 mm5=["один","два","три","четыре","пять","один","два","три","четыре","пять"];
+*/
+
+mm0=['непохожий','Растение','лизал','Махнул','передумал'];
+mm1=['неприличный','непроснувшийся','непобедимый','непогода','непризнанный','непривычный','непростой','непослушный','Неприятный','неподвижный'];
+mm2=['Сожаление','представление','приготовление','Заглядение','падение','обсуждение','Отвращение','освещение','превращение','Свечение'];
+mm3=['Сказала','сказал','Вязала','вязали','показал','показали','Порезала','порезали','Отгрызала','лизали'];
+mm4=['Протянул','кивнула','Лизнул','куснула','Прыгнул','шагнула','Шмыгнул','скакнул','Вернул','обманула'];
+mm5=['перебежал','перевёз','переложил','передумал','переползла','перенесли','переиграл','переели','перегрелся','перестала'];
+
+
 
 var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
 var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
