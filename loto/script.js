@@ -57,7 +57,7 @@ start();
 
 
 //****** Чтение данных из текстового файла на сервере для начальной установки 
-
+/*
 
 function getFileFromServer() {
 
@@ -76,7 +76,8 @@ function getFileFromServer() {
 
 
 }
-
+*/
+/*
 
 function readFileInitial(result) {
 
@@ -109,6 +110,8 @@ start();
 
 
 }
+*/
+
 //***********************КОНЕЦ начального чтения
 
 
