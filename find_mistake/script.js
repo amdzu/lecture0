@@ -1,15 +1,6 @@
 'use strict';
 
-function shuffle(arr){ //функция случайного перемешивания массива
-	var j, temp;
-	for(var i = arr.length - 1; i > 0; i--){
-		j = Math.floor(Math.random()*(i + 1));
-		temp = arr[j];
-		arr[j] = arr[i];
-		arr[i] = temp;
-	}
-	return arr;
-}
+
 
 var result='LOSS';
 var counter=0;
@@ -18,16 +9,13 @@ var timeoutID;
 
 var time = new Date();
 
-//time.setMinutes(1);
-//time.setSeconds(0);
-
-
 var gameField = document.querySelector('.gameField');
 var turned;
 var audio;
 
 var emo = [];
 var foundMistake;
+var fromFile;
 
 
 
@@ -54,15 +42,20 @@ var mmjSelect =[];
 
 var m,j,k,p;
 
+
+start();
+
+
+
+function start() {
+
+
+
 var monster = document.getElementById("monster");
 
 monster.addEventListener("click",clickHandlerMonster);
 
 
-function clickHandlerMonster() {
-    this.classList.remove("show");
-    audio.pause();
-}
 
 
 distribute();
@@ -70,7 +63,7 @@ distribute();
 
 //Обработка клика по карте
 
-        var cardList = document.querySelectorAll(".cardWrapper");
+var cardList = document.querySelectorAll(".cardWrapper");
         var l = cardList.length;
 
         for (var i=0;i<l;i++) {
@@ -87,10 +80,64 @@ var endButton = document.querySelector('.btn');
 
 endButton.addEventListener('click', stopGame);
 
+}
+
+
+function readFile(input) {
+  let file = input.files[0];
+
+  let reader = new FileReader();
+
+  reader.readAsText(file);
+
+  reader.onload = function() {
+
+
+    var res = reader.result;
+
+    fromFile = res.replace(/(\r\n|\n|\r)/gm,":");
+
+    fromFile = fromFile.replace(/\s+/g," ");
+    console.log(fromFile);
+
+console.log(fromFile);
+
+var imported=fromFile.split(':');
+
+//textsC1=imported[0].split(',');
+mm=imported[1].split(',');
+//textsC3=imported[2].split(',');
+
+
+for (var iii=0;iii<nMistakes;iii++) { 
+    err[iii]=mm[iii];
+    };
+
+start();
+
+
+  };
+
+  reader.onerror = function() {
+    console.log(reader.error);
+  };
+
+}
 
 
 
-        function clickHandler() { //начало функции обработки клика по карте
+
+function clickHandlerMonster() {
+    this.classList.remove("show");
+    audio.pause();
+}
+
+
+
+
+
+
+function clickHandler() { //начало функции обработки клика по карте
 
         console.log('CLICK!!!');
             startTimer();
@@ -236,7 +283,7 @@ endButton.addEventListener('click', stopGame);
 
 
 
-            } //конец функции обработки клика
+} //конец функции обработки клика
 
 
             function startTimer() {  //Функция запуска управления таймером
@@ -327,7 +374,7 @@ function distribute() {
 var mmjSelect=[];
 var mmj=mm.slice();
 
-
+console.log('mm= ',mm);
 
     for (var n=0; n<20;n++) {
 
@@ -356,4 +403,16 @@ var mmj=mm.slice();
     };
 
 
+}
+
+
+function shuffle(arr){ //функция случайного перемешивания массива
+    var j, temp;
+    for(var i = arr.length - 1; i > 0; i--){
+        j = Math.floor(Math.random()*(i + 1));
+        temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
 }
