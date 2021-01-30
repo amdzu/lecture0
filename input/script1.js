@@ -1,5 +1,63 @@
 'use strict';
 
+
+
+function readFile(input) {
+  let file = input.files[0];
+
+  let reader = new FileReader();
+
+  reader.readAsText(file);
+
+  reader.onload = function() {
+
+
+    var res = reader.result;
+
+    fromFile = res.replace(/(\r\n|\n|\r)/gm,":");
+
+    fromFile = fromFile.replace(/\s+/g," ");
+    console.log(fromFile);
+
+console.log(fromFile);
+
+var imported=fromFile.split(':');
+
+textsC1=imported[0].split(',');
+textsC2=imported[1].split(',');
+textsC3=imported[2].split(',');
+
+
+/*
+
+var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
+var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
+var bottomCard2=document.querySelector('#c18 .card .down').innerHTML=mm0[2];
+var bottomCard3=document.querySelector('#c19 .card .down').innerHTML=mm0[3];
+var bottomCard4=document.querySelector('#c20 .card .down').innerHTML=mm0[4];
+*/
+
+
+//console.log(mm1);
+
+start();
+
+
+  };
+
+  reader.onerror = function() {
+    console.log(reader.error);
+  };
+
+}
+
+
+
+
+
+
+
+
 function shuffle(arr){ //функция случайного перемешивания массива
 	var j, temp;
 	for(var i = arr.length - 1; i > 0; i--){
@@ -43,7 +101,7 @@ var txt1, txt2, txt3, j=0, l=0, m=0;
 //var textsC1 =['сочин','открыв','прохожд','наигрыв','прерыв','склад','загляд','завтрак','придум','отвод'];
 //var textsC2 =['я','а','е','у','ющ','ящ','ем','им'];
 //var textsC3 =['ий','ый','его','ему','ем','ая','яя','ей','им','ие','их','им'];
-
+var fromFile;
 
 var textsC1 =['вы','вос','вс','воз','вз'];  
 var textsC2 =['пл','сов','клад','кид','дел','нюх','колд'];          
@@ -53,9 +111,14 @@ var textsC3 =['ёвывать','овывать','ивывать','евывать
 
 var gameField = document.querySelector('.gameField');
 
+
+start();
+
+/*
 var input1 = document.getElementById('fname1');
 var input2 = document.getElementById('fname2');
 var input3 = document.getElementById('fname3');
+*/
 
 //input1.value='ото,недо,пере,ото,наи,архи,полу';
 //input2.value='двиг,грож,прош,дел,клад,спраш,страш';
@@ -82,12 +145,14 @@ var input3 = document.getElementById('fname3');
 //input2.value='я,а,е,у,ющ,ящ,ем,им';
 //input3.value='ий,ый,его,ему,ем,ая,яя,ей,им,ие,их,им';
 
+/*
 
 input1.value='вы,вос,вс,воз,вз';
 input2.value='пл,сов,клад,кид,дел,нюх,колд';
 input3.value='ёвывать,овывать,ивывать,евывать,ывывать'; 
 
-
+*/
+/*
 
 var word1 = input1.value;
 textsC1=word1.split(',');
@@ -98,16 +163,21 @@ textsC2=word2.split(',');
 var word3 = input3.value;
 textsC3=word3.split(',');
 
+*/
 
 
 
-
-console.log(input1);
+//console.log(input1);
+/*
 
 input1.addEventListener('change',inputHandler1);
 input2.addEventListener('change',inputHandler2);
 input3.addEventListener('change',inputHandler3);
 
+*/
+
+
+/*
 function inputHandler1() {
 
 word1 = input1.value;
@@ -136,6 +206,7 @@ textsC3=word3.split(',');
 console.log('word3 ',word3);
 
 }
+*/
 
 
 //var textsC1 = ['При','Пере','пре','про','По']; 
@@ -158,11 +229,16 @@ console.log('word3 ',word3);
 //            cardList[i].addEventListener('click', clickHandler(i));
  //       };
 
-
+function start() {
 
         var c1=document.getElementById('c1');
         var c2=document.getElementById('c2');
         var c3=document.getElementById('c3');
+
+
+c1.innerHTML=textsC1[0];
+c2.innerHTML=textsC2[0];
+c3.innerHTML=textsC3[0];
 
 c1.addEventListener('click', clickHandlerC1);
 
@@ -212,3 +288,5 @@ txt3=textsC3[m];
     c3.innerHTML=txt3; 
 
             } //конец функции обработки клика
+
+}
