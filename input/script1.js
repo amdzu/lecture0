@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 function readFile(input) {
   let file = input.files[0];
 
@@ -28,18 +26,6 @@ textsC2=imported[1].split(',');
 textsC3=imported[2].split(',');
 
 
-/*
-
-var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
-var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
-var bottomCard2=document.querySelector('#c18 .card .down').innerHTML=mm0[2];
-var bottomCard3=document.querySelector('#c19 .card .down').innerHTML=mm0[3];
-var bottomCard4=document.querySelector('#c20 .card .down').innerHTML=mm0[4];
-*/
-
-
-//console.log(mm1);
-
 start();
 
 
@@ -50,11 +36,6 @@ start();
   };
 
 }
-
-
-
-
-
 
 
 
@@ -69,7 +50,95 @@ function shuffle(arr){ //функция случайного перемешив�
 	return arr;
 }
 
+function start() {
+
+        var c1=document.getElementById('c1');
+        var c2=document.getElementById('c2');
+        var c3=document.getElementById('c3');
+
+
+c1.innerHTML=textsC1[0];
+c2.innerHTML=textsC2[0];
+c3.innerHTML=textsC3[0];
+
+c1.addEventListener('click', clickHandlerC1);
+
+c2.addEventListener('click', clickHandlerC2);
+
+c3.addEventListener('click', clickHandlerC3);
+
+function clickHandlerC1() { //начало функции обработки клика по карте
+
+var i=textsC1.length-1;
+
+j=j+1;
+if(j>i) {j=0;};
+txt1=textsC1[j];
+
+    console.log(j);
+
+    c1.innerHTML=txt1; 
+
+            } //конец функции обработки клика
+
+
+function clickHandlerC2() { //начало функции обработки клика по карте
+
+var i=textsC2.length-1;
+
+l=l+1;
+if(l>i) {l=0;};
+txt2=textsC2[l];
+
+    console.log(l);
+
+    c2.innerHTML=txt2; 
+
+            } //конец функции обработки клика
+
+function clickHandlerC3() { //начало функции обработки клика по карте
+
+var i=textsC3.length-1;
+
+m=m+1;
+if(m>i) {m=0;};
+txt3=textsC3[m];
+
+    console.log(m);
+
+    c3.innerHTML=txt3; 
+
+            } //конец функции обработки клика
+
+}
+
+
 var txt1, txt2, txt3, j=0, l=0, m=0;  
+
+var fromFile;
+
+var textsC1 =['вы','вос','вс','воз','вз'];  
+var textsC2 =['пл','сов','клад','кид','дел','нюх','колд'];          
+var textsC3 =['ёвывать','овывать','ивывать','евывать','ывывать'];
+
+
+
+var gameField = document.querySelector('.gameField');
+
+
+start();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //var textsC1 = ["ото","недо","пере","ото","наи","архи","полу"];   
@@ -101,18 +170,7 @@ var txt1, txt2, txt3, j=0, l=0, m=0;
 //var textsC1 =['сочин','открыв','прохожд','наигрыв','прерыв','склад','загляд','завтрак','придум','отвод'];
 //var textsC2 =['я','а','е','у','ющ','ящ','ем','им'];
 //var textsC3 =['ий','ый','его','ему','ем','ая','яя','ей','им','ие','их','им'];
-var fromFile;
 
-var textsC1 =['вы','вос','вс','воз','вз'];  
-var textsC2 =['пл','сов','клад','кид','дел','нюх','колд'];          
-var textsC3 =['ёвывать','овывать','ивывать','евывать','ывывать'];
-
-
-
-var gameField = document.querySelector('.gameField');
-
-
-start();
 
 /*
 var input1 = document.getElementById('fname1');
@@ -229,64 +287,3 @@ console.log('word3 ',word3);
 //            cardList[i].addEventListener('click', clickHandler(i));
  //       };
 
-function start() {
-
-        var c1=document.getElementById('c1');
-        var c2=document.getElementById('c2');
-        var c3=document.getElementById('c3');
-
-
-c1.innerHTML=textsC1[0];
-c2.innerHTML=textsC2[0];
-c3.innerHTML=textsC3[0];
-
-c1.addEventListener('click', clickHandlerC1);
-
-c2.addEventListener('click', clickHandlerC2);
-
-c3.addEventListener('click', clickHandlerC3);
-
-function clickHandlerC1() { //начало функции обработки клика по карте
-
-var i=textsC1.length-1;
-
-j=j+1;
-if(j>i) {j=0;};
-txt1=textsC1[j];
-
-    console.log(j);
-
-    c1.innerHTML=txt1; 
-
-            } //конец функции обработки клика
-
-
-function clickHandlerC2() { //начало функции обработки клика по карте
-
-var i=textsC2.length-1;
-
-l=l+1;
-if(l>i) {l=0;};
-txt2=textsC2[l];
-
-    console.log(l);
-
-    c2.innerHTML=txt2; 
-
-            } //конец функции обработки клика
-
-function clickHandlerC3() { //начало функции обработки клика по карте
-
-var i=textsC3.length-1;
-
-m=m+1;
-if(m>i) {m=0;};
-txt3=textsC3[m];
-
-    console.log(m);
-
-    c3.innerHTML=txt3; 
-
-            } //конец функции обработки клика
-
-}
