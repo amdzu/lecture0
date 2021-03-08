@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <title>НОСОРОГИ ПРОТИВ ЛЮДЕЙ</title>
+  <link rel="stylesheet" href="indexP.css">
+</head>
+<body>
+
+<!---<div class="l1">М</div><div class="l2">О</div><div class="l3">Д</div><div class="l4">Е</div><div class="l5">Л</div><div class="l2">И</div> --->
+
+
+<div class="l4">НОСОРОГИ ПРОТИВ ЛЮДЕЙ</div>
+
+
+<div id="monster"></a></div>
+
+
+<div class="grid_container">
+
+
+
+<section class='enemy'>
+
+<img class='avatar'src="rhino.jpg" alt="rhino">
+<p>НОСОРОГИ</p>
+    <div class="countEnemy">0
+    </div>
+
+</section>
+
+
+
+<section class="gameField">
+
+
+
+<div class="cardWrapper top none" id="top1">
+
+    <div class="card back">
+    	<div class="emo">🐹</div>
+    </div>
+</div>
+
+
+
+
+
+<div class="cardWrapper btm one none" id="c16">
+
+    <div class="card back"><div class="down">ЦВЕТА</div></div>
+</div>
+
+<div class="cardWrapper btm two none" id="c17">
+
+    <div class="card back"><div class="down">ИМЕНА</div></div>
+</div>
+
+<div class="cardWrapper btm three none" id="c18">
+
+    <div class="card back"><div class="down">ФРУКТЫ</div></div>
+</div>
+
+
+<div class="cardWrapper btm four none" id="c19">
+
+    <div class="card back"><div class="down">ЗВЕРИ</div></div>
+</div>
+
+
+
+</section>
+
+
+
+<section class='player'> 
+<img class='avatar'src="people.jpg" alt="people">
+<p>ЛЮДИ</p>
+    <div class="countPlayer">0
+    </div>
+
+
+</section>
+
+
+</div>
+
+
+
+<section class='timer'>
+
+
+    <div class="time">0
+    </div>
+    
+    <button class='btn' onclick='startTimer()'><div class='warn'>ИГРА</div></button>
+
+    
+</section>
+
+
+
+
+
+
+<input type="file" onchange="readFile(this)">
+
+
+
+
+
+
+<script src="script.js?<?echo time();?>"></script>
+
+<!---<script src="./script.js"></script>--->
+
+<!--
+<script>
+  // Вызов валидатора формы
+    validateForm({
+      formId: 'profile',
+      formValidClass: 'form_valid',
+      formInvalidClass: 'form_invalid',
+
+      inputErrorClass: 'input_error'
+    });
+</script>
+
+-->
+</body>
+</html>
