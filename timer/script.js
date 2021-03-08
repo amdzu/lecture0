@@ -152,7 +152,7 @@ console.log('topCardsNumber= ',topCardsNumber);
 
 function startTimer() {  //Функция запуска управления таймером
 
-
+answer=false;
   for (var l=0;l<cardsNumber;l++) {
 
   cards[l].addEventListener('click', checkAnswer);
@@ -161,8 +161,7 @@ function startTimer() {  //Функция запуска управления т
                 console.log('counter ',counter);
                 const time = new Date('August 19, 1975 23:15:30');
 
-                var topCard =document.querySelector('.top');
-                var bottomCards=document.querySelectorAll('.btm');
+
 
 
 
@@ -229,6 +228,8 @@ function startTimer() {  //Функция запуска управления т
 
                         if (answer==false) {nRhinos++; rhinos.innerHTML=String(nRhinos);};
 
+                        console.log('answer ',answer);
+
                       }
 
 
@@ -267,8 +268,8 @@ function startTimer() {  //Функция запуска управления т
                         
                         };     
                         
-                        //остановка таймера через 60 сек
-                    }, 8008);
+                        //остановка таймера через 8 сек
+                    }, 8000);
 
 
                                
@@ -285,9 +286,14 @@ function checkAnswer() {
 
 
                     clearInterval(timerID); 
+                    clearTimeout(timeoutID);
                     var timer =document.querySelector('.time');
                     timer.innerHTML='0';
 
+                        bottomCards[0].classList.add('none');
+                        bottomCards[1].classList.add('none');
+                        bottomCards[2].classList.add('none');
+                        bottomCards[3].classList.add('none');
 
 
                     //startTimer();
@@ -360,7 +366,8 @@ mm3=['поинтересовалась','напугалась','догадала
 mm4=['угоститься','лакомиться','питаться','метнуться'];
 mm5=['догадавшись','попавшись','помчавшись','вернувшись'];
 
-
+var topCard =document.querySelector('.top');
+var bottomCards=document.querySelectorAll('.btm');
 
 
 
