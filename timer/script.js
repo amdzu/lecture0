@@ -153,22 +153,16 @@ console.log('topCardsNumber= ',topCardsNumber);
 function startTimer() {  //Функция запуска управления таймером
 
 answer=false;
+
+
   for (var l=0;l<cardsNumber;l++) {
 
   cards[l].addEventListener('click', checkAnswer);
 };
-                counter = counter+1; //номер клика
-                console.log('counter ',counter);
+
                 const time = new Date('August 19, 1975 23:15:30');
 
-
-
-
-
-
-
                 var lBtm=bottomCards.length;
-
 
                 console.log(bottomCards);
 
@@ -178,8 +172,6 @@ answer=false;
                         bottomCards[2].classList.add('none');
                         bottomCards[3].classList.add('none');
                 
-    
-                if (counter<1000) {
 
               //      distribute();
 
@@ -233,19 +225,11 @@ answer=false;
                       }
 
 
-
-
-
                         //if(minutes<10) {minutes='0'+minutes;} else {minutes=String(minutes);};
                         seconds=String(seconds);
                         timeS=seconds;
                         timer = document.querySelector('.time');
                         timer.innerHTML=timeS;
-
-
-                       
-
-
 
 
                     }, 1000);
@@ -267,16 +251,22 @@ answer=false;
                             document.querySelector('.result').classList.add('show');
                         
                         };     
+
+                        counter++;
+
+                        console.log('startTimer counter = ',counter);
+
+                        if (counter<10) {
+
+                          console.log('startTimer counter = ',counter);
+
+
+                          startTimer();
+
+                        }
                         
                         //остановка таймера через 8 сек
                     }, 8000);
-
-
-                               
-    
-                };  
-
-
     
 }; //конец функции управления таймером
 
@@ -329,6 +319,21 @@ function checkAnswer() {
 
       console.log('textT ',textT, ' textDown', textDown,' answer ',answer);
 
+
+                        counter++;
+
+                        console.log('checkAnswer counter = ',counter);
+
+                        if (counter<10) {
+
+
+
+
+                          startTimer();
+
+                        }
+
+
 }
 
 
@@ -369,19 +374,10 @@ mm5=['догадавшись','попавшись','помчавшись','ве�
 var topCard =document.querySelector('.top');
 var bottomCards=document.querySelectorAll('.btm');
 
-
+start();
 
 
 var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
 var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
 var bottomCard2=document.querySelector('#c18 .card .down').innerHTML=mm0[2];
 var bottomCard3=document.querySelector('#c19 .card .down').innerHTML=mm0[3];
-
-
-
-
-
-
-//readFileInitial();
-
-start();
