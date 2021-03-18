@@ -34,15 +34,31 @@ mm3=imported[3].split(',');
 mm4=imported[4].split(',');
 mm5=imported[5].split(',');
 
+mm6=imported[6].split(',');
+mm7=imported[7].split(',');
+mm8=imported[8].split(',');
+mm9=imported[9].split(',');
+mm10=imported[10].split(',');
+mm11=imported[11].split(',');
+
+mm12=imported[12].split(',');
+mm13=imported[13].split(',');
+mm14=imported[14].split(',');
+mm15=imported[15].split(',');
 
 
 
+
+
+
+
+/*
 var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
 var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
 var bottomCard2=document.querySelector('#c18 .card .down').innerHTML=mm0[2];
 var bottomCard3=document.querySelector('#c19 .card .down').innerHTML=mm0[3];
 var bottomCard4=document.querySelector('#c20 .card .down').innerHTML=mm0[4];
-
+*/
 
 console.log(imported);
 
@@ -113,8 +129,8 @@ var mmj=mm.slice();
     };
 
     var topEmo = document.querySelector('.emo');
-    topEmo.innerHTML=mmjSelectShuffled[0];
-
+    //topEmo.innerHTML=mmjSelectShuffled[0];
+      topEmo.innerHTML=mm[0];
 
 }
 //******************************************************************************************
@@ -127,7 +143,7 @@ answer=false;
 audio = new Audio('fail.mp3');
 audio1 = new Audio('success.mp3');
 
-distribute(mm0);
+//distribute(mm0); перенесем в startTimer
 
 //Обработка клика по нижней  карте
 
@@ -152,8 +168,47 @@ console.log('topCardsNumber= ',topCardsNumber);
 
 function startTimer() {  //Функция запуска управления таймером
 
+document.getElementById("game").disabled = true
+
 answer=false;
 
+if (counter==0) {distribute(mm0);  console.log('distribute counter',counter);};
+if (counter==1) {distribute(mm1);console.log('distribute counter',counter);};
+if (counter==2) {distribute(mm2);console.log('distribute counter',counter);};
+if (counter==3) {distribute(mm3);console.log('distribute counter',counter);};
+if (counter==4) {distribute(mm4);console.log('distribute counter',counter);};
+if (counter==5) {distribute(mm5);console.log('distribute counter',counter);};
+
+if (counter==6) {distribute(mm6);  console.log('distribute counter',counter);};
+if (counter==7) {distribute(mm7);console.log('distribute counter',counter);};
+if (counter==8) {distribute(mm8);console.log('distribute counter',counter);};
+if (counter==9) {distribute(mm9);console.log('distribute counter',counter);};
+if (counter==10) {distribute(mm10);console.log('distribute counter',counter);};
+if (counter==11) {distribute(mm11);console.log('distribute counter',counter);};
+
+if (counter==12) {distribute(mm12);  console.log('distribute counter',counter);};
+if (counter==13) {distribute(mm13);console.log('distribute counter',counter);};
+if (counter==14) {distribute(mm14);console.log('distribute counter',counter);};
+if (counter==15) {distribute(mm15);console.log('distribute counter',counter);};
+
+if (counter==16) {distribute(mm0);  console.log('distribute counter',counter);};
+if (counter==17) {distribute(mm1);console.log('distribute counter',counter);};
+if (counter==18) {distribute(mm2);console.log('distribute counter',counter);};
+if (counter==19) {distribute(mm3);console.log('distribute counter',counter);};
+if (counter==20) {distribute(mm4);console.log('distribute counter',counter);};
+if (counter==21) {distribute(mm5);console.log('distribute counter',counter);};
+
+if (counter==22) {distribute(mm6);  console.log('distribute counter',counter);};
+if (counter==23) {distribute(mm7);console.log('distribute counter',counter);};
+if (counter==24) {distribute(mm8);console.log('distribute counter',counter);};
+if (counter==25) {distribute(mm9);console.log('distribute counter',counter);};
+if (counter==26) {distribute(mm10);console.log('distribute counter',counter);};
+if (counter==27) {distribute(mm11);console.log('distribute counter',counter);};
+
+if (counter==28) {distribute(mm12);  console.log('distribute counter',counter);};
+if (counter==29) {distribute(mm13);console.log('distribute counter',counter);};
+if (counter==30) {distribute(mm14);console.log('distribute counter',counter);};
+if (counter==31) {distribute(mm15);console.log('distribute counter',counter);};
 
   for (var l=0;l<cardsNumber;l++) {
 
@@ -176,7 +231,7 @@ answer=false;
               //      distribute();
 
                    // time.setMinutes(9);
-                    time.setSeconds(8);
+                    time.setSeconds(4);
                     //var minutes =time.getMinutes();
                     var seconds=time.getSeconds();
                     //if(minutes<10) {minutes='0'+minutes;} else {minutes=String(minutes);};
@@ -195,7 +250,7 @@ answer=false;
                         //var minutes = time.getMinutes();
                         var seconds = time.getSeconds();
 
-                        if (seconds==4) {
+                        if (seconds==2) {
 
 
                         topCard.classList.add('none');
@@ -237,26 +292,13 @@ answer=false;
                     timeoutID=setTimeout(() => {
                         
                         clearInterval(timerID); 
-                        if(result=='LOSS') {
-                            document.querySelector('.win1').innerHTML='L';
-                            document.querySelector('.win2').innerHTML='o';
-                            document.querySelector('.win3').innerHTML='s';
-                            document.querySelector('.win4').innerHTML='e';
-
-
-
-
-                            document.querySelector('.warn').innerHTML='TRY AGAIN';
-                            document.querySelector('.film').classList.add('show');
-                            document.querySelector('.result').classList.add('show');
-                        
-                        };     
+   
 
                         counter++;
 
                         console.log('startTimer counter = ',counter);
 
-                        if (counter<10) {
+                        if (counter<32) {
 
                           console.log('startTimer counter = ',counter);
 
@@ -266,7 +308,7 @@ answer=false;
                         }
                         
                         //остановка таймера через 8 сек
-                    }, 8000);
+                    }, 4000);
     
 }; //конец функции управления таймером
 
@@ -324,14 +366,32 @@ function checkAnswer() {
 
                         console.log('checkAnswer counter = ',counter);
 
-                        if (counter<10) {
-
-
-
-
+                        if (counter<32) {
                           startTimer();
-
                         }
+
+                        if(counter==32) {
+
+                    setTimeout(function(){
+                    clearInterval(timerID);
+                    clearTimeout(timeoutID);
+
+                    document.querySelector('.win1').innerHTML='У';
+                    document.querySelector('.win2').innerHTML='Р';
+                    document.querySelector('.win3').innerHTML='А';
+                    document.querySelector('.win4').innerHTML='!';
+
+
+
+                    document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
+                    document.querySelector('.film').classList.add('show');
+                    document.querySelector('.message').classList.add('show1');
+                    document.querySelector('.result').classList.add('show');
+                             
+                },500);
+
+
+                        };  
 
 
 }
@@ -341,7 +401,7 @@ function checkAnswer() {
 
 
 var fromFile,imported, counter,timerID,timeoutID,result,answer=false;
-var mm,mm0,mm1,mm2,mm3,mm4,mm5,topWords;
+var mm,mm0,mm1,mm2,mm3,mm4,mm5,mm6,mm7,mm8,mm9,mm10,mm11,mm12,mm13,mm14,mm15,topWords;
 var audio,audio1;
 var nTopCard;
 var emo = [];
@@ -376,8 +436,9 @@ var bottomCards=document.querySelectorAll('.btm');
 
 start();
 
-
+/*
 var bottomCard0=document.querySelector('#c16 .card .down').innerHTML=mm0[0];
 var bottomCard1=document.querySelector('#c17 .card .down').innerHTML=mm0[1];
 var bottomCard2=document.querySelector('#c18 .card .down').innerHTML=mm0[2];
 var bottomCard3=document.querySelector('#c19 .card .down').innerHTML=mm0[3];
+*/
