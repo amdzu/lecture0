@@ -221,17 +221,47 @@ if (counter==31) {distribute(mm15);console.log('distribute counter',counter);};
 
                 console.log(bottomCards);
 
-                topCard.classList.remove('none');
                         bottomCards[0].classList.add('none');
                         bottomCards[1].classList.add('none');
                         bottomCards[2].classList.add('none');
                         bottomCards[3].classList.add('none');
+            
+
+
+
+
+
+
+
+
+                   var timeoutIDtop=setTimeout(() => {
+                        
+                       topCard.classList.remove('none');
+                        
+                        //остановка таймера через 8 сек
+                    }, 400);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 
 
               //      distribute();
 
                    // time.setMinutes(9);
-                    time.setSeconds(4);
+                    time.setSeconds(6);
                     //var minutes =time.getMinutes();
                     var seconds=time.getSeconds();
                     //if(minutes<10) {minutes='0'+minutes;} else {minutes=String(minutes);};
@@ -247,10 +277,11 @@ if (counter==31) {distribute(mm15);console.log('distribute counter',counter);};
         
                         console.log(time);
                         
-                        //var minutes = time.getMinutes();
+                        var minutes = time.getMinutes();
                         var seconds = time.getSeconds();
 
-                        if (seconds==2) {
+
+                        if (seconds==3) {
 
 
                         topCard.classList.add('none');
@@ -308,7 +339,7 @@ if (counter==31) {distribute(mm15);console.log('distribute counter',counter);};
                         }
                         
                         //остановка таймера через 8 сек
-                    }, 4000);
+                    }, 6000);
     
 }; //конец функции управления таймером
 
