@@ -21,7 +21,7 @@ body {
     }
 
 
-    .time, .countEnemy, .countPlayer {
+    .countEnemy, .countPlayer {
       
         margin: 30px  0 20px 0;
         font-family: Arial, sans-serif; font-size: 32px; font-style: normal; font-variant: normal; font-weight: 700; 
@@ -38,14 +38,14 @@ body {
    /*         position: relative;
     margin: 40px auto 10px auto;*/
         display: grid;
-        grid-template-columns: auto 910px auto;
+        grid-template-columns: auto 750px auto;
     }
 .enemy {
 
     position: relative;
     margin: 40px auto 10px auto;
     
-    height: 475px;
+    height: 375px;
 
 }
 
@@ -67,7 +67,7 @@ width: 150px;
         position: relative;
     margin: 40px auto 10px auto;
     
-    height: 475px;
+    height: 375px;
 
 
 
@@ -75,8 +75,8 @@ width: 150px;
     .gameField {
     position: relative;
     margin: 40px auto 10px auto;
-    width: 870px;
-    height: 475px;
+    width: 710px;
+    height: 375px;
 
     border: 5px solid white;
     background-color: white;
@@ -112,7 +112,7 @@ width: 150px;
    /* border-radius: 9px;*/
    /* border: 5px solid #F8D210;*/
     display: block;
-    width: 170px;
+    width: 160px;
     height: 115px;
    /* background-color: #F8D210;
 
@@ -131,14 +131,14 @@ width: 150px;
     /*    background-color: #FA26A0;
     
      /*  border: 5px solid #F8D210;*/
-        width: 170px;
+        width: 160px;
         height: 115px;
     }
     
     .green .back{
      /*   background-color: #ECF87F;
     /*    border: 5px solid #F8D210;*/
-        width: 170px;
+        width: 160px;
         height: 115px;
     }
     
@@ -186,7 +186,7 @@ width: 150px;
         -ms-grid-row-align: center;
         align-self: center;
     margin: 0 auto 0 auto;
-    font-size: 13px; /* уменьшить, если надо много текста*/
+    font-size: 40px; /* уменьшить, если надо много текста*/
     text-align: center;
     text-transform: uppercase;
     
@@ -196,7 +196,7 @@ width: 150px;
         -ms-grid-row-align: center;
         align-self: center;
     margin: 0 auto 0 auto;
-    font-size: 13px; /* уменьшить, если надо много текста*/
+    font-size: 16px; /* уменьшить, если надо много текста*/
     text-align: center;
     text-transform: uppercase;
     
@@ -217,7 +217,7 @@ width: 150px;
             left: 50%;
             transform: translate(-50%,0);
            /* z-index: 1600;*/
-background-color: #C55FFC;
+/*background-color: #C55FFC;*/
 
         }
 
@@ -230,17 +230,17 @@ background-color: #C55FFC;
     #c17{   position: absolute;
     		
             top: 100%;left: 25%;
-            transform: translate(-25%,-100%);}
+            transform: translate(0,-100%);}
 
     #c18{position: absolute;
     		
             top: 100%; left: 50%;
-            transform: translate(-50%,-100%);}
+            transform: translate(0,-100%);}
   
     #c19{position: absolute;
     		
             top: 100%; left: 75%;
-            transform: translate(-75%,-100%);}
+            transform: translate(0,-100%);}
 
     #c20{position: absolute;
     		
@@ -392,7 +392,7 @@ background-color: #C55FFC;
 
 
     button {
-        margin-top: 120px;
+        margin-top: 20px;
         background-image: -o-linear-gradient(left, #19668D, #22AB93);
         background-image: -webkit-gradient(linear, left top, right top, from(#19668D), to(#22AB93));
         background-image: linear-gradient(to right, #19668D, #22AB93);
@@ -519,3 +519,15 @@ background-color: #C55FFC;
         z-index: 900;
     }
 
+.attention {
+
+        margin: 30px  0 20px 0;
+        font-family: Arial, sans-serif; font-size: 45px; font-style: normal; font-variant: normal; font-weight: 700; 
+        line-height: 36px;
+color: red;
+}
+
+#game:disabled {
+
+    background: #dddddd;
+}

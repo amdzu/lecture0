@@ -27,6 +27,13 @@ function readFile(input) {
     mm14=imported[14].split(',');
     mm15=imported[15].split(',');
     console.log(imported);
+
+var inputFile=document.querySelector('input').disabled=true;
+document.getElementById("game").disabled = false;
+
+
+
+
     start();
     };
 
@@ -86,8 +93,11 @@ var mmj=mm.slice();
 
 function start () { //********* start of function Start************
 answer=false;
-audio = new Audio('fail.mp3');
+
+
+audio = new Audio('rhino.mp3');
 audio1 = new Audio('success.mp3');
+audio3 = new Audio('tick.mp3');
 //distribute(mm0); перенесем в startTimer
 //Обработка клика по нижней  карте
 cards=document.querySelectorAll("div.btm");
@@ -168,6 +178,7 @@ var timeOutDistribute =  setTimeout(function(){
             
                    var timeoutIDtop=setTimeout(() => {
                        topCard.classList.remove('none');
+                       timer.classList.add('none');
                         //остановка таймера через 8 сек
                     }, 400);
 
@@ -175,8 +186,8 @@ var timeOutDistribute =  setTimeout(function(){
                     var seconds=time.getSeconds();
                     seconds=String(seconds);
                     var timeS=seconds;
-                    var timer =document.querySelector('.time');
-                    timer.innerHTML=timeS;
+                //    var timer =document.querySelector('.time');
+                    //timer.innerHTML=timeS;
     
     
                     timerID=setInterval(function(){ //запуск таймера
@@ -184,6 +195,7 @@ var timeOutDistribute =  setTimeout(function(){
                         time.setSeconds(time.getSeconds()-1);
                         var minutes = time.getMinutes();
                         var seconds = time.getSeconds();
+                        var milliseconds = time.getMilliseconds();
 
                         if (seconds==3) {
                             topCard.classList.add('none');
@@ -191,20 +203,39 @@ var timeOutDistribute =  setTimeout(function(){
                             bottomCards[1].classList.remove('none');
                             bottomCards[2].classList.remove('none');
                             bottomCards[3].classList.remove('none');
+                                                   timer.classList.remove('none');
+
                       }
                         if (seconds==0) {
                               bottomCards[0].classList.add('none');
                               bottomCards[1].classList.add('none');
                               bottomCards[2].classList.add('none');
                               bottomCards[3].classList.add('none');
-                              if (answer==false) {nRhinos++; rhinos.innerHTML=String(nRhinos);};
-                              console.log('answer ',answer);
-                      }
+                              
+                                                     timer.classList.add('none');
 
+                              if (answer==false) {nRhinos++; rhinos.innerHTML=String(nRhinos); audio.play();};
+                              console.log('answer ',answer);
+
+                         //     timer.classList.remove('attention');
+                          //    timer.classList.add('time');
+
+                      }
+                      if ((seconds < 4 && seconds>=0) && milliseconds<900) {
                         seconds=String(seconds);
                         timeS=seconds;
-                        timer = document.querySelector('.time');
+                        
+
+                   //     timer = document.querySelector('.time');
+
+                        
+
+
                         timer.innerHTML=timeS;
+                        audio3.play();
+                      //  timer.classList.remove('time');
+                      //  timer.classList.add('attention');
+                      }
                     }, 1000);
     
                     timeoutID=setTimeout(() => {
@@ -225,16 +256,25 @@ var timeOutDistribute =  setTimeout(function(){
 
 
 function checkAnswer() { //ФУНКЦИЯ ПРОВЕРКИ ОТВЕТА*************************************************************
-
+                          timer.classList.add('none');
                     clearInterval(timerID); 
                     clearTimeout(timeoutID);
-                    var timer =document.querySelector('.time');
+
+                    
+                   // var timer =document.querySelector('.time');
                     timer.innerHTML='0';
 
                         bottomCards[0].classList.add('none');
                         bottomCards[1].classList.add('none');
                         bottomCards[2].classList.add('none');
                         bottomCards[3].classList.add('none');
+             
+
+
+                             // timer.classList.remove('attention');
+                            //  timer.classList.add('time');
+
+
 
       var inputFile=document.querySelector('input').disabled=true;
 
@@ -255,14 +295,14 @@ function checkAnswer() { //ФУНКЦИЯ ПРОВЕРКИ ОТВЕТА*********
       nRhinos=Number(rhinos.innerHTML);
       nPeople=Number(people.innerHTML);
 
-      if (answer==true) {nPeople++; people.innerHTML=String(nPeople);};
-      if (answer==false) {nRhinos++; rhinos.innerHTML=String(nRhinos);};
+      if (answer==true) {nPeople++; people.innerHTML=String(nPeople);audio1.play();};
+      if (answer==false) {nRhinos++; rhinos.innerHTML=String(nRhinos); audio.play();};
 
       console.log('textT ',textT, ' textDown', textDown,' answer ',answer);
 
                         counter++;
                         console.log('checkAnswer counter = ',counter);
-                        if (counter<32) {
+                        if (counter<32) { 
                           startTimer();
                         }
 
@@ -270,14 +310,14 @@ function checkAnswer() { //ФУНКЦИЯ ПРОВЕРКИ ОТВЕТА*********
                     setTimeout(function(){
                     clearInterval(timerID);
                     clearTimeout(timeoutID);
-                    document.querySelector('.win1').innerHTML='У';
+                   /* document.querySelector('.win1').innerHTML='У';
                     document.querySelector('.win2').innerHTML='Р';
                     document.querySelector('.win3').innerHTML='А';
                     document.querySelector('.win4').innerHTML='!';
                     document.querySelector('.warn').innerHTML='НОВАЯ ИГРА';
                     document.querySelector('.film').classList.add('show');
                     document.querySelector('.message').classList.add('show1');
-                    document.querySelector('.result').classList.add('show');                           
+                    document.querySelector('.result').classList.add('show');*/                           
                 },500);
                         };  
 }  //КОНЕЦ ФУНКЦИи ПРОВЕРКИ ОТВЕТА*************************************************************
@@ -289,7 +329,7 @@ function checkAnswer() { //ФУНКЦИЯ ПРОВЕРКИ ОТВЕТА*********
 
 var fromFile,imported, counter,timerID,timeoutID,result,answer=false;
 var mm,mm0,mm1,mm2,mm3,mm4,mm5,mm6,mm7,mm8,mm9,mm10,mm11,mm12,mm13,mm14,mm15,topWords;
-var audio,audio1;
+var audio,audio1,audio3;
 var nTopCard;
 var emo = [];
 var down=[];
@@ -302,7 +342,7 @@ var nRhinos=0, nPeople=0;
 
 var rhinos=document.querySelector('.countEnemy');
 var people=document.querySelector('.countPlayer');
-
+var timer=document.getElementById('clock');
 
 rhinos.innerHTML=String(nRhinos);
 people.innerHTML=String(nPeople);
@@ -320,5 +360,8 @@ mm5=['догадавшись','попавшись','помчавшись','ве�
 
 var topCard =document.querySelector('.top');
 var bottomCards=document.querySelectorAll('.btm');
+
+document.getElementById("game").disabled = true;
+
 
 start();
