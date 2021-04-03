@@ -182,7 +182,7 @@ var timeOutDistribute =  setTimeout(function(){
                         //остановка таймера через 8 сек
                     }, 400);
 
-                    time.setSeconds(6);
+                    time.setSeconds(7);
                     var seconds=time.getSeconds();
                     seconds=String(seconds);
                     var timeS=seconds;
@@ -197,7 +197,7 @@ var timeOutDistribute =  setTimeout(function(){
                         var seconds = time.getSeconds();
                         var milliseconds = time.getMilliseconds();
 
-                        if (seconds==3) {
+                        if (seconds==4) {
                             topCard.classList.add('none');
                             bottomCards[0].classList.remove('none');
                             bottomCards[1].classList.remove('none');
@@ -221,7 +221,7 @@ var timeOutDistribute =  setTimeout(function(){
                           //    timer.classList.add('time');
 
                       }
-                      if ((seconds < 4 && seconds>=0) && milliseconds<900) {
+                      if ((seconds < 5 && seconds>=0) && milliseconds<900) {
                         seconds=String(seconds);
                         timeS=seconds;
                         
@@ -248,7 +248,7 @@ var timeOutDistribute =  setTimeout(function(){
                           startTimer();
                         }
                         //остановка таймера через 8 сек
-                    }, 6000);
+                    }, 7000);
     
 }; //конец функции управления таймером*********************************************************************
 
