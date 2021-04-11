@@ -392,7 +392,7 @@ width: 150px;
 
 
     button {
-        margin-top: 20px;
+        margin-top: 10px;
         background-image: -o-linear-gradient(left, #19668D, #22AB93);
         background-image: -webkit-gradient(linear, left top, right top, from(#19668D), to(#22AB93));
         background-image: linear-gradient(to right, #19668D, #22AB93);
@@ -531,3 +531,10 @@ color: red;
 
     background: #dddddd;
 }
+
+
+form {
+
+        margin: 377px  0 5px 0;
+}
+

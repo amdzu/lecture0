@@ -119,7 +119,11 @@ console.log('topCardsNumber= ',topCardsNumber);
 
 function startTimer() {  //Функция запуска управления таймером******************************************
 
-document.getElementById("game").disabled = true
+
+getData();
+
+document.getElementById("game").disabled = true;
+document.getElementById("delay").disabled = true;
 answer=false;
 var timeOutDistribute =  setTimeout(function(){
 
@@ -182,9 +186,11 @@ var timeOutDistribute =  setTimeout(function(){
                         //остановка таймера через 8 сек
                     }, 400);
 
-                    time.setSeconds(7);
+                    time.setSeconds(delay+3);
                     var seconds=time.getSeconds();
                     seconds=String(seconds);
+
+   //                 alert("seconds =" + seconds + "delay = " + delay);
                     var timeS=seconds;
                 //    var timer =document.querySelector('.time');
                     //timer.innerHTML=timeS;
@@ -197,7 +203,7 @@ var timeOutDistribute =  setTimeout(function(){
                         var seconds = time.getSeconds();
                         var milliseconds = time.getMilliseconds();
 
-                        if (seconds==4) {
+                        if (seconds==delay) {
                             topCard.classList.add('none');
                             bottomCards[0].classList.remove('none');
                             bottomCards[1].classList.remove('none');
@@ -221,7 +227,7 @@ var timeOutDistribute =  setTimeout(function(){
                           //    timer.classList.add('time');
 
                       }
-                      if ((seconds < 5 && seconds>=0) && milliseconds<900) {
+                      if ((seconds < (delay+1) && seconds>=0) && milliseconds<900) {
                         seconds=String(seconds);
                         timeS=seconds;
                         
@@ -248,7 +254,7 @@ var timeOutDistribute =  setTimeout(function(){
                           startTimer();
                         }
                         //остановка таймера через 8 сек
-                    }, 7000);
+                    }, (delay+3)*1000);
     
 }; //конец функции управления таймером*********************************************************************
 
@@ -325,6 +331,25 @@ function checkAnswer() { //ФУНКЦИЯ ПРОВЕРКИ ОТВЕТА*********
 
 
 
+  function getData()
+  {
+     // получаем индекс выбранного элемента
+     var selind = document.getElementById("delay").options.selectedIndex;
+   var txt= document.getElementById("delay").options[selind].text;
+   var val= document.getElementById("delay").options[selind].value;
+
+   //alert("Теxt= "+ txt +" " + "Value= " + val);
+
+
+   delay=parseInt(val);
+
+
+  }
+
+
+
+
+
 
 
 var fromFile,imported, counter,timerID,timeoutID,result,answer=false;
@@ -338,7 +363,8 @@ var mmjSelect =[];
 var m,j,k,p;
 var topCards,topCardsNumber,cardsNumber,cards;
 var nRhinos=0, nPeople=0;
-
+var tDelay="5";
+var delay=parseInt(tDelay);
 
 var rhinos=document.querySelector('.countEnemy');
 var people=document.querySelector('.countPlayer');
