@@ -26,6 +26,11 @@ textsC2=imported[1].split(',');
 textsC3=imported[2].split(',');
 
 
+console.log('textsC1   ',textsC1,' |||  ');
+console.log('textsC2   ',textsC2,' |||  ');
+console.log('textsC3   ',textsC3,' |||  ');
+
+
 start();
 
 
@@ -67,6 +72,8 @@ c2.addEventListener('click', clickHandlerC2);
 
 c3.addEventListener('click', clickHandlerC3);
 
+}
+
 function clickHandlerC1() { //начало функции обработки клика по карте
 
 var i=textsC1.length-1;
@@ -75,7 +82,7 @@ j=j+1;
 if(j>i) {j=0;};
 txt1=textsC1[j];
 
-    console.log(j);
+    console.log('j= ',j);
 
     c1.innerHTML=txt1; 
 
@@ -110,7 +117,7 @@ txt3=textsC3[m];
 
             } //конец функции обработки клика
 
-}
+
 
 
 var txt1, txt2, txt3, j=0, l=0, m=0;  
