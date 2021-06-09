@@ -1,0 +1,84 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+
+position: relative;
+
+font-family: "Verdana", Helvetica, Arial, sans-serif;
+
+}
+ .wrap {
+   margin: 0 auto;
+   width: 1200px;
+}
+ .wrap--text {
+   margin-bottom: 10px;
+   padding: 0 10px;
+   text-align: center;
+}
+ .wrap--logobar {
+   position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+   /*background-color: grey;*/
+   height: 200px;
+   overflow: hidden;
+
+}
+ .list {
+   list-style: none;
+   display: flex;
+
+   position: absolute;
+   /*width: 100%;*/
+   margin-left: 1180px;
+}
+ .list__item {
+   flex-grow: 0;
+   flex-shrink: 0;
+   padding: 20px;
+   text-align: center;
+   /*width: 100%;*/
+   white-space: nowrap;
+    font-size: 50px;
+}
+ 
+ .inputs {
+
+display: flex;
+   margin: 2px;
+   padding: 2px;
+
+   position: absolute;
+    left: 50%;
+
+    -webkit-transform: translate(-50%,0%);
+        -ms-transform: translate(-50%,0%);
+            transform: translate(-50%,0%);
+
+ }
+
+#speed {
+
+   margin:5px;
+   font-family: "Verdana", Helvetica, Arial, sans-serif;
+   font-size: 15px;
+   color: grey;
+}
+input {
+   margin:5px;
+   font-family: "Verdana", Helvetica, Arial, sans-serif;
+   font-size: 15px;
+      color: grey;
+
+}
+
+p {
+
+      font-size: 25px;
+}

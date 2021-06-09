@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <title>Бегущая строка</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+
+<div class="wrap wrap--text">
+  <p>Бегущая строка</p>
+</div>
+
+<div class="wrap wrap--logobar" id="containerElem">
+  <ul class="list" id="list">
+    <li class="list__item" id="list__item">Apple and Google have unveiled phone features designed for an era of hybrid remote and in-person work.
+    </li>
+
+    
+
+  </ul>
+</div>
+
+<section class="inputs">
+
+<form id="speed">
+
+  <label for="delay">Скорость</label>
+  <select onchange="getData()" id="delay" name="delay" >
+    <option value="5" selected>Очень быстро</option>
+    <option value="7">быстро</option>
+    <option value="9">не так уж быстро</option>
+    <option value="11">чуть менее быстро</option>
+  </select>
+
+</form>
+
+
+<input id="file" type="file" onchange="readFile(this)">
+
+</section>
+
+<script src="index.js?<?echo time();?>"></script>
+
+<!---<script src="./script.js"></script>--->
+
+<!--
+<script>
+  // Вызов валидатора формы
+    validateForm({
+      formId: 'profile',
+      formValidClass: 'form_valid',
+      formInvalidClass: 'form_invalid',
+
+      inputErrorClass: 'input_error'
+    });
+</script>
+
+-->
+</body>
+</html>
