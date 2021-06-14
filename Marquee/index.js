@@ -7,22 +7,22 @@
 
   function creep() {
 
-
+  document.getElementById('btn').disabled=false;
   document.getElementById('delay').disabled=true;
   document.getElementById('file').disabled=true;
 
 
   //delay = 5;
-  const items = [...document.getElementsByClassName('list__item')];
-  const containerElem = document.getElementById('containerElem');
-  const leftSideOfContainer = containerElem.getBoundingClientRect().left;
-  const listElem = document.getElementById('list');
-  let currentLeftValue = 1150;
+  items = [...document.getElementsByClassName('list__item')];
+  containerElem = document.getElementById('containerElem');
+  leftSideOfContainer = containerElem.getBoundingClientRect().left;
+  listElem = document.getElementById('list');
+  currentLeftValue = 1150;
 
   console.log('leftSideOfContainer=  ',leftSideOfContainer);
   
   // Kick off for the animation function.
-  window.setInterval(animationLoop, delay);
+  timerID=window.setInterval(animationLoop, delay);
   console.log('delay= ',delay);
   
   /* 
@@ -30,6 +30,12 @@
     by comparing the right position of the first list item to the left position 
     of the containing element. 
   */
+
+
+
+}
+
+
   function animationLoop() {
     const firstListItem = listElem.querySelector('.list__item:first-child');
     
@@ -52,8 +58,6 @@
     currentLeftValue--;
   }
 
-
-}
 
 //});
 
@@ -95,7 +99,7 @@ creep();
   function getData()
   {
      // получаем индекс выбранного элемента
-     var selind = document.getElementById("delay").options.selectedIndex;
+    var selind = document.getElementById("delay").options.selectedIndex;
    var txt= document.getElementById("delay").options[selind].text;
    var val= document.getElementById("delay").options[selind].value;
 
@@ -107,4 +111,41 @@ creep();
   }
 
 
-var delay;
+
+var endButton = document.querySelector('.btn');
+
+endButton.addEventListener('click', pauseCreep);
+
+function pauseCreep () {
+
+
+if (toggle==1) {
+
+toggle=0;
+timerID=window.setInterval(animationLoop, delay);
+console.log('toggle= ',toggle,' delay= ',delay);
+
+
+
+}
+
+else if (toggle==0) {
+  clearInterval(timerID); 
+  toggle=1;
+
+  console.log('toggle= ',toggle,' delay= ',delay);
+
+}
+
+
+
+}
+
+
+
+
+
+document.getElementById('btn').disabled=true;
+
+
+var delay=5, timerID, toggle=0, listElem,items,containerElem,leftSideOfContainer,currentLeftValue;
