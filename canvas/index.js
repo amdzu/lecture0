@@ -72,7 +72,58 @@ var ctx3 = document.getElementById('canvas3').getContext('2d');
 
 
 
+  var ctx4 = document.getElementById('canvas4').getContext('2d');
+  for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 3; j++) {
+      ctx4.save();
+      ctx4.fillStyle = 'rgb(' + (51 * i) + ', ' + (255 - 51 * i) + ', 255)';
+      ctx4.translate(10 + j * 50, 10 + i * 50);
+      ctx4.fillRect(0, 0, 25, 25);
+      ctx4.restore();
+    }
+  }
+
+
+  var ctx5 = document.getElementById('canvas5').getContext('2d');
+
+  // left rectangles, rotate from canvas origin
+  ctx5.save();
+  // blue rect
+  ctx5.fillStyle = '#0095DD';
+  ctx5.fillRect(30, 30, 100, 100);
+  ctx5.rotate((Math.PI / 180) * 25);
+  // grey rect
+  ctx5.fillStyle = '#4D4E53';
+  ctx5.fillRect(30, 30, 100, 100);
+  ctx5.restore();
+
+  // right rectangles, rotate from rectangle center
+  // draw blue rect
+  ctx5.fillStyle = '#0095DD';
+  ctx5.fillRect(150, 30, 100, 100);
+
+  ctx5.translate(200, 80); // translate to rectangle center
+                          // x = x + 0.5 * width
+                          // y = y + 0.5 * height
+  ctx5.rotate((Math.PI / 180) * 25); // rotate
+  ctx5.translate(-200, -80); // translate back
+
+  // draw grey rect
+  ctx5.fillStyle = '#4D4E53';
+  ctx5.fillRect(150, 30, 100, 100);
+
+
+
+            
+
+
+
+
 }
+
+
+
+
 
 draw();
 
