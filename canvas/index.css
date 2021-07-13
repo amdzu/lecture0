@@ -1,0 +1,15 @@
+
+* {
+   -webkit-box-sizing: border-box;
+           box-sizing: border-box;
+}
+
+body {
+
+position: relative;
+
+font-family: "Verdana", Helvetica, Arial, sans-serif;
+
+}
+
+canvas { border: 1px solid black; }
