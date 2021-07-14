@@ -129,3 +129,63 @@ draw();
 
 
 
+
+var sun = new Image();
+var moon = new Image();
+var earth = new Image();
+function init() {
+  sun.src = 'canvas_sun.png';
+  moon.src = 'canvas_moon.png';
+  earth.src = 'canvas_earth.png';
+  window.requestAnimationFrame(draw1);
+}
+
+function draw1() {
+  var ctx6 = document.getElementById('canvas6').getContext('2d');
+
+  ctx6.globalCompositeOperation = 'destination-over';
+  ctx6.clearRect(0, 0, 300, 300); // clear canvas
+
+  ctx6.fillStyle = 'rgba(0, 0, 0, 0.4)'; //GREY
+  ctx6.strokeStyle = 'rgba(0, 153, 255, 0.4)'; //LIGHT-BLUE
+  ctx6.save();
+  ctx6.translate(150, 150);
+
+  // Earth
+  var time = new Date();
+  //ctx6.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
+
+  ctx6.rotate(((2 * Math.PI) / 60) + ((2 * Math.PI) / 60000));
+
+  ctx6.translate(105, 0);
+  ctx6.fillRect(0, -12, 40, 24); // Shadow
+  ctx6.drawImage(earth, -16, -16);
+
+  // Moon
+  ctx6.save();
+  //ctx6.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
+
+  ctx6.rotate(((2 * Math.PI) / 6) + ((2 * Math.PI) / 6000));
+
+
+  ctx6.translate(0, 28.5);
+  ctx6.drawImage(moon, -3.5, -3.5);
+  ctx6.restore();
+
+  ctx6.restore();
+
+  ctx6.beginPath();
+  ctx6.arc(150, 150, 105, 0, Math.PI * 2, false); // Earth orbit
+  ctx6.stroke();
+
+  //ctx6.drawImage(sun, 0, 0, 300, 300);
+
+  window.requestAnimationFrame(draw1);
+}
+
+init();
+
+
+
+
+
