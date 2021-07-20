@@ -20,6 +20,13 @@ var brickOffsetLeft = 30;
 var score = 0;
 var lives = 3;
 
+var boxWidth = 75;
+var boxHeight = 40;
+var i=0;
+var word = ['стол','стул','слон','сон'];
+
+
+
 var bricks = [];
 for(var c=0; c<brickColumnCount; c++) {
   bricks[c] = [];
@@ -85,9 +92,10 @@ function drawScore() {
 
 
 
-fun drawWord(i) {
+function drawWord(i) {
 
   var j=i;
+  var text=word[j];
   ctx.beginPath();
   ctx.rect(x, y, boxWidth, boxHeight);
   ctx.fillStyle = "#0095DD";
@@ -96,7 +104,7 @@ fun drawWord(i) {
 
   ctx.font = "16px Arial";
   ctx.fillStyle = "red";
-  ctx.fillText(word[j], paddleX, canvas.height-paddleHeight,);
+  ctx.fillText(text, x, y);
 
 
 }
@@ -109,8 +117,11 @@ fun drawWord(i) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
- // drawPaddle();
- // drawScore();
+
+
+drawWord(i);
+i++;
+
 
   if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
     dx = -dx;
@@ -147,7 +158,7 @@ function draw() {
   }
 
   x += dx;
-  y += dy;
+ // y += dy;
 }
 
 var interval = setInterval(draw, 15);
