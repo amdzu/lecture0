@@ -60,33 +60,7 @@ function keyUpHandler(e) {
 
 
 
-function collisionDetection() {
-  for(var c=0; c<brickColumnCount; c++) {
-    for(var r=0; r<brickRowCount; r++) {
-      var b = bricks[c][r];
-      if(b.status == 1) {
-        if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-          dy = -dy;
-          b.status = 0;
-          score++;
-          if(score == brickRowCount*brickColumnCount) {
-            alert("YOU WIN, CONGRATS!");
-            document.location.reload();
-            clearInterval(interval); // Needed for Chrome to end game
-          }
-        }
-      }
-    }
-  }
-}
 
-function drawBall() {
-  ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-  ctx.fillStyle = "#0095DD";
-  ctx.fill();
-  ctx.closePath();
-}
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
@@ -94,42 +68,49 @@ function drawPaddle() {
   ctx.fill();
   ctx.closePath();
 }
-function drawBricks() {
-  for(var c=0; c<brickColumnCount; c++) {
-    for(var r=0; r<brickRowCount; r++) {
-      if(bricks[c][r].status == 1) {
-        var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;
-        var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;
-        bricks[c][r].x = brickX;
-        bricks[c][r].y = brickY;
-        ctx.beginPath();
-        ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#0095DD";
-        ctx.fill();
-        ctx.closePath();
-      }
-    }
-  }
-}
+
+
+
+
+
 function drawScore() {
   ctx.font = "16px Arial";
+  ctx.fillStyle = "red";
+  ctx.fillText("Score: "+score+1+1, paddleX, canvas.height-paddleHeight,);
+
+
+  ctx.fillText("Score: "+score+5, paddleX, canvas.height-paddleHeight+10,);
+}		
+
+
+
+
+fun drawWord(i) {
+
+  var j=i;
+  ctx.beginPath();
+  ctx.rect(x, y, boxWidth, boxHeight);
   ctx.fillStyle = "#0095DD";
-  ctx.fillText("Score: "+score, 8, 20);
+  ctx.fill();
+  ctx.closePath();
+
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "red";
+  ctx.fillText(word[j], paddleX, canvas.height-paddleHeight,);
+
+
 }
-function drawLives() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText("Lives: "+lives, canvas.width-65, 20);
-}
+
+
+
+
+
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawBricks();
-  drawBall();
-  drawPaddle();
-  drawScore();
-  drawLives();
-  collisionDetection();
+
+ // drawPaddle();
+ // drawScore();
 
   if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
     dx = -dx;
