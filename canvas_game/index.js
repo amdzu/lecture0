@@ -28,14 +28,25 @@ var lives = 3;
 var textWidth=80;
 var totalTextwidth=0;
 var textSpacing=15;
+var allTextWidth=0;
+
 
 var i=0;
 
 var word = ['стол','стул','слон','сон'];
+var wordAnswer=[1,1,1,1];
 var wordX=[];
+var wordClicked=[];
 var lWord = word.length;
 
-var txtColor='red';
+for (var i=0;i<lWord;i++) {
+  wordClicked[i]=0;
+};
+
+
+var txtColor='blue';
+var txtColorTrue='green';
+var txtColorFalse='red';
 
 
 
@@ -52,16 +63,30 @@ function clickHandler(e) {
     var relativeX = e.clientX - oX;
     var relativeY = e.clientY - oY;
 
-    
+ //   if(relativeX > x-15 && relativeX < x+allTextWidth+15 && relativeY>y-10 && relativeY<y+45) {
+ //       txtColor='blue';
+ //   } else {txtColor='red'};
 
 
+    for (var i=0;i<lWord;i++) {
 
 
+        if(relativeX > x+wordX[i] && relativeX < x+wordX[i+1] && relativeY>y-10 && relativeY<y+45 && i+1<lWord) {
+          //txtColor='blue';
+          wordClicked[i]++;
+          if (wordAnswer[i]==1 && wordClicked[i]==1) {score++; };
+          alert('слово номер '+i+' Выбрано? '+wordClicked[i]+' lWord '+lWord+' relativeX='+relativeX+'x+wordX[i]='+x+wordX[i]);
+        }
 
-    if(relativeX > x-25 && relativeX < x+textWidth+25 && relativeY>y-10 && relativeY<y+45) {
-        txtColor='blue';
-    } else {txtColor='red'};
-}
+        if(relativeX > x+wordX[i] && i+1==lWord && relativeX < x+wordX[i]+(wordX[i]-wordX[0])/lWord && relativeY>y-10 && relativeY<y+45 ) {
+          //txtColor='blue';
+          wordClicked[i]++;
+          if (wordAnswer[i]==1 && wordClicked[i]==1) {score++; };
+          alert('слово номер '+i+' Выбрано? '+wordClicked[i]+' lWord '+lWord+' relativeX='+relativeX+'x+wordX[i]='+x+wordX[i]);
+        } 
+
+    }
+} 
 
 
 function mouseMoveHandler(e) {
@@ -69,7 +94,7 @@ function mouseMoveHandler(e) {
     var oX = canvas.offsetLeft;
     var relativeX = e.clientX - oX;
     var relativeY = e.clientY - oY;
-   if(relativeX > x-25 && relativeX < x+textWidth+25 && relativeY>y-10 && relativeY<y+45) {
+   if(relativeX > x-15 && relativeX < x+allTextWidth+15 && relativeY>y-10 && relativeY<y+45) {
      canvas.style.cursor = "pointer";
     } else {canvas.style.cursor="default"};
 
@@ -98,31 +123,49 @@ function keyUpHandler(e) {
 
 
 
-function drawWord(text,h,v) {
+function drawWord(text,h,v,clicked,answer) {
   textWidth = ctx.measureText(text).width;
   totalTextwidth=totalTextwidth+textWidth+textSpacing;
   ctx.font = "26px Arial";
-  ctx.fillStyle = txtColor;
+
+  if(clicked == 0) {
+    ctx.fillStyle = txtColor;
+  }
+  if(clicked >= 1 && answer==1) {
+    ctx.fillStyle = txtColorTrue;
+  }
+  if(clicked >= 1 && answer==0) {
+    ctx.fillStyle = txtColorFalse;
+  }
+
+
   ctx.fillText(text, h, v+13);
 }
 
 
+function drawScore() {
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#0095DD";
+  ctx.fillText("Score: "+score, 8, 20);
+  ctx.font = "26px Arial";
+  ctx.fillStyle = txtColor;
+}
 
 
 function draw() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+allTextWidth = totalTextwidth;
+
 totalTextwidth=0;
 
 for (var i=0;i<lWord;i++) {
-
-var text=word[i];
-wordX[i]=x+totalTextwidth;
-console.log(wordX[i]);
-drawWord(text,x+totalTextwidth,y);
-
+  var text=word[i];
+  wordX[i]=totalTextwidth;
+  drawWord(text,x+totalTextwidth,y,wordClicked[i],wordAnswer[i]);
 }
 
-
+drawScore();
 
 
 if (x<-totalTextwidth) {x = canvas.width; txtColor='red';}
@@ -131,4 +174,4 @@ if (x<-totalTextwidth) {x = canvas.width; txtColor='red';}
 
 
 
-var interval = setInterval(draw, 50);
+var interval = setInterval(draw, 10);
