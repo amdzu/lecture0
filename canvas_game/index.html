@@ -9,8 +9,44 @@
 <body>
 
   
-<canvas id="myCanvas" width="880" height="320"></canvas>
+<!--- <canvas id="myCanvas" width="880" height="320"></canvas> --->
 
+<img id="menu" src="icons8-menu-32.png"/>
+
+<section class="inputs">
+
+<form id="speed">
+
+
+  <label for="delay">Скорость</label>
+  <select onchange="getData()" id="delay" name="delay" >
+    <option value="6" selected>Очень быстро</option>
+    <option value="10">быстро</option>
+    <option value="15">не так уж быстро</option>
+    <option value="20">чуть менее быстро</option>
+    <option value="22">спокойно и уверенно</option>
+    <option value="25">плавно</option>
+    <option value="28">торжественно</option>
+  </select>
+
+
+
+</form>
+
+
+
+
+
+
+<input id="file" type="file" onchange="readFile(this)">
+
+
+
+</section>
+
+<canvas id="myCanvas"></canvas>
+
+<button id="btn" class="btn"><div class='warn'>ИГРА</div></button>
 
 
 
