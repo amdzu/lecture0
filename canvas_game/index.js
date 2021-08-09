@@ -33,6 +33,11 @@ var fileSuccess='firework-single-rocket-1.mp3';
 var toggle=0;
 var lWord;
 
+var instance=0;
+var explode_int;
+
+var idRequest;
+
 
 function play_F(file){
   var audio = document.createElement('audio');
@@ -118,6 +123,9 @@ function clickHandler(e) {
     var relativeX = e.clientX - oX;
     var relativeY = e.clientY - oY;
     particles.splice(0);
+    //clearInterval(explode_int);
+    window.cancelAnimationFrame(idRequest);
+
 
 if (toggle!=0) {
     for (var i=0;i<lWord;i++) {
@@ -127,6 +135,8 @@ if (toggle!=0) {
             score++; 
 
                 for (j = 0; j <= 50; j++) {
+             //   let ddx = (Math.random() - 0.5) * (Math.random() * 6);
+             //   let ddy = (Math.random() - 0.5) * (Math.random() * 6);
                 let ddx = (Math.random() - 0.5) * (Math.random() * 6);
                 let ddy = (Math.random() - 0.5) * (Math.random() * 6);
                 let radius = Math.random() * 3;
@@ -135,7 +145,9 @@ if (toggle!=0) {
                 /* Adds new items like particle*/
                 particles.push(particle);
             }
-            explode();
+      
+
+                explode();
             //audio1.play();
             play_F(fileSuccess);
           } else if (wordAnswer[i]!=1 && wordClicked[i]==1) {scoreMiss--; play_F(fileFail);};
@@ -155,7 +167,9 @@ if (toggle!=0) {
                 /* Adds new items like particle*/
                 particles.push(particle);
             }
-            explode();
+           
+
+           explode();
             //audio1.play();
             play_F(fileSuccess);
            } else if (wordAnswer[i]!=1 && wordClicked[i]==1) {scoreMiss--; play_F(fileFail);};
@@ -195,7 +209,10 @@ function keyUpHandler(e) {
     }
 }
 
-function drawWord(text,h,v,clicked,answer,miss) {
+
+var text,h,v,clicked,answer,miss;
+
+function drawWord() {
 
   ctx.font = "36px Arial";
   textWidth = ctx.measureText(text).width;
@@ -254,32 +271,43 @@ totalTextwidth=0;
 
 
 for (var i=0;i<lWord;i++) {
-  var text=word[i];
+  text=word[i];
   wordX[i]=totalTextwidth;
   if (x+totalTextwidth<(canvas.width)*0.1 && wordClicked[i]==0 && wordAnswer[i]==1) {
     missed[i]++;
     if (missed[i]==1) {scoreMiss--; play_F(fileFail); }
   }
-  drawWord(text,x+totalTextwidth,y,wordClicked[i],wordAnswer[i],missed[i]);
+
+//text,h,v,clicked,answer,miss
+
+h=x+totalTextwidth;
+v=y;
+clicked=wordClicked[i];
+answer=wordAnswer[i];
+miss=missed[i];
+
+  drawWord();
 }
 
+//requestAnimationFrame(drawScore);
 drawScore();
 
 
 if (x<-totalTextwidth) {
 
-  clearInterval(interval);
+ // clearInterval(interval);
 
   alert('ИГРА ОКОНЧЕНА');
 location.reload();
   }  
 
 x -= dx*toggle;
+
+requestAnimationFrame(draw);
 }
 
 /* FUNCTION EXPLODE PARTICLES --------------------*/
         function explode() {
-  
             /* Clears the given pixels in the rectangle */
             //ctx.clearRect(0, 0, canvas.width, canvas.height);
             //ctx.fillStyle = "white";
@@ -291,7 +319,13 @@ x -= dx*toggle;
                 })
                   
                 /* Performs a animation after request*/
-            requestAnimationFrame(explode);
+         //   instance++;
+         //   console.log('EХPLODE = ',instance);
+         //   if (instance>100) {return;}
+
+           idRequest=requestAnimationFrame(explode);
+
+
         }
 /* END OF FUNCTION EXPLODE PARTICLES --------------------*/
 
@@ -340,7 +374,9 @@ function menuSlide() {
     var selind = document.getElementById("delay").options.selectedIndex;
    var txt= document.getElementById("delay").options[selind].text;
    var val= document.getElementById("delay").options[selind].value;
-   delay=parseInt(val);
+   //delay=parseInt(val);
+
+   dx=dx*parseInt(val)/10;
   }
 
 
@@ -369,7 +405,10 @@ for (var iii=0;iii<lWord;iii++) {
 endButton.disabled=false;
 
 getData();
-var interval = setInterval(draw, delay);
+
+//var interval = setInterval(draw, delay);
+
+draw();
 
   };
 
