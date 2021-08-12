@@ -61,6 +61,21 @@ var wordX=[];
 var wordClicked=[];
 
 
+var c = [];
+
+
+c[0]='hsl(0, 100%, 50%)';
+c[1]='hsl(50, 100%, 50%)';
+c[2]='hsl(80, 100%, 50%)';
+c[3]='hsl(125, 100%, 50%)';
+c[4]='hsl(180, 100%, 50%)';
+c[5]='hsl(200, 100%, 50%)';
+c[6]='hsl(230, 100%, 50%)';
+c[7]='hsl(275, 100%, 50%)';
+c[8]='hsl(313, 100%, 50%)';
+c[9]='hsl(65, 100%, 50%)';
+
+
 
 
 
@@ -68,6 +83,9 @@ var txtColor='blue';
 var txtColorTrue='rgba(76, 175, 80, 0.0)';
 var txtColorFalse='red';
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 /*   PARTICLES -----------------------------------------*/
         let particles = [];
@@ -81,11 +99,20 @@ var txtColorFalse='red';
                 this.dx = dx;
                 this.dy = dy;
                 this.alpha = 1;
+                this.color=c[getRandomInt(10)];
             }
             draw() {
                 ctx.save();
                 ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = 'blue';
+
+                //var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+
+				//var color = c[getRandomInt(3)];
+                
+
+
+                ctx.fillStyle = this.color;
+
                   
                 /* Begins or reset the path for 
                    the arc created */
@@ -94,6 +121,7 @@ var txtColorFalse='red';
                 /* Some curve is created*/
                 ctx.arc(this.x, this.y, this.radius, 
                         0, Math.PI * 2, false);
+
                 ctx.fill();
                 /* Restore the recent canvas context*/
                 ctx.restore();
@@ -417,4 +445,6 @@ draw();
   };
 
 }
+
+
 
