@@ -37,6 +37,7 @@ var instance=0;
 var explode_int;
 
 var idRequest;
+var gameFinished=false;
 
 
 function play_F(file){
@@ -155,9 +156,9 @@ function clickHandler(e) {
     window.cancelAnimationFrame(idRequest);
 
 
-if (toggle!=0) {
+if (toggle!=0 && relativeX > (canvas.width)*0.11) {
     for (var i=0;i<lWord;i++) {
-        if(relativeX > x+wordX[i] && relativeX < x+wordX[i+1] && relativeY>y-10 && relativeY<y+45 && i+1<lWord) {
+        if(relativeX > x+wordX[i] && relativeX < x+wordX[i+1] && relativeY>y-10 && relativeY<y+45 && i+1<lWord && missed[i]==0) {
           wordClicked[i]++;
           if (wordAnswer[i]==1 && wordClicked[i]==1) {
             score++; 
@@ -182,7 +183,7 @@ if (toggle!=0) {
          // alert('слово номер '+i+' Выбрано? '+wordClicked[i]+' lWord '+lWord+' relativeX='+relativeX+'x+wordX[i]='+x+wordX[i]);
         }
 
-        if(relativeX > x+wordX[i] && i+1==lWord && relativeX < x+wordX[i]+(wordX[i]-wordX[0])/lWord && relativeY>y-10 && relativeY<y+45 ) {
+        if(relativeX > x+wordX[i] && i+1==lWord && relativeX < x+wordX[i]+(wordX[i]-wordX[0])/lWord && relativeY>y-10 && relativeY<y+45 && missed[i]==0) {
           //txtColor='blue';
           wordClicked[i]++;
           if (wordAnswer[i]==1 && wordClicked[i]==1) {
@@ -281,6 +282,9 @@ function drawScore() {
 
 
 function draw() {
+
+
+
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 allTextWidth = totalTextwidth;
@@ -323,10 +327,13 @@ drawScore();
 
 if (x<-totalTextwidth) {
 
- // clearInterval(interval);
+ //clearInterval(interval);
 
-  alert('ИГРА ОКОНЧЕНА');
-location.reload();
+//  alert('ИГРА ОКОНЧЕНА');
+//location.reload();
+
+gameFinished=true;
+
   }  
 
 x -= dx*toggle;
@@ -369,7 +376,13 @@ requestAnimationFrame(draw);
 var endButton = document.querySelector('.btn');
 endButton.disabled=true;
 endButton.addEventListener('click', pauseCreep);
+
 function pauseCreep () {
+
+document.getElementById("file").disabled=true;
+document.getElementById("delay").disabled=true;
+  
+
 if (toggle==1) {
   toggle=0;
   endButton.innerHTML="ИГРА";
@@ -405,6 +418,10 @@ function menuSlide() {
    //delay=parseInt(val);
 
    dx=dx*parseInt(val)/10;
+
+
+
+
   }
 
 
@@ -432,7 +449,10 @@ for (var iii=0;iii<lWord;iii++) {
 
 endButton.disabled=false;
 
+
 getData();
+
+
 
 //var interval = setInterval(draw, delay);
 
