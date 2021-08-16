@@ -37,8 +37,9 @@ var instance=0;
 var explode_int;
 
 var idRequest;
-var gameFinished=false;
-
+var gameFinished=0;
+var audio2 = new Audio('highbell.mp3');
+var count = 0;
 
 function play_F(file){
   var audio = document.createElement('audio');
@@ -80,9 +81,14 @@ c[9]='hsl(65, 100%, 50%)';
 
 
 
-var txtColor='blue';
+var txtColor='#059DC0';
 var txtColorTrue='rgba(76, 175, 80, 0.0)';
-var txtColorFalse='red';
+var txtColorFalse='#F51720';
+var txtScoreColor='#04D4F0'
+
+
+
+
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -271,7 +277,7 @@ if (h<canvas.width && h+textWidth >0)  {
 
 function drawScore() {
   ctx.font = "36px Arial";
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = txtScoreColor;
   ctx.fillText("Меткие клики: "+score, (canvas.width)*0.2, 40);
 
   var scoreMissWidth = ctx.measureText("Промашки: ").width;
@@ -332,7 +338,13 @@ if (x<-totalTextwidth) {
 //  alert('ИГРА ОКОНЧЕНА');
 //location.reload();
 
-gameFinished=true;
+	gameFinished++;
+   endButton.innerHTML="НОВАЯ ИГРА";
+   endButton.removeEventListener('click',pauseCreep);
+   endButton.addEventListener('click',newGame);
+
+   if (gameFinished==1) {
+   audio2.play();}
 
   }  
 
@@ -379,9 +391,16 @@ endButton.addEventListener('click', pauseCreep);
 
 function pauseCreep () {
 
+count++;
+
 document.getElementById("file").disabled=true;
 document.getElementById("delay").disabled=true;
-  
+
+if (count==1) {
+
+	menuSlide()
+
+}
 
 if (toggle==1) {
   toggle=0;
@@ -418,11 +437,12 @@ function menuSlide() {
    //delay=parseInt(val);
 
    dx=dx*parseInt(val)/10;
-
-
-
-
   }
+
+function newGame() {
+	location.reload();
+}
+
 
 
 function readFile(input) {

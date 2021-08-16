@@ -138,6 +138,10 @@ p {
                 box-shadow: 1px 1px 10px;
         border: 1px;
         outline: 2px;
+
+        background-color: 'rgba(76, 175, 80, 0.0)';
+
+        
     }
     
     button:active {
