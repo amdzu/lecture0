@@ -40,6 +40,8 @@ var idRequest;
 var gameFinished=0;
 var audio2 = new Audio('highbell.mp3');
 var count = 0;
+var allClicked=0;
+var nClicked=[];
 
 function play_F(file){
   var audio = document.createElement('audio');
@@ -50,6 +52,15 @@ function play_F(file){
   audio.onended = function () {
     this.parentNode.removeChild(this);
   }
+}
+
+document.addEventListener('DOMContentLoaded',ready);
+
+function ready() {
+
+	console.log('LOAD');
+	menuSlide();
+	menuClick=1;
 }
 
 
@@ -166,6 +177,7 @@ if (toggle!=0 && relativeX > (canvas.width)*0.11) {
     for (var i=0;i<lWord;i++) {
         if(relativeX > x+wordX[i] && relativeX < x+wordX[i+1] && relativeY>y-10 && relativeY<y+45 && i+1<lWord && missed[i]==0) {
           wordClicked[i]++;
+          if(wordClicked[i]==1) {nClicked.push(1)}
           if (wordAnswer[i]==1 && wordClicked[i]==1) {
             score++; 
 
@@ -192,6 +204,7 @@ if (toggle!=0 && relativeX > (canvas.width)*0.11) {
         if(relativeX > x+wordX[i] && i+1==lWord && relativeX < x+wordX[i]+(wordX[i]-wordX[0])/lWord && relativeY>y-10 && relativeY<y+45 && missed[i]==0) {
           //txtColor='blue';
           wordClicked[i]++;
+          if(wordClicked[i]==1) {nClicked.push(1)}
           if (wordAnswer[i]==1 && wordClicked[i]==1) {
                 score++; 
                 for (j = 0; j <= 50; j++) {
@@ -313,7 +326,7 @@ for (var i=0;i<lWord;i++) {
   wordX[i]=totalTextwidth;
   if (x+totalTextwidth<(canvas.width)*0.1 && wordClicked[i]==0 && wordAnswer[i]==1) {
     missed[i]++;
-    if (missed[i]==1) {scoreMiss--; play_F(fileFail); }
+    if (missed[i]==1) {scoreMiss--; play_F(fileFail); nClicked.push(1);}   //считаем, что пропуск правильного клика = неправильный клик
   }
 
 //text,h,v,clicked,answer,miss
@@ -331,7 +344,7 @@ miss=missed[i];
 drawScore();
 
 
-if (x<-totalTextwidth) {
+if (x<-totalTextwidth+(canvas.width)*0.13) {
 
  //clearInterval(interval);
 
@@ -346,11 +359,47 @@ if (x<-totalTextwidth) {
    if (gameFinished==1) {
    audio2.play();}
 
-  }  
+  }
+
+
+
+  if (lWord==nClicked.length && nClicked.length>1) {
+
+  	
+  	allClicked++; 
+/*
+  	toggle=0;
+  	   endButton.innerHTML="НОВАЯ ИГРА";
+   endButton.removeEventListener('click',pauseCreep);
+   endButton.addEventListener('click',newGame);
+*/
+  	if (allClicked==1) {
+   	
+   	setTimeout(audioPlay,800);
+   	
+  	}
+  } 
+
+
+
+
 
 x -= dx*toggle;
 
 requestAnimationFrame(draw);
+}
+
+function audioPlay() {
+
+	  	toggle=0;
+  	   endButton.innerHTML="НОВАЯ ИГРА";
+   endButton.removeEventListener('click',pauseCreep);
+   endButton.addEventListener('click',newGame);
+	audio2.play();
+
+	txtColorFalse=txtColorTrue;
+
+
 }
 
 /* FUNCTION EXPLODE PARTICLES --------------------*/
@@ -414,8 +463,9 @@ if (toggle==1) {
 }
 
 // Выезд верхнего меню
-var menu = document.getElementById('menu');
-menu.addEventListener('click', menuSlide);
+//var menu = document.getElementById('menu');
+//menu.addEventListener('click', menuSlide);
+
 var menuClick=0;
 function menuSlide() {
   if (menuClick==0) {
