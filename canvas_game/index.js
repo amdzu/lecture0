@@ -21,6 +21,7 @@ var leftPressed = false;
 var score = 0;
 var scoreMiss = 0;
 var missed = [];
+var notMissed= [];
 var lives = 3;
 
 var textWidth=80;
@@ -30,6 +31,7 @@ var allTextWidth=0;
 
 var fileFail='toy-robot-blorping.mp3';
 var fileSuccess='firework-single-rocket-1.mp3';
+var fileNotMissed ='hat.mp3';
 var toggle=0;
 var lWord;
 
@@ -95,7 +97,8 @@ c[9]='hsl(65, 100%, 50%)';
 var txtColor='#059DC0';
 var txtColorTrue='rgba(76, 175, 80, 0.0)';
 var txtColorFalse='#F51720';
-var txtScoreColor='#04D4F0'
+var txtScoreColor='#04D4F0';
+var txtColorNotMissed='green';
 
 
 
@@ -258,7 +261,7 @@ function keyUpHandler(e) {
 }
 
 
-var text,h,v,clicked,answer,miss;
+var text,h,v,clicked,answer,miss,notMiss;
 
 function drawWord() {
 
@@ -280,6 +283,9 @@ function drawWord() {
   } 
   if(miss>=1) {
     ctx.fillStyle = txtColorFalse;
+  }
+  if (notMiss>=1) {
+  	ctx.fillStyle = txtColorNotMissed;
   }
 if (h<canvas.width && h+textWidth >0)  {
   ctx.fillText(text, h, v+13);
@@ -328,7 +334,12 @@ for (var i=0;i<lWord;i++) {
     missed[i]++;
     if (missed[i]==1) {scoreMiss--; play_F(fileFail); nClicked.push(1);}   //считаем, что пропуск правильного клика = неправильный клик
   }
-
+  if (x+totalTextwidth<(canvas.width)*0.1 && wordClicked[i]==0 && wordAnswer[i]==0) {
+  	
+  	notMissed[i]++;
+    
+    if (notMissed[i]==1) {score++; play_F(fileNotMissed); nClicked.push(1);}   //считаем, что пропуск неправильного клика = правильный клик
+  }
 //text,h,v,clicked,answer,miss
 
 h=x+totalTextwidth;
@@ -336,6 +347,7 @@ v=y;
 clicked=wordClicked[i];
 answer=wordAnswer[i];
 miss=missed[i];
+notMiss=notMissed[i];
 
   drawWord();
 }
@@ -398,6 +410,8 @@ function audioPlay() {
 	audio2.play();
 
 	txtColorFalse=txtColorTrue;
+	txtColor=txtColorTrue;
+	txtColorNotMissed=txtColorTrue;
 
 
 }
@@ -447,7 +461,8 @@ document.getElementById("delay").disabled=true;
 
 if (count==1) {
 
-	menuSlide()
+	menuSlide();
+	draw();
 
 }
 
@@ -479,14 +494,15 @@ function menuSlide() {
   } 
 }
 
+var val;
   function getData() {
      // получаем индекс выбранного элемента
     var selind = document.getElementById("delay").options.selectedIndex;
    var txt= document.getElementById("delay").options[selind].text;
-   var val= document.getElementById("delay").options[selind].value;
+   val= document.getElementById("delay").options[selind].value;
    //delay=parseInt(val);
-
-   dx=dx*parseInt(val)/10;
+	let lever =1;
+   dx=lever*parseInt(val)/10;
   }
 
 function newGame() {
@@ -496,6 +512,7 @@ function newGame() {
 
 
 function readFile(input) {
+word=[];
   let file = input.files[0];
   let reader = new FileReader();
   reader.readAsText(file);
@@ -514,7 +531,8 @@ for (var iii=0;iii<lWord;iii++) {
      word[iii]=word[iii].slice(0,lw-1);} else {
       wordAnswer[iii]=1;
       }; 
-      missed[iii]=0;  
+      missed[iii]=0; 
+      notMissed[iii]=0; 
     };
 
 endButton.disabled=false;
@@ -523,10 +541,9 @@ endButton.disabled=false;
 getData();
 
 
-
 //var interval = setInterval(draw, delay);
 
-draw();
+//draw();
 
   };
 
