@@ -29,9 +29,21 @@ var totalTextwidth=0;
 var textSpacing=15;
 var allTextWidth=0;
 
-var fileFail='toy-robot-blorping.mp3';
-var fileSuccess='firework-single-rocket-1.mp3';
+//var fileFail='toy-robot-blorping.mp3';
+
+fileFail='167338__willy-ineedthatapp-com__pup-fat.mp3';
+
+
+//var fileSuccess='firework-single-rocket-1.mp3';
+
+var fileSuccess='519991__casstway__waterdrop.mp3';
+
+//var fileSuccess =  '514133__juverisetila__medium-explosion.mp3'
+
 var fileNotMissed ='hat.mp3';
+
+
+
 var toggle=0;
 var lWord;
 
