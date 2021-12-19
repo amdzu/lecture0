@@ -127,14 +127,22 @@ p {
                 box-shadow: 1px 1px 10px;
         border: 1px;
         outline: 2px;
+        background-color: #b8b7b4;
     }
     
+
+
     button:active {
     -webkit-box-shadow: inset 2px 1px 8px;
             box-shadow: inset 2px 1px 8px;
     border: 0;
        }
-    
+    button:disabled {
+opacity: 0.25;
+
+    }
+
+
     button:hover {
         cursor: pointer;
     }
