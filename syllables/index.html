@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <title>СЛОВЕЧКИ</title>
+  <link rel="stylesheet" href="index.css">
+
+
+
+</head>
+<body>
+
+<h1></h1>
+
+
+
+
+<section class="gameField">
+
+
+<div class="cardWrapper transparent" id="cL">
+<img id="pusheenL" class="pusheenL" src="images/rhino.gif">
+</div>
+
+<div class="cardWrapper" id="c1">
+	в
+  <!---<div class="card front">ПРИ</div> -->
+</div>
+
+
+<div class="cardWrapper" id="c2">а
+<!---    <div class="card front">ХОД</div> --->
+</div>
+
+<div class="cardWrapper transparent" id="cR">
+<img id="pusheenR" class="pusheenR" src="images/rhino2.gif">
+</div>
+
+
+
+</section>
+
+
+<section class="inputs">
+
+<form id="speed">
+
+  <label for="delay">Наборы букв</label>
+  <select onchange="getData()" id="delay" name="delay" >
+    <option value="1" selected>АОУЭ+Согласные</option>
+    <option value="2">Согласные+АОУЭЫ</option>
+    <option value="3">ЕЮЯЁИ+согласные</option>
+    <option value="4">согласные+ЕЮЯЁИ</option>
+    <option value="5">согласные+все гласные</option>
+  </select>
+
+
+
+
+</form>
+
+</section>
+
+<button id="control" class="favorite styled" type="button">
+    НАЖМИТЕ
+</button>
+
+
+<!---<button id="clickme">CLICK ME!</button> --->
+
+<script src="script1.js?<?echo time();?>"></script>
+
+
+<!---<input type="file" onchange="readFile(this)"> --->
+
+</body>
+</html>
