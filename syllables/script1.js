@@ -28,7 +28,7 @@ if (clickCounter==4) {
 
 //animalCounter=getRandomInt(20);
 
-//animalCounter++;
+animalCounter++;
 	
 clickHandlerC1();
 if (animalCounter==1) {
