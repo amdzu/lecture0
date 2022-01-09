@@ -53,7 +53,7 @@ left:50px;
 
 
         .cardWrapper {
-        position: relative;
+ 
         padding: auto;
 
     display: -webkit-box;
@@ -79,22 +79,27 @@ left:50px;
     }
 
     #c1 {
+    	position: relative;
     opacity: 1;
+    width: 60px;
     /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
 
    /*  background-color: #FFAEBC;*/
      text-transform: uppercase;
+     
      left: -300px;
+
      -webkit-box-align: end;
          -ms-flex-align: end;
              align-items: end;
-               -webkit-box-pack: right;
-                   -ms-flex-pack: right;
-                       justify-content: right;
+               -webkit-box-pack: center;
+                   -ms-flex-pack: center;
+                       justify-content: center;
 
     }
     #cL {
-
+       position: relative;
+       width: 500px;
     /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
 
    /*  background-color: #FFAEBC;*/
@@ -109,19 +114,24 @@ left:50px;
 
     #c2 {
         opacity: 1;
+        position: relative;
+        width: 60px;
         /*background-color: #A0E7E5;*/
 
          text-transform: uppercase;
+
          left: 300px;
+         
          -webkit-box-align: end;
              -ms-flex-align: end;
                  align-items: end;
-                                     -webkit-box-pack: left;
-                                         -ms-flex-pack: left;
-                                             justify-content: left;
+                                     -webkit-box-pack: center;
+                                         -ms-flex-pack: center;
+                                             justify-content: center;
     }
     #cR {
-    
+           position: relative;
+           width: 500px;
         /*background-color: #A0E7E5;*/
 
          text-transform: uppercase;
@@ -201,15 +211,15 @@ left:50px;
 
 .pusheenL {
     position: relative;
-left:1px;
-top:-1px;
+left: 0px;
+top: 0px;
     width: auto;
     height: 200px;
 }
 .pusheenR {
     position: relative;
-left:-1px;
-top:-1px;
+left: 0px;
+top: 0px;
     width: auto;
     height: 200px;
 }
