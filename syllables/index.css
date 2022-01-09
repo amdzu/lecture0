@@ -88,6 +88,9 @@ left:50px;
      -webkit-box-align: end;
          -ms-flex-align: end;
              align-items: end;
+               -webkit-box-pack: right;
+                   -ms-flex-pack: right;
+                       justify-content: right;
 
     }
     #cL {
@@ -113,6 +116,9 @@ left:50px;
          -webkit-box-align: end;
              -ms-flex-align: end;
                  align-items: end;
+                                     -webkit-box-pack: left;
+                                         -ms-flex-pack: left;
+                                             justify-content: left;
     }
     #cR {
     
