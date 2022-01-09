@@ -38,7 +38,9 @@ left:50px;
     width: 100%;
 
     background-color: #FBE7C6;
-
+     -webkit-box-align: end;
+         -ms-flex-align: end;
+             align-items: end;
 
    /*display: grid;
 
@@ -195,15 +197,15 @@ left:50px;
     position: relative;
 left:1px;
 top:-1px;
-    width: 60%;
-    height: auto%;
+    width: auto;
+    height: 200px;
 }
 .pusheenR {
     position: relative;
 left:-1px;
 top:-1px;
-    width: 60%;
-    height: auto%;
+    width: auto;
+    height: 200px;
 }
 
 @-webkit-keyframes moveRight1 {
