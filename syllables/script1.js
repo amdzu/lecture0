@@ -1,59 +1,6 @@
 'use strict';
 
-function readFile(input) {
-  let file = input.files[0];
 
-  let reader = new FileReader();
-
-  reader.readAsText(file);
-
-  reader.onload = function() {
-
-
-    var res = reader.result;
-
-    fromFile = res.replace(/(\r\n|\n|\r)/gm,":");
-
-    fromFile = fromFile.replace(/\s+/g," ");
-    console.log(fromFile);
-
-console.log(fromFile);
-
-var imported=fromFile.split(':');
-
-textsC1=imported[0].split(',');
-textsC2=imported[1].split(',');
-textsC3=imported[2].split(',');
-
-
-console.log('textsC1   ',textsC1,' |||  ');
-console.log('textsC2   ',textsC2,' |||  ');
-console.log('textsC3   ',textsC3,' |||  ');
-
-
-start();
-
-
-  };
-
-  reader.onerror = function() {
-    console.log(reader.error);
-  };
-
-}
-
-
-
-function shuffle(arr){ //функция случайного перемешивания массива
-	var j, temp;
-	for(var i = arr.length - 1; i > 0; i--){
-		j = Math.floor(Math.random()*(i + 1));
-		temp = arr[j];
-		arr[j] = arr[i];
-		arr[i] = temp;
-	}
-	return arr;
-}
 
 function start() {
 
@@ -61,37 +8,16 @@ function start() {
         var c2=document.getElementById('c2');
         var cL=document.getElementById('cL');
         var cR=document.getElementById('cR');
-  //      var clickme=document.getElementById('clickme');
-
-
 
 if (textsC1[0] == "ы") {c1.innerHTML="э"; }
 else {
 c1.innerHTML=textsC1[0]; }
 
-
-
 c1.innerHTML=textsC1[0];
 c2.innerHTML=textsC2[0];    
 
-
-
-
-
-
-//c1.addEventListener('click', clickHandlerC1);
-
-//c2.addEventListener('click', clickHandlerC2);
-
-
-
-//clickme.addEventListener('click', clickmeHandler);
-
 var control = document.getElementById('control');
 control.addEventListener('click', clickmeHandler);
-
-
-//document.addEventListener('keydown', clickmeHandler);
 }
 
 
@@ -99,10 +25,90 @@ function clickmeHandler() {
 clickCounter++;
 
 if (clickCounter==4) {
+
+//animalCounter=getRandomInt(20);
+
+animalCounter++;
+	
 clickHandlerC1();
-//clickHandlerC2();
-document.getElementById("pusheenL").src="images/rhino.gif";
-document.getElementById("pusheenR").src="images/rhino2.gif";
+if (animalCounter==1) {
+document.getElementById("pusheenL").src="images/rhino_small2.gif";
+document.getElementById("pusheenR").src="images/rhino2_small2.gif";
+}
+if (animalCounter==2) {
+document.getElementById("pusheenL").src="images/yakL.gif";
+document.getElementById("pusheenR").src="images/yakR.gif";
+}
+if (animalCounter==3) {
+document.getElementById("pusheenL").src="images/lionL.gif";
+document.getElementById("pusheenR").src="images/lionR.gif";
+}
+if (animalCounter==4) {
+document.getElementById("pusheenL").src="images/monkeyL.gif";
+document.getElementById("pusheenR").src="images/monkeyR.gif";
+}
+if (animalCounter==5) {
+document.getElementById("pusheenL").src="images/zebraL.gif";
+document.getElementById("pusheenR").src="images/zebraR.gif";
+}
+if (animalCounter==6) {
+document.getElementById("pusheenL").src="images/ramL.gif";
+document.getElementById("pusheenR").src="images/ramR.gif";
+}
+if (animalCounter==7) {
+document.getElementById("pusheenL").src="images/zebraL.gif";
+document.getElementById("pusheenR").src="images/zebraR.gif";
+}
+if (animalCounter==8) {
+document.getElementById("pusheenL").src="images/elephantL.gif";
+document.getElementById("pusheenR").src="images/elephantR.gif";
+}
+if (animalCounter==9) {
+document.getElementById("pusheenL").src="images/gorillaL.gif";
+document.getElementById("pusheenR").src="images/gorillaR.gif";
+}
+if (animalCounter==10) {
+document.getElementById("pusheenL").src="images/leopardL.gif";
+document.getElementById("pusheenR").src="images/leopardR.gif";
+}
+if (animalCounter==11) {
+document.getElementById("pusheenL").src="images/bullL.gif";
+document.getElementById("pusheenR").src="images/bullR.gif";
+}
+if (animalCounter==12) {
+document.getElementById("pusheenL").src="images/horseL.gif";
+document.getElementById("pusheenR").src="images/horseR.gif";
+}
+if (animalCounter==13) {
+document.getElementById("pusheenL").src="images/lamaL.gif";
+document.getElementById("pusheenR").src="images/lamaR.gif";
+}
+if (animalCounter==14) {
+document.getElementById("pusheenL").src="images/donkeyL.gif";
+document.getElementById("pusheenR").src="images/donkeyR.gif";
+}
+if (animalCounter==15) {
+document.getElementById("pusheenL").src="images/ostrichL.gif";
+document.getElementById("pusheenR").src="images/ostrichR.gif";
+}
+if (animalCounter==16) {
+document.getElementById("pusheenL").src="images/sheepL.gif";
+document.getElementById("pusheenR").src="images/sheepR.gif";
+}
+
+if (animalCounter==17) {
+document.getElementById("pusheenL").src="images/cowL.gif";
+document.getElementById("pusheenR").src="images/cowR.gif";
+}
+if (animalCounter==18) {
+document.getElementById("pusheenL").src="images/buffaloL.gif";
+document.getElementById("pusheenR").src="images/buffaloR.gif";
+}
+if (animalCounter==19) {
+document.getElementById("pusheenL").src="images/tigerL.gif";
+document.getElementById("pusheenR").src="images/tigerR.gif";
+}
+
 
 c1.classList.remove("mR3");
 c2.classList.remove("mL3");
@@ -140,8 +146,6 @@ cL.classList.add("mR1");
 cR.classList.add("mL1");
 }
 
-
-
 if (clickCounter==2) {
 c1.classList.add("mR2");
 c2.classList.add("mL2");
@@ -149,9 +153,6 @@ cL.classList.add("mR2");
 cR.classList.add("mL2");
 }
   
-
-
-
 if (clickCounter==3) {
 c1.classList.add("mR3");
 c2.classList.add("mL3");
@@ -188,11 +189,9 @@ if (textsC1[c1Num] == "ы") {c1.innerHTML="э"; }
 else {
 c1.innerHTML=textsC1[c1Num]; }
 
-
-
 c2.innerHTML=textsC2[c2Num];
 
-           } 
+} 
 
 function getData() {
  //document.getElementById('delay').disabled=true;
@@ -227,7 +226,7 @@ textsC2 =['е','ю','я','ё','и','а','о','у','э','ы'];
 
 
 
-var txt1, txt2, txt3, j=0, l=0, m=0,  clickCounter=0, letterSet=1;
+var txt1, txt2, txt3, j=0, l=0, m=0,  clickCounter=0, letterSet=1, animalCounter=0;
 
 var fromFile;
 
