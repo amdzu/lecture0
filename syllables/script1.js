@@ -28,7 +28,7 @@ if (clickCounter==4) {
 
 //animalCounter=getRandomInt(20);
 
-animalCounter++;
+//animalCounter++;
 	
 clickHandlerC1();
 if (animalCounter==1) {
@@ -107,6 +107,7 @@ document.getElementById("pusheenR").src="images/buffaloR.gif";
 if (animalCounter==19) {
 document.getElementById("pusheenL").src="images/tigerL.gif";
 document.getElementById("pusheenR").src="images/tigerR.gif";
+animalCounter=0;
 }
 
 
