@@ -227,7 +227,7 @@ textsC2 =['е','ю','я','ё','и','а','о','у','э','ы'];
 
 
 
-var txt1, txt2, txt3, j=0, l=0, m=0,  clickCounter=0, letterSet=1, animalCounter=0;
+var txt1, txt2, txt3, j=0, l=0, m=0,  clickCounter=0, letterSet=1, animalCounter=0, image1, image2;
 
 var fromFile;
 
