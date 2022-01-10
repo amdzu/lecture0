@@ -10,6 +10,84 @@
 </head>
 <body>
 
+   <script>
+    function preloadImages(sources, callback) {
+      let counter = 0;
+
+      function onLoad() {
+        counter++;
+        if (counter == sources.length) callback();
+      }
+
+      for(let source of sources) {
+        let img = document.createElement('img');
+        img.onload = img.onerror = onLoad;
+        img.src = source;
+      }
+    }
+
+    // ---------- тест ----------
+
+    let sources = [
+      "images/rhino_small2.gif",
+      "images/rhino2_small2.gif",
+      "images/yakL.gif",
+      "images/yakR.gif",
+      "images/lionL.gif",
+      "images/lionR.gif",
+      "images/monkeyL.gif",
+      "images/monkeyR.gif",
+      "images/zebraL.gif",
+      "images/zebraR.gif",
+      "images/ramL.gif",
+      "images/ramR.gif",
+      "images/elephantL.gif",
+      "images/elephantR.gif",
+      "images/gorillaL.gif",
+      "images/gorillaR.gif",
+      "images/leopardL.gif",
+      "images/leopardR.gif",
+      "images/bullL.gif",
+      "images/bullR.gif",
+      "images/horseL.gif",
+      "images/horseR.gif",
+      "images/lamaL.gif",
+      "images/lamaR.gif",
+      "images/donkeyL.gif",
+      "images/donkeyR.gif",
+      "images/ostrichL.gif",
+      "images/ostrichR.gif",
+      "images/sheepL.gif",
+      "images/sheepR.gif",
+      "images/cowL.gif",
+      "images/cowR.gif",
+      "images/buffaloL.gif",
+      "images/buffaloR.gif",
+      "images/tigerL.gif",
+      "images/tigerR.gif"
+    ];
+
+    // добавляем случайные символы к ссылкам, чтобы избежать кеширования
+    for (let i = 0; i < sources.length; i++) {
+      sources[i] += '?' + Math.random();
+    }
+
+    // для каждого изображения
+    // создадим другое изображение с аналогичным src и проверим, есть ли у нас его ширина
+    function testLoaded() {
+      let widthSum = 0;
+      for (let i = 0; i < sources.length; i++) {
+        let img = document.createElement('img');
+        img.src = sources[i];
+        widthSum += img.width;
+      }
+      alert(widthSum);
+    }
+
+    // должно выводиться 18000
+    preloadImages(sources, testLoaded);
+  </script>
+
 <h1></h1>
 
 
