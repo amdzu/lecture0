@@ -1,0 +1,344 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+
+body{
+   
+
+
+
+    margin: 0;
+    text-align: center;
+     background-color: #FBE7C6;
+     font-family: "Verdana", Helvetica, Arial, sans-serif;
+
+
+
+
+    }
+
+    .input {
+position: absolute;
+bottom:-500px;
+left:50px;
+
+    }
+
+    .gameField {
+    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+     -webkit-box-pack: center;
+         -ms-flex-pack: center;
+             justify-content: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+    margin: -10px auto 1px auto;
+    width: 50%;
+
+    background-color: #FBE7C6;
+
+
+   /*display: grid;
+
+
+    grid-template-columns:720px 0px;*/
+
+   /* perspective: 600px;*/
+    
+    }
+
+        .cardWrapper {
+        position: relative;
+        padding: auto;
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+
+    
+      font-size: 80px;
+    
+    z-index: 999;
+        }
+
+    .cardWrapper:hover{
+    cursor: pointer;
+    }
+
+    #c1 {
+
+    /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
+		position: relative;
+     background-color: #FFAEBC;
+     text-transform: uppercase;
+
+
+    }
+
+
+
+    #c2 {
+    		position: relative;
+        background-color: #A0E7E5;
+
+         text-transform: uppercase;
+    }
+
+
+
+    #c3 {
+	position: relative;
+         background-color: #B4F8C8;
+         text-transform: uppercase;
+    }
+
+
+
+
+    .mR1 {
+       
+    
+    -webkit-animation: moveRight1 0.5s;
+    
+            animation: moveRight1 0.5s; 
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+     }
+
+
+    .mRBack {
+       
+    
+    -webkit-animation: moveRightBack 0.5s;
+    
+            animation: moveRightBack 0.5s; 
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+     }
+
+    .mL1 {
+        
+    
+    -webkit-animation: moveLeft1 0.5s;
+    
+            animation: moveLeft1 0.5s; 
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+
+    }
+    .mLBack {
+        
+    
+    -webkit-animation: moveLeftBack 0.5s;
+    
+            animation: moveLeftBack 0.5s; 
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+
+    }
+
+@-webkit-keyframes moveRight1 {
+    from { left: 0px } 
+    to { left : 40px; } 
+}
+@keyframes moveRight1 {
+    from { left: 0px } 
+    to { left : 40px; } 
+}
+
+@-webkit-keyframes moveRightBack {
+    from { left: 40px } 
+    to { left : 0px; } 
+}
+@keyframes moveRightBack {
+    from { left: 40px } 
+    to { left : 0px; } 
+}
+
+
+
+
+
+@-webkit-keyframes moveLeft1 {
+    from { left: 0px } 
+    to { left : -40px; } 
+}
+@keyframes moveLeft1 {
+    from { left: 0px } 
+    to { left : -40px; } 
+}
+@-webkit-keyframes moveLeftBack {
+    from { left: -40px } 
+    to { left : 0px; } 
+}
+@keyframes moveLeftBack {
+    from { left: -40px } 
+    to { left : 0px; } 
+}
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes fadeoutText {
+
+    from { color: #363131; } /** from color **/
+    to { color: #FFAEBC; } /** to color **/
+}
+
+
+
+    h1{
+    margin-top: 40px;
+    font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
+    color: #434344;
+    }
+    
+    
+
+
+
+
+
+
+.styled {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 35px;
+overflow: hidden;
+/*text-indent: -9999px;*/
+
+    left: 45%;
+    top: 80%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+  color:  #FBE7C6;
+ /*   text-shadow: 1px 1px 1px #000;*/
+
+    border-radius: 10px;
+    background-color:   rgb(251, 231, 198);
+
+
+    -webkit-box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+            box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled:hover {
+    background-color:   rgb(251, 231, 198);
+}
+
+.styled:active {
+    -webkit-box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+            box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled-1 {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 35px;
+overflow: hidden;
+/*text-indent: -9999px;*/
+
+    left: 55%;
+    top: 80%;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+  color:  #FBE7C6;
+ /*   text-shadow: 1px 1px 1px #000;*/
+
+    border-radius: 10px;
+    background-color:   rgb(251, 231, 198);
+
+
+    -webkit-box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+            box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled:hover {
+    background-color:   rgb(251, 231, 198);
+}
+
+.styled:active {
+    -webkit-box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+            box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+
+
+
+.expand {
+ 	background-image: url("maximize1.png");
+ 	background-repeat:  no-repeat;
+ 	background-position: center;
+}
+.shrink {
+ 	background-image: url("minimize2.png");
+ 	background-repeat:  no-repeat;
+ 	background-position: center;
+}
+
+
+
+#control:disabled {
+opacity: 20%;
+
+
+	background-color: #FBE7C6;
+}
+#control-1:disabled {
+opacity: 20%;
+
+	background-color: #FBE7C6;
+}
+
