@@ -17,7 +17,7 @@
 
 <div class="wrap wrap--logobar" id="containerElem">
   <ul class="list" id="list">
-    <li class="list__item" id="list__item">- Матушка, я пойду!- и, взяв у нее ведро, пойдет и принесет воды. Соберется мать подметать двор, Горошек подбежит и скажет:</li>
+    <li class="list__item" id="list__item">Осталось только загрузить текст и выбрать скорость. И можно играть!</li>
     </li>
 
     
@@ -31,13 +31,12 @@
 
   <label for="delay">Скорость</label>
   <select onchange="getData()" id="delay" name="delay" >
-    <option value="400" selected>Очень быстро</option>
-    <option value="600">быстро</option>
-    <option value="1000">не так уж быстро</option>
-    <option value="1200">чуть менее быстро</option>
-    <option value="1500">спокойно и уверенно</option>
-    <option value="1700">плавно</option>
-    <option value="2000">торжественно</option>
+    <option value="700">0,7 сек</option>
+    <option value="1000" selected>1 сек</option>
+    <option value="1200">1,2 сек</option>
+    <option value="1500">1,5 сек</option>
+    <option value="1700">1,7 сек</option>
+    <option value="2000">2 сек</option>
   </select>
 
 
@@ -56,7 +55,7 @@
 
 </section>
 
-<button id="btn" class="btn"><div class='warn'>Пауза</div></button>
+<button id="btn" class="btn"><div class='warn'>Старт</div></button>
 
 <script src="index.js?<?echo time();?>"></script>
 

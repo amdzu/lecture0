@@ -1,16 +1,3 @@
-//document.addEventListener('DOMContentLoaded', _ => {
-  /*
-    Quick whip-up of an idea posed by a client: a bar filled with logo's that move to the left slowly and infinitely.
-    I checked if the <marquee> tag was still working (and it is), but it's considered invalid html now so I needed something else.
-  */
-
-
- 
-
-
-
-//});
-
 function readFile(input) {
   let file = input.files[0];
 
@@ -34,8 +21,9 @@ const listItem = document.getElementById('list__item');
 
 listItem.innerHTML=fromFile;
 justInput=true;
+n=0;
 replaceBySpans();
-vowelColor(); 
+//vowelColor(); 
 
 
   };
@@ -54,21 +42,7 @@ vowelColor();
    delay=parseInt(val);
   }
 
-var endButton = document.querySelector('.btn');
-endButton.addEventListener('click', vowels);
 
-function pauseVowels () {
-if (toggle==1) {
-toggle=0;
-timerID=window.setInterval(animationLoop, delay);
-console.log('toggle= ',toggle,' delay= ',delay);
-		}
-else if (toggle==0) {
-  clearInterval(timerID); 
-  toggle=1;
-  console.log('toggle= ',toggle,' delay= ',delay);
-		}
-}
 
 
 function replaceBySpans() {
@@ -102,54 +76,98 @@ justInput=false;
 
 function vowels(i) {
 
-var k=vowelsNums[i];
+if (i>vowelsNums.length-1) {
 
-if (i>0) {
-var kPrev=vowelsNums[i-1];
-var prevsId=spanId[kPrev];
+	var kPrev=vowelsNums[i-1];
+	var prevsId=spanId[kPrev];
+	var prevVowel=document.getElementById(prevsId);
+//	console.log('i=',i,' k=',k,' sId=',sId,' Гласная=',prevVowel.innerHTML);
+	console.log('kPrev=',kPrev,' prevsId=',prevsId,' Гласная=',prevVowel.innerHTML);
+	prevVowel.classList.remove('red');
+}
+if (i<=vowelsNums.length-1) {
+	var k=vowelsNums[i];
+
+	if (i>0) {
+	var kPrev=vowelsNums[i-1];
+	var prevsId=spanId[kPrev];
+	}
+
+	var sId=spanId[k];
+	var currentVowel=document.getElementById(sId);
+
+	if (i>0) {
+	var prevVowel=document.getElementById(prevsId);
+	prevVowel.classList.remove('red');
+	}
+	currentVowel.classList.add('red');
+	console.log('i=',i,' k=',k,' sId=',sId,' Гласная=',currentVowel.innerHTML);
+
 }
 
-var sId=spanId[k];
-var currentVowel=document.getElementById(sId);
-
-if (i>0) {
-var prevVowel=document.getElementById(prevsId);
-prevVowel.classList.remove('red');
-}
-
-
-currentVowel.classList.add('red');
-console.log('k=',k,' sId=',sId,' Гласная=',currentVowel);
 }
 
 
 function vowelColor() {
-var n=0
-var intervalID=setInterval(
+
+	file=document.getElementById('file').disabled=true;
+	speed=document.getElementById('delay').disabled=true;
+
+
+
+
+	toggle=0;
+console.log('vowelColor!  ',' n=',n, ' toggle=', toggle);
+	endButton.removeEventListener('click', vowelColor);
+	endButton.addEventListener('click', pauseVowels);
+	buttonText.innerHTML='Пауза';
+
+	intervalID=setInterval(
 	function(){
-vowels(n);
-n++;
-if(n>=vowelsNums.length) {
-console.log(n, 'delay=',delay);
-clearInterval(intervalID);
-}
+
+	vowels(n);
+	n++;
+	//console.log('n=',n,' vowelsNums.length=', vowelsNums.length)
+		if(n > vowelsNums.length) {
+			toggle=0;
+			endButton.addEventListener('click', vowelColor);
+			buttonText.innerHTML='Старт';
+			console.log(n, 'delay=',delay, ' toggle=',toggle);
+			clearInterval(intervalID);
+			n=0;
+			file=document.getElementById('file').disabled=false;
+			speed=document.getElementById('delay').disabled=false;
+
+			return n;
+		}
 	},
 	 delay);
 }
 
+function pauseVowels () {
+if (toggle==1) {
+toggle=0;
+//timerID=window.setInterval(animationLoop, delay);
+//console.log('toggle= ',toggle,' delay= ',delay);
+		}
+else if (toggle==0) {
+  clearInterval(intervalID); 
+  toggle=1;
+  console.log('toggle= ',toggle,' delay= ',delay);	
+
+	endButton.addEventListener('click', vowelColor);
+	buttonText.innerHTML='Старт';
+				}
+}
 
 
-
-
-
-
-
-
-var delay=1000, timerID, toggle=0, listElem,items,containerElem,leftSideOfContainer,currentLeftValue;
+var delay=1000, timerID, toggle=0, listElem,items,containerElem,leftSideOfContainer,currentLeftValue, intervalID, n=0, file, speed;
 var glasnye = ["а","у","е","ы","о","э","я","и","ю","ё","А","У","Е","Ы","О","Э","Я","И","Ю","Ё"];
 var spans=[], vowelsNums=[], newText='',spanId=[], letters;
 var oldText, justInput=true;
 replaceBySpans();
 console.log('spanidlength=',spanId.length,' letters.length=',letters.length,' spans.length=',spans.length);
-vowelColor(); 
 
+var endButton = document.querySelector('.btn');
+endButton.addEventListener('click', vowelColor);
+var buttonText=document.querySelector('.warn');
