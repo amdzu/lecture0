@@ -153,7 +153,9 @@ toggle=0;
 else if (toggle==0) {
   clearInterval(intervalID); 
   toggle=1;
-  console.log('toggle= ',toggle,' delay= ',delay);	
+  console.log('toggle= ',toggle,' delay= ',delay);
+  	file=document.getElementById('file').disabled=false;
+	speed=document.getElementById('delay').disabled=false;	
 
 	endButton.addEventListener('click', vowelColor);
 	buttonText.innerHTML='Старт';
