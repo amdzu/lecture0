@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <title>Луч маяка</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+
+<div class="wrap wrap--text">
+  <p>Луч маяка</p>
+
+
+</div>
+
+
+    <div class="list__item" id="list__item">Осталось только загрузить текст и выбрать скорость. И можно играть!</li>
+    </div>
+
+
+
+<section class="inputs">
+
+<form id="speed">
+
+  <label for="delay">Скорость</label>
+  <select onchange="getData()" id="delay" name="delay" >
+    <option value="700">0,7 сек</option>
+    <option value="1000" selected>1 сек</option>
+    <option value="1200">1,2 сек</option>
+    <option value="1500">1,5 сек</option>
+    <option value="1700">1,7 сек</option>
+    <option value="2000">2 сек</option>
+  </select>
+
+
+
+
+</form>
+
+
+
+
+
+
+<input id="file" type="file" onchange="readFile(this)">
+
+
+
+</section>
+
+<button id="btn" class="btn"><div class='warn'>Старт</div></button>
+
+<script src="index.js?<?echo time();?>"></script>
+
+
+</body>
+</html>
