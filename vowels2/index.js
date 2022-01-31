@@ -10,10 +10,13 @@ function readFile(input) {
 
     var res = reader.result;
 
-    fromFile = res.replace(/(\r\n|\n|\r)/gm," ");
+   //fromFile = res.replace(/(\r\n|\n|\r)/gm," ");
+
+  fromFile = res.replace(/(?:\r\n|\r|\n)/g, '<br />');
+ 
 
     fromFile = fromFile.replace(/\s+/g," ");
-    console.log(fromFile);
+    //console.log(fromFile);
 
 console.log(fromFile);
 
@@ -22,19 +25,16 @@ const listItem = document.getElementById('list__item');
 listItem.innerHTML=fromFile;
 justInput=true;
 n=0;
+
 replaceBySpans();
-//vowelColor(); 
-
-
   };
-
   reader.onerror = function() {
     console.log(reader.error);
   };
-
 }
 
-  function getData() {
+ 
+function getData() {
      // получаем индекс выбранного элемента
     var selind = document.getElementById("delay").options.selectedIndex;
    var txt= document.getElementById("delay").options[selind].text;
@@ -58,8 +58,21 @@ letters = text.innerHTML;
 oldText=letters;
 for(var i = 0; i<letters.length; i++) {
 	console.log('i=',i,' letters[i]=',letters[i],' гласная? ',glasnye.includes(letters[i]));
+
+
 	spanId[i]="span"+i;
-	spans.push('<span id='+spanId[i]+'>'+letters[i]+'</span>');
+
+
+	if (letters[i]=='<') {spans.push('<br id='+spanId[i]+'>'); //ПРОВЕРКА НА ПЕРЕНОС СТРОКИ
+	}
+	if (letters[i]=='b' || letters[i]=='r' || letters[i]=='>') {spans.push('<span id='+spanId[i]+'>'+'</span>'); //ПРОВЕРКА НА ПЕРЕНОС СТРОКИ
+	}
+	if (letters[i]!='b' && letters[i]!='r' && letters[i]!='>' && letters[i]!='<'){
+	spans.push('<span id='+spanId[i]+'>'+letters[i]+'</span>')};
+
+
+
+
 		if (glasnye.includes(letters[i])) {
 			vowelsNums.push(i);
 		};
@@ -167,7 +180,9 @@ var delay=1000, timerID, toggle=0, listElem,items,containerElem,leftSideOfContai
 var glasnye = ["а","у","е","ы","о","э","я","и","ю","ё","А","У","Е","Ы","О","Э","Я","И","Ю","Ё"];
 var spans=[], vowelsNums=[], newText='',spanId=[], letters;
 var oldText, justInput=true;
+
 replaceBySpans();
+
 console.log('spanidlength=',spanId.length,' letters.length=',letters.length,' spans.length=',spans.length);
 
 var endButton = document.querySelector('.btn');
