@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <title>Картинки</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div id="h1">
+<h1>Картинки</h1>
+</div>
+
+
+
+
+<div class="grid-container">
+  <div id="i1" class="grid-item invisible"></div>
+  <div id="i2" class="grid-item invisible"></div>
+  <div id="i3" class="grid-item invisible"></div>  
+  <div id="i4" class="grid-item invisible"></div>
+  <div id="i5" class="grid-item invisible"></div>
+  <div id="i6" class="grid-item invisible"></div>  
+  <div id="i7" class="grid-item invisible"></div>
+  <div id="i8" class="grid-item invisible"></div>
+  <div id="i9" class="grid-item invisible"></div>  
+  <div id="i10" class="grid-item invisible"></div>
+  <div id="i11" class="grid-item invisible"></div>
+  <div id="i12" class="grid-item invisible"></div>  
+  <div id="i13" class="grid-item invisible"></div>
+  <div id="i14" class="grid-item invisible"></div>
+  <div id="i15" class="grid-item invisible"></div>  
+  <div id="i16" class="grid-item invisible"></div>
+  <div id="i17" class="grid-item invisible"></div>
+  <div id="i18" class="grid-item invisible"></div>  
+  <div id="i19" class="grid-item invisible"></div>
+  <div id="i20" class="grid-item invisible"></div>  
+  <div id="i21" class="grid-item invisible"></div>
+  <div id="i22" class="grid-item invisible"></div>
+  <div id="i23" class="grid-item invisible"></div>  
+  <div id="i24" class="grid-item invisible"></div>
+
+
+
+
+
+</div>
+
+
+
+
+<form id="speed">
+
+  <label for="delay">Скорость</label>
+  <select onchange="getData()" id="delay" name="delay" >
+       <option value="200">0,2 сек</option>
+    <option value="700">0,7 сек</option>
+    <option value="1000" selected>1 сек</option>
+    <option value="1200">1,2 сек</option>
+    <option value="1500">1,5 сек</option>
+    <option value="1700">1,7 сек</option>
+    <option value="2000">2 сек</option>
+  </select>
+
+<input id="file" type="file" onchange="readFile(this)">
+
+
+</form>
+
+
+<button id="btn" class="btn"><div class='warn'>Старт</div></button>
+<button id="shuffle"><div class='warn'>Перемешать слова</div></button>
+
+
+</body>
+
+<script src="script.js?<?echo time();?>"></script>
+
+</html>
