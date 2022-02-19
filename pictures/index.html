@@ -14,6 +14,7 @@
 
 
 
+
 <div class="grid-container">
   <div id="i1" class="grid-item invisible"></div>
   <div id="i2" class="grid-item invisible"></div>
@@ -39,21 +40,19 @@
   <div id="i22" class="grid-item invisible"></div>
   <div id="i23" class="grid-item invisible"></div>  
   <div id="i24" class="grid-item invisible"></div>
-
-
-
-
-
 </div>
 
 
+<section class="menu">
 
-
-<form id="speed">
-
+<div id='menu1' class="menu-item"><input id="file" type="file" onchange="readFile(this)">
+</div>
+<div id='menu2' class="menu-item">
+  <form id="speed">
   <label for="delay">Скорость</label>
   <select onchange="getData()" id="delay" name="delay" >
-       <option value="200">0,2 сек</option>
+    <option value="200">0,2 сек</option>
+    <option value="500">0,5 сек</option>
     <option value="700">0,7 сек</option>
     <option value="1000" selected>1 сек</option>
     <option value="1200">1,2 сек</option>
@@ -61,15 +60,18 @@
     <option value="1700">1,7 сек</option>
     <option value="2000">2 сек</option>
   </select>
+  </form>
+</div>
 
-<input id="file" type="file" onchange="readFile(this)">
+<div id='menu3' class="menu-item"><button id="btn" class="btn"><div class='warn'>Старт</div></button></div>
+<div id='menu4' class="menu-item"><button id="shuffle" class="btn1"><div class='warn'>Перемешать слова</div></button></div>
+<div id='menu5' class="menu-item"><button id="picWordSwitch" class="btn1"><div class='warn'>Показать слова</div></button></div>
+
+</section>
 
 
-</form>
 
 
-<button id="btn" class="btn"><div class='warn'>Старт</div></button>
-<button id="shuffle"><div class='warn'>Перемешать слова</div></button>
 
 
 </body>

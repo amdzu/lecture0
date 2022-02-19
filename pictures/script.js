@@ -3,16 +3,30 @@ const pictures = document.querySelectorAll(".grid-item");
 
 var endButton = document.querySelector('.btn');
 var shuffleButton=document.getElementById('shuffle');
+var picWordSwitchButton=document.getElementById('picWordSwitch');
+picWordSwitchButton.addEventListener('click',picsOrWords);
 shuffleButton.addEventListener('click',mix);
 endButton.addEventListener('click', showPictures);
 var buttonText=document.querySelector('.warn');
+var selind1 = document.getElementById("delay");
+var file = document.getElementById('file');
+var menu = document.querySelector('.menu');
+
+
+
 var folder = 'RAN1/';
 var words1=[];
 var intervalID;
 var words1=['класс','стол','рубль','кровь','текст','врач','круг','мозг','дождь','храм','крик','смех','спорт','хлеб','грязь','шерсть','мышь','корм','дверь','снег','друг','свет','страх','знак'];
 
-var picWordSwitch=1;	
+var picWordSwitch=1; // 1-pics, 2-words	
 
+
+function picsOrWords () {
+if (picWordSwitch==1) {picWordSwitch=2; picWordSwitchButton.innerHTML='Показать картинки';}
+else if (picWordSwitch==2) {picWordSwitch=1; picWordSwitchButton.innerHTML='Показать слова';}
+
+}
 
 function mix() {
 	shuffle(words1);
@@ -75,16 +89,24 @@ clearInterval(intervalID);
 endButton.innerHTML='Старт';
 endButton.addEventListener('click',showPictures);
 endButton.removeEventListener('click',pause);
+picWordSwitchButton.disabled=false;
+shuffleButton.disabled=false;
+selind1.disabled=false;
+file.disabled=false;
+menu.classList.remove('menu-hidden');
 
 }
 
 
 function showPictures() {
-
+menu.classList.add('menu-hidden');
 endButton.innerHTML='Пауза';
 endButton.removeEventListener('click',showPictures);
 endButton.addEventListener('click',pause);
-
+picWordSwitchButton.disabled=true;
+shuffleButton.disabled=true;
+selind1.disabled=true;
+file.disabled=true;
 
 	intervalID=setInterval(
 	function(){	//Начало интервальной функции
@@ -97,6 +119,11 @@ endButton.addEventListener('click',pause);
 			endButton.addEventListener('click',showPictures);
 			endButton.removeEventListener('click',pause);
 			endButton.innerHTML='Старт';
+			picWordSwitchButton.disabled=false;
+			shuffleButton.disabled=false;
+			selind1.disabled=false;
+			file.disabled=false;
+			menu.classList.remove('menu-hidden');
 			return n;
 			}
 	if(picWordSwitch==1) {
@@ -136,7 +163,7 @@ endButton.addEventListener('click',pause);
 
 function getData() {
      // получаем индекс выбранного элемента
-    var selind = document.getElementById("delay").options.selectedIndex;
+   var selind = document.getElementById("delay").options.selectedIndex;
    var txt= document.getElementById("delay").options[selind].text;
    var val= document.getElementById("delay").options[selind].value;
    delay=parseInt(val);
