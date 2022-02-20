@@ -11,15 +11,40 @@ var buttonText=document.querySelector('.warn');
 var selind1 = document.getElementById("delay");
 var file = document.getElementById('file');
 var menu = document.querySelector('.menu');
+var h1 = document.querySelector('h1');
+var radioValue;
 
 
+var str = "/";
 
 var folder = 'RAN1/';
-var words1=[];
+var words=[];
 var intervalID;
 var words1=['класс','стол','рубль','кровь','текст','врач','круг','мозг','дождь','храм','крик','смех','спорт','хлеб','грязь','шерсть','мышь','корм','дверь','снег','друг','свет','страх','знак'];
-
+var words2=['вопрос','земля','книга','школьник','стена','сердце','солнце','корабль','спина','карта','старик','праздник','сцена','цветок','остров','кухня','птица','игра','стекло','трава','завтра','плечо','кресло','трубка'];
+var words3=[];
 var picWordSwitch=1; // 1-pics, 2-words	
+
+document.getElementById('RAN1').addEventListener('change',fillWords);
+document.getElementById('RAN2').addEventListener('change',fillWords);
+//document.getElementById('RAN3').addEventListener('change',fillWords);
+
+function fillWords() {
+words.splice(0);
+radioValue=document.querySelector('input[name="ran"]:checked').value;
+
+if (radioValue==1) {
+	for (var i=0; i<words1.length;i++) {words.push(words1[i]);};
+}
+if (radioValue==2) {
+		for (var j=0; j<words2.length;j++) {words.push(words2[j]);};
+}
+if (radioValue==3) {
+		for (var k=0; k<words3.length;k++) {words.push(words3[k]);};
+}
+}
+
+
 
 
 function picsOrWords () {
@@ -55,7 +80,7 @@ console.log(fromFile);
 var imported=fromFile.split(':');
 
 //textsC1=imported[0].split(',');
-words1=imported[0].split(',');
+words=imported[0].split(',');
 //textsC3=imported[2].split(',');
 
 
@@ -94,11 +119,15 @@ shuffleButton.disabled=false;
 selind1.disabled=false;
 file.disabled=false;
 menu.classList.remove('menu-hidden');
+h1.classList.remove('fadeoutSlow');
 
 }
 
 
 function showPictures() {
+radioValue=document.querySelector('input[name="ran"]:checked').value;
+
+folder='RAN'+radioValue+str;
 menu.classList.add('menu-hidden');
 endButton.innerHTML='Пауза';
 endButton.removeEventListener('click',showPictures);
@@ -107,6 +136,8 @@ picWordSwitchButton.disabled=true;
 shuffleButton.disabled=true;
 selind1.disabled=true;
 file.disabled=true;
+h1.classList.add('fadeoutSlow');
+
 
 	intervalID=setInterval(
 	function(){	//Начало интервальной функции
@@ -124,6 +155,7 @@ file.disabled=true;
 			selind1.disabled=false;
 			file.disabled=false;
 			menu.classList.remove('menu-hidden');
+			h1.classList.remove('fadeoutSlow');
 			return n;
 			}
 	if(picWordSwitch==1) {
@@ -131,7 +163,14 @@ file.disabled=true;
 	pictures[n].style.backgroundImage = "url('"+folder+(n+1)+".png')";
 	}
 	if(picWordSwitch==2) {
-		pictures[n].innerHTML=words1[n];
+
+
+
+
+
+
+
+		pictures[n].innerHTML=words[n];
 		pictures[n].style.backgroundImage = 'none';
 	}
 	 pictures[n].classList.remove('invisible');

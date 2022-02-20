@@ -13,6 +13,7 @@ body {
 h1 {
 
   margin: 0;
+  opacity: 0.5;
 }
 .grid-container {
   display: grid;
@@ -43,6 +44,7 @@ h1 {
   text-align: center;
   height: 9.5vw;
   width: 9.5vw;
+
 }
 
 
@@ -52,24 +54,25 @@ h1 {
   padding: 1px;
   justify-content:center;
   position: fixed;
-  left: 1%;
+  /*left: 1%;*/
   top: 1%;
-}
 
-.menu-hidden {
-
-    -webkit-animation: moveLeft .5s;
-            animation: moveLeft .5s; /***Transition delay 3s fadeout is class***/
+      -webkit-animation: moveRight .5s;
+            animation: moveRight .5s; /***Transition delay 3s fadeout is class***/
     -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
 
 }
 
-
+.menu-hidden {
+    -webkit-animation: moveLeft .5s;
+            animation: moveLeft .5s; /***Transition delay 3s fadeout is class***/
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
 
 .menu-item {
-
-  margin-top: 5px;
+  margin-top: 30px;
 }
 
 
@@ -77,6 +80,13 @@ h1 {
 .fadeout {
     -webkit-animation: fadeout .05s;
             animation: fadeout .05s; /***Transition delay 3s fadeout is class***/
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+
+.fadeoutSlow {
+    -webkit-animation: fadeout .5s;
+            animation: fadeout .5s; /***Transition delay 3s fadeout is class***/
     -webkit-animation-fill-mode: forwards;
             animation-fill-mode: forwards;
 }
@@ -120,14 +130,26 @@ h1 {
 @-webkit-keyframes moveLeft {
     
     from { left: 1%; } /** from color **/
-    to { left: -25%; } /** to color **/
+    to { left: -55%; } /** to color **/
 }
 
 @keyframes moveLeft {
     
     from { left: 1%; } /** from color **/
-    to { left: -25%; } /** to color **/
+    to { left: -55%; } /** to color **/
 }
+@-webkit-keyframes moveRight {
+    
+    from { left: -55%; } /** from color **/
+    to { left: 1%; } /** to color **/
+}
+
+@keyframes moveRight {
+    
+    from { left: -55%; } /** from color **/
+    to { left: 1%; } /** to color **/
+}
+
 
 
 
@@ -143,18 +165,10 @@ h1 {
         -ms-transform: translate(-50%,-50%);
             transform: translate(-50%,-50%);
 
-
-
-
-        /*margin-top: 20px;*/
-      /*  background-image: -o-linear-gradient(left, #19668D, #22AB93);
-        background-image: -webkit-gradient(linear, left top, right top, from(#19668D), to(#22AB93));
-        background-image: linear-gradient(to right, #19668D, #22AB93);
-        /*height: 40px;*/
-        font-family: Arial, sans-serif;font-size: 1vw;font-style: normal;font-variant: normal;font-weight: 700;
-        /*line-height: 47px;*/
+        font-family: Arial, sans-serif;font-size: 1.5vw;font-style: normal;font-variant: normal;font-weight: 700;
+        line-height: 25px;
         color: #fff;
-      /*  padding: 10px 0px auto 0px;*/
+
         border-radius: 10px;
         -webkit-box-shadow: 1px 1px 10px;
                 box-shadow: 1px 1px 10px;
@@ -163,30 +177,11 @@ h1 {
         background-color: #b8b7b4;
     }
     
-
     .btn1 {
 
-     /* position: fixed;
-  
-
-      left: 50%;
-      bottom: 0.05vw;
-    -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%); */
-
-
-
-
-        /*margin-top: 20px;*/
-      /*  background-image: -o-linear-gradient(left, #19668D, #22AB93);
-        background-image: -webkit-gradient(linear, left top, right top, from(#19668D), to(#22AB93));
-        background-image: linear-gradient(to right, #19668D, #22AB93);
-        /*height: 40px;*/
-        font-family: Arial, sans-serif;font-size: 1vw;font-style: normal;font-variant: normal;font-weight: 700;
-        /*line-height: 47px;*/
+        font-family: Arial, sans-serif;font-size: 1.5vw;font-style: normal;font-variant: normal;font-weight: 700;
+        line-height: 25px;
         color: #fff;
-      /*  padding: 10px 0px auto 0px;*/
         border-radius: 10px;
         -webkit-box-shadow: 1px 1px 10px;
                 box-shadow: 1px 1px 10px;
@@ -195,14 +190,13 @@ h1 {
         background-color: #b8b7b4;
     }
 
-
     button:active {
     -webkit-box-shadow: inset 2px 1px 8px;
             box-shadow: inset 2px 1px 8px;
     border: 0;
        }
     button:disabled {
-opacity: 0.25;
+    opacity: 0.25;
 
     }
 
@@ -214,8 +208,8 @@ opacity: 0.25;
         cursor: pointer;
     }
     
-    .warn {font-family: Arial, sans-serif;font-size: 1vw;font-style: normal;font-variant: normal;font-weight: 700;
-    /*line-height: 40px;*/
+    .warn {font-family: Arial, sans-serif;font-size: 1.5vw;font-style: normal;font-variant: normal;font-weight: 700;
+    line-height: 25px;
     color: #fff;
     margin-left: 5px;
     margin-right: 5px;
