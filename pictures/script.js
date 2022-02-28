@@ -12,7 +12,7 @@ var selind1 = document.getElementById("delay");
 var file = document.getElementById('file');
 var menu = document.querySelector('.menu');
 var h1 = document.querySelector('h1');
-var radioValue;
+var radioValue=1;
 
 
 var str = "/";
@@ -28,6 +28,8 @@ var picWordSwitch=1; // 1-pics, 2-words
 document.getElementById('RAN1').addEventListener('change',fillWords);
 document.getElementById('RAN2').addEventListener('change',fillWords);
 //document.getElementById('RAN3').addEventListener('change',fillWords);
+
+fillWords();
 
 function fillWords() {
 words.splice(0);
@@ -54,7 +56,7 @@ else if (picWordSwitch==2) {picWordSwitch=1; picWordSwitchButton.innerHTML='По
 }
 
 function mix() {
-	shuffle(words1);
+	shuffle(words);
 }
 
 
