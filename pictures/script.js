@@ -22,11 +22,12 @@ var words=[];
 var intervalID;
 var words1=['класс','стол','рубль','кровь','текст','врач','круг','мозг','дождь','храм','крик','смех','спорт','хлеб','грязь','шерсть','мышь','корм','дверь','снег','друг','свет','страх','знак'];
 var words2=['вопрос','земля','книга','школьник','стена','сердце','солнце','корабль','спина','карта','старик','праздник','сцена','цветок','остров','кухня','птица','игра','стекло','трава','завтрак','плечо','кресло','трубка'];
-var words3=[];
-var picWordSwitch=1; // 1-pics, 2-words	
+var words3=['женщина','мужчина','профессор','подруга','чтение','лестница','картина','продавец','игрушки','лекарства','охранник','доставка','ноутбук','вертолёт','принцесса','строитель','космонавт','колбаса','корзина','лампочка','конфета','стадион','бутерброд','скамейка'];
+var picWordSwitch=1; // 1-pics',' 2-words	
 
 document.getElementById('RAN1').addEventListener('change',fillWords);
 document.getElementById('RAN2').addEventListener('change',fillWords);
+document.getElementById('RAN3').addEventListener('change',fillWords);
 //document.getElementById('RAN3').addEventListener('change',fillWords);
 
 fillWords();
