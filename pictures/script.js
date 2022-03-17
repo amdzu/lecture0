@@ -24,6 +24,12 @@ var words1=['класс','стол','рубль','кровь','текст','вр
 var words2=['вопрос','земля','книга','школьник','стена','сердце','солнце','корабль','спина','карта','старик','праздник','сцена','цветок','остров','кухня','птица','игра','стекло','трава','завтрак','плечо','кресло','трубка'];
 var words3=['женщина','мужчина','профессор','подруга','чтение','лестница','картина','продавец','игрушки','лекарства','охранник','доставка','ноутбук','вертолёт','принцесса','строитель','космонавт','колбаса','корзина','лампочка','конфета','стадион','бутерброд','скамейка'];
 var words4=['большой','красный','низкий','длинный','пустой','бедный','острый','круглый','старший','твердый','смешной','мокрый','сладкий','громкий','бледый','старый','свежий','светлый','верхний','узкий','строгий','полный','младший','грязный'];
+var words5=['большой','красный','низкий','длинный','пустой','бедный','острый','круглый','старший','твердый','смешной','мокрый','сладкий','громкий','бледый','старый','свежий','светлый','верхний','узкий','строгий','полный','младший','грязный'];
+var words6=['большой','красный','низкий','длинный','пустой','бедный','острый','круглый','старший','твердый','смешной','мокрый','сладкий','громкий','бледый','старый','свежий','светлый','верхний','узкий','строгий','полный','младший','грязный'];
+var words7=['большой','красный','низкий','длинный','пустой','бедный','острый','круглый','старший','твердый','смешной','мокрый','сладкий','громкий','бледый','старый','свежий','светлый','верхний','узкий','строгий','полный','младший','грязный'];
+
+
+
 
 var picWordSwitch=1; // 1-pics',' 2-words	
 
@@ -31,6 +37,9 @@ document.getElementById('RAN1').addEventListener('change',fillWords);
 document.getElementById('RAN2').addEventListener('change',fillWords);
 document.getElementById('RAN3').addEventListener('change',fillWords);
 document.getElementById('RAN4').addEventListener('change',fillWords);
+document.getElementById('RAN5').addEventListener('change',fillWords);
+document.getElementById('RAN6').addEventListener('change',fillWords);
+document.getElementById('RAN7').addEventListener('change',fillWords);
 //document.getElementById('RAN3').addEventListener('change',fillWords);
 
 fillWords();
@@ -51,6 +60,20 @@ if (radioValue==3) {
 if (radioValue==4) {
 		for (var m=0; m<words4.length;m++) {words.push(words4[m]);};
 }
+
+if (radioValue==5) {
+		for (var l=0; l<words5.length;l++) {words.push(words5[l]);};
+}
+
+if (radioValue==6) {
+		for (var n=0; n<words6.length;n++) {words.push(words6[n]);};
+}
+if (radioValue==7) {
+		for (var y=0; y<words7.length;y++) {words.push(words7[y]);};
+}
+
+
+
 }
 
 
@@ -135,6 +158,11 @@ h1.classList.remove('fadeoutSlow');
 
 function showPictures() {
 radioValue=document.querySelector('input[name="ran"]:checked').value;
+var addOn=0;
+if (radioValue==6 || radioValue==7) {
+	addOn=-6;
+}
+
 
 folder='RAN'+radioValue+str;
 menu.classList.add('menu-hidden');
@@ -151,7 +179,7 @@ h1.classList.add('fadeoutSlow');
 	intervalID=setInterval(
 	function(){	//Начало интервальной функции
 		n++;
-		if(n > pictures.length-1) {
+		if(n > pictures.length+addOn-1) {
 			pictures[n-1].classList.remove('fadein');
 	 		pictures[n-1].classList.add('fadeout');
 			clearInterval(intervalID);
@@ -191,7 +219,7 @@ h1.classList.add('fadeoutSlow');
 	 }
 	 	
 
-		if(n > pictures.length) {
+		if(n > pictures.length+addOn) {
 			n=-1;
 			return n;
 				 clearInterval(intervalID);
@@ -200,7 +228,7 @@ h1.classList.add('fadeoutSlow');
 
 		}, delay); // Конец интервальной функции
 
-	for (var i=0;i<pictures.length;i++ ) {
+	for (var i=0;i<pictures.length+addOn;i++ ) {
 		pictures[i].classList.remove('fadeout');
 		 pictures[i].classList.add('invisible');
 	}
