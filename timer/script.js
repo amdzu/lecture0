@@ -186,7 +186,7 @@ var timeOutDistribute =  setTimeout(function(){
                         //остановка таймера через 8 сек
                     }, 400);
 
-                    time.setSeconds(delay+3);
+                    time.setSeconds(delay+delay);
                     var seconds=time.getSeconds();
                     seconds=String(seconds);
 
