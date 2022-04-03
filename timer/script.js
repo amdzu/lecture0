@@ -186,7 +186,14 @@ var timeOutDistribute =  setTimeout(function(){
                         //остановка таймера через 8 сек
                     }, 400);
 
-                    time.setSeconds(delay+delay);
+
+                    var delayTop=delay*2;
+                    if (delayTop>=10) {
+                      delayTop=delayTop-2;
+                    } else if (delayTop==8) {
+                      delayTop=7;
+                    }
+                    time.setSeconds(delayTop);
                     var seconds=time.getSeconds();
                     seconds=String(seconds);
 
