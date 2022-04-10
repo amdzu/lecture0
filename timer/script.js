@@ -83,8 +83,11 @@ var mmj=mm.slice();
       //  console.log(emo[kk].innerHTML);
     };
     var topEmo = document.querySelector('.emo');
-    //topEmo.innerHTML=mmjSelectShuffled[0];
-      topEmo.innerHTML=mm[0];
+
+    var mmjForTop=shuffle(mmjSelectShuffled);
+
+    topEmo.innerHTML=mmjForTop[0];
+    //  topEmo.innerHTML=mm[0];
 }
 //******************************************************************************************
 
@@ -226,6 +229,7 @@ var timeOutDistribute =  setTimeout(function(){
                               bottomCards[3].classList.add('none');
                               
                                                      timer.classList.add('none');
+                                 console.log('!!!!  answer ',answer,' seconds=',seconds);
 
                               if (answer==false) {nRhinos++; rhinos.innerHTML=String(nRhinos); audio.play();};
                               console.log('answer ',answer);
@@ -261,7 +265,7 @@ var timeOutDistribute =  setTimeout(function(){
                           startTimer();
                         }
                         //остановка таймера через 8 сек
-                    }, (delay+3)*1000);
+                    }, (delayTop)*1000); //HERE! was delay+3
     
 }; //конец функции управления таймером*********************************************************************
 
