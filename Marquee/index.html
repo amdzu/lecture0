@@ -31,6 +31,8 @@
 
   <label for="delay">Скорость</label>
   <select onchange="getData()" id="delay" name="delay" >
+ 
+    <option value="3" selected>Молниеносно</option>
     <option value="5" selected>Очень быстро</option>
     <option value="7">быстро</option>
     <option value="9">не так уж быстро</option>
@@ -38,6 +40,22 @@
     <option value="13">спокойно и уверенно</option>
     <option value="15">плавно</option>
     <option value="17">торжественно</option>
+
+--->
+
+  <!--
+    <option value="1.5" selected>Быстрее звука</option>
+    <option value="4.5" selected>Молниеносно</option>
+    <option value="6" selected>Стремительно</option>
+    <option value="7.5" selected>Очень быстро</option>
+    <option value="10.5">быстро</option>
+    <option value="13.5">не так уж быстро</option>
+    <option value="16.6">чуть менее быстро</option>
+    <option value="13">спокойно и уверенно</option>
+    <option value="15">плавно</option>
+    <option value="17">торжественно</option>
+
+--->
   </select>
 
 
@@ -51,6 +69,16 @@
 
 
 <input id="file" type="file" onchange="readFile(this)">
+
+
+<!-- Rounded switch -->
+<label class="switch">
+  <input id="slider" type="checkbox">
+  <span class="slider round"></span>
+</label>
+<div id="turbo"> Турбо-режим</div>
+
+
 
 
 
