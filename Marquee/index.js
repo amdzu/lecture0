@@ -90,7 +90,7 @@ listItem.innerHTML=fromFile;
 
 x= document.getElementById("slider").checked;
 
-if (x==true) {step=1.3;}
+if (x==true) {step=2;}
 
 console.log("x=  ",x);
 
