@@ -10,6 +10,7 @@
   document.getElementById('btn').disabled=false;
   document.getElementById('delay').disabled=true;
   document.getElementById('file').disabled=true;
+  document.getElementById('slider').disabled=true;
 
 
   //delay = 5;
@@ -55,7 +56,10 @@
     
     // The part that keeps it all going: animating the margin left value of the list.
     listElem.style.marginLeft = `${currentLeftValue}px`;
-    currentLeftValue--;
+  
+  //  currentLeftValue--;
+
+currentLeftValue=currentLeftValue-step;
   }
 
 
@@ -84,6 +88,11 @@ const listItem = document.getElementById('list__item');
 
 listItem.innerHTML=fromFile;
 
+x= document.getElementById("slider").checked;
+
+if (x==true) {step=2;}
+
+console.log("x=  ",x);
 
 creep();
 
@@ -102,6 +111,11 @@ creep();
     var selind = document.getElementById("delay").options.selectedIndex;
    var txt= document.getElementById("delay").options[selind].text;
    var val= document.getElementById("delay").options[selind].value;
+   x= document.getElementById("slider").checked;
+   if (x==true) {step=1.3;}
+
+console.log("x=  ",x);
+
 
    //alert("Теxt= "+ txt +" " + "Value= " + val);
 
@@ -148,4 +162,4 @@ else if (toggle==0) {
 document.getElementById('btn').disabled=true;
 
 
-var delay=5, timerID, toggle=0, listElem,items,containerElem,leftSideOfContainer,currentLeftValue;
+var delay=5, timerID, toggle=0, listElem,items,containerElem,leftSideOfContainer,currentLeftValue,x,step=1;

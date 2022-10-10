@@ -32,8 +32,6 @@ var inputFile=document.querySelector('input').disabled=true;
 document.getElementById("game").disabled = false;
 
 
-
-
     start();
     };
 
@@ -83,8 +81,11 @@ var mmj=mm.slice();
       //  console.log(emo[kk].innerHTML);
     };
     var topEmo = document.querySelector('.emo');
-    //topEmo.innerHTML=mmjSelectShuffled[0];
-      topEmo.innerHTML=mm[0];
+
+    var mmjForTop=shuffle(mmjSelectShuffled);
+
+    topEmo.innerHTML=mmjForTop[0];
+    //  topEmo.innerHTML=mm[0];
 }
 //******************************************************************************************
 
@@ -186,7 +187,14 @@ var timeOutDistribute =  setTimeout(function(){
                         //остановка таймера через 8 сек
                     }, 400);
 
-                    time.setSeconds(delay+3);
+
+                    var delayTop=delay*2;
+                    if (delayTop>=10) {
+                      delayTop=delayTop-2;
+                    } else if (delayTop==8) {
+                      delayTop=7;
+                    }
+                    time.setSeconds(delayTop);
                     var seconds=time.getSeconds();
                     seconds=String(seconds);
 
@@ -219,6 +227,7 @@ var timeOutDistribute =  setTimeout(function(){
                               bottomCards[3].classList.add('none');
                               
                                                      timer.classList.add('none');
+                                 console.log('!!!!  answer ',answer,' seconds=',seconds);
 
                               if (answer==false) {nRhinos++; rhinos.innerHTML=String(nRhinos); audio.play();};
                               console.log('answer ',answer);
@@ -254,7 +263,7 @@ var timeOutDistribute =  setTimeout(function(){
                           startTimer();
                         }
                         //остановка таймера через 8 сек
-                    }, (delay+3)*1000);
+                    }, (delayTop)*1000); //HERE! was delay+3
     
 }; //конец функции управления таймером*********************************************************************
 
@@ -377,17 +386,33 @@ nTopCard=-1;
 counter=0;
 
 
-mm0=['редчайшие','угрожающий','поинтересовалась','угоститься'];
-mm1=['редчайшие','дражайшие','тончайшие','сложнейшие'];
-mm2=['угрожающий','сияющий','бегающий','воющий'];
-mm3=['поинтересовалась','напугалась','догадалась','облизнулась'];
-mm4=['угоститься','лакомиться','питаться','метнуться'];
-mm5=['догадавшись','попавшись','помчавшись','вернувшись'];
+
+
+
+mm0=['низко','важно','мило','темно'];
+mm1=['давно','легко','быстро','мило'];
+mm2=['трудно','страшно','чисто','сложно'];
+mm3=['просто','темно','скоро','важно'];
+mm4=['много','долго','сложно','быстро'];
+mm5=['часто','важно','плохо','мало'];
+mm6=['темно','долго','редко','много'];
+mm7=['плохо','жарко','редко','страшно'];
+mm8=['долго','плохо','просто','темно'];
+mm9=['быстро','часто','темно','мало'];
+mm10=['редко','низко','плохо','мало'];
+mm11=['сложно','легко','мало','трудно'];
+mm12=['скоро','много','легко','часто'];
+mm13=['чисто','низко','сложно','скоро'];
+mm14=['жарко','давно','быстро','плохо'];
+mm15=['важно','легко','мало','часто'];
+
+
+
 
 var topCard =document.querySelector('.top');
 var bottomCards=document.querySelectorAll('.btm');
 
-document.getElementById("game").disabled = true;
+document.getElementById("game").disabled = false;
 
 
 start();
