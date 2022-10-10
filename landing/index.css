@@ -1,0 +1,423 @@
+body {
+    margin: 0;
+
+    }
+
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font: normal 16px sans-serif;
+    color: #555;
+}
+
+ul, nav{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+
+    opacity: 0.9;
+}
+
+a:hover{
+    opacity: 1;
+}
+
+a.btn{
+    color: #fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background-color: #2196F3;
+    font-weight: 800;
+    text-align: center;
+}
+
+hr{
+    width: 150px;
+    height: 2px;
+    background-color: #2196F3;
+    border: 0;
+    margin-bottom: 80px;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 125px 100px;
+   
+}
+
+@media (max-width: 1000px){
+
+    section{
+        padding: 100px 50px;
+    }
+
+}
+
+@media (max-width: 600px){
+
+    section{
+        padding: 80px 30px;
+    }
+
+}
+
+section h3.title {
+    color: #414a4f;
+    text-transform: capitalize; 
+    font: bold 44px 'Manrope', sans-serif;
+    margin-bottom: 35px;
+    text-align: center;
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 44px;
+line-height: 60px;
+
+
+
+
+
+}
+
+section p{
+    max-width: 800px;
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 0 20px;
+    line-height: 2;
+    
+}
+
+ul.grid{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/*-------------
+    Header
+-------------*/
+
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+color: #FFFFFF;
+    padding: 35px 100px 0;
+}
+
+header h2{
+    margin-left: 5px;
+    font-family: 'Poppins', sans-serif;
+    flex-grow: 2;
+}
+
+header nav{
+    display: flex;
+    align-items: center;
+    font-family: 'Manrope', sans-serif;
+}
+
+header nav li{
+    margin: 0 15px;
+}
+
+header nav li:first-child{
+    margin-left: 0; 
+}
+
+header nav li:last-child{
+    margin-right: 0;    
+}
+
+
+
+@media (max-width: 1000px){
+    header{
+        padding: 20px 50px;
+    }
+}
+
+
+@media (max-width: 700px){
+    header{
+        flex-direction: column;     
+    }
+
+    header h2{
+        margin-bottom: 15px;
+    }
+}
+
+
+#tryForFreeBox {
+width: 100px;
+height: 36px;
+background-color: #FFFFFF;;
+border-radius: 4px;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #3BB876;
+}
+
+
+/*----------------
+    Hero Section
+----------------*/
+
+.hero{
+    position: relative;
+    justify-content: center;
+    min-height: 100vh;
+    color: #fff;
+   align-items: flex-start;
+    margin-top: 15px;
+    /*text-align: center;*/
+}
+
+.hero .background-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-color: #2196F3;
+    z-index: -1;
+}
+
+.hero .background-image:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #414a4f;
+    opacity: 0.15;
+}
+
+.hero h1{
+    font: bold 60px 'Manrope', sans-serif;
+    margin-bottom: 15px;
+    max-width: 50vw;
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 800;
+font-size: 60px;
+line-height: 80px;
+
+
+}
+
+.hero h3{
+    font: normal 28px 'Manrope', sans-serif;
+    margin-bottom: 40px;
+}
+
+.hero a.btn{
+    padding: 20px 46px;
+}
+
+@media (max-width: 800px){
+
+    .hero{
+        min-height: 600px;
+    }
+
+    .hero h1{
+        font-size: 48px;
+            max-width: 100vw;
+    }
+
+    .hero h3{
+        font-size: 24px;
+    }
+
+    .hero a.btn{
+        padding: 15px 40px;
+    }
+
+}
+
+
+
+/*----------------------
+    Features Section
+----------------------*/
+
+.features{
+    position: relative;
+background-color:  #80DDAB;
+ background-image: url(Lovepik_com-400871421-floating-stars.png);
+
+
+
+}
+
+.features .grid li{
+    padding: 0 30px;
+    flex-basis: auto;
+    text-align: center;
+    margin-left: 2vw;
+     margin-right: 2vw;
+}
+
+.features .grid li i{
+    font-size: 50px;
+    color: #2196F3;
+    margin-bottom: 25px;
+}
+
+.features .grid li h4{
+    color: #555;
+    font-size: 20px;
+    margin-bottom: 25px;
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 36px;
+/* identical to box height, or 150% */
+
+text-align: center;
+
+color: #000000;
+margin-top: 45px;
+
+
+}
+
+.features .grid li p{
+    margin: 0;
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 30px;
+/* or 167% */
+text-align: left;
+margin-left: 40px;
+
+color: #000000;
+
+}
+
+@media (max-width: 1000px){
+
+    .features .grid li{
+        flex-basis: 70%;
+        margin-bottom: 65px;
+    }
+
+    .features .grid li:last-child{
+        margin-bottom: 0;
+    }
+
+}
+
+
+@media (max-width: 600px){
+
+    .features .grid li{
+        flex-basis: 100%;
+    }
+
+}
+
+
+.ellipse {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+margin: auto;
+width: 180px;
+height: 180px;
+border-radius: 50%;
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%), #36BD7D;
+box-shadow: 0px 0px 32px rgba(100, 82, 229, 0.15);
+z-index: 110;
+}
+
+
+
+#lukulabFetures {
+    margin-top:20px; 
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 36px;
+color: #000000;
+}
+
+
+
+
+
+.whiteSq {
+    position:relative;
+    top:-90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+width: 580px;
+height: 353px;
+background: #FAFCFB;
+border-radius: 20px;
+z-index: 0;
+}
+
+
+.features .background-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  background-color: #2196F3;
+    z-index: -1;
+
+
+
+
+}
+
+.features .background-image:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #414a4f;
+    opacity: 0.15;
+}
