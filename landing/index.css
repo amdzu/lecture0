@@ -606,16 +606,25 @@ height:599px;
 margin: 0 5px 0 5px; 
 }
 
+.readMore {
+display: flex;
+flex-direction: column;
+justify-content: center;
+margin-top: 20px;
+margin-left: 25px;
+width: 172px;
+height: 60px;
 
-.personaSq h4 {
+background: #FFFFFF;
+border-radius: 50px;
 
-/*margin-left: 15vw;*/
-
-}
-
-.personaSq .pPers {
-
-/*margin-left: 25vw !important;*/
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 22px;
+line-height: 32px;
+/* identical to box height, or 145% */
+color: #000000;
 
 }
 
@@ -652,11 +661,7 @@ line-height: 32px;
 width: 300px;
 height: 550px;
 }
-/*
-.hero h1{
-font: bold 50px 'Manrope', sans-serif;
-}
-*/
+
 }
 
 
@@ -681,7 +686,7 @@ height:220px;
 
 .personaSq {
 width: 92vw;
-height: 650px;
+height: 620px;
 }
 
 .personas .grid li h4{
@@ -691,8 +696,8 @@ line-height: 36px;
 }
 
 .personas .grid li p{
-font-size: 18px;
-line-height: 30px;
+font-size: 15px;
+line-height: 26px;
 }
 
 .whiteSq {
