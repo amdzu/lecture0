@@ -705,14 +705,7 @@ width: 300px;
 height: 500px;
 }
 
-
-
 }
-
-
-
-
-
 
 #ps2 {background: #258BB8;}
 #ps3 {background: #80DDAB; }
@@ -763,6 +756,7 @@ background: linear-gradient(0deg, #B9EFFF, #B9EFFF), url(Lovepik_com-400871421-f
 display: flex;
 flex-direction: column;
 justify-content: center;
+flex-shrink: 0;
 align-items: center;
 position: relative;
 width: 48px;
@@ -782,6 +776,7 @@ border-radius: 50%;
 background: gray;
 z-index: 1101;
 opacity: 0;
+flex-shrink: 0;
 
 
 }
@@ -801,6 +796,7 @@ opacity: 0;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
+flex-shrink: 0;
 }
 .plus {
      position: absolute;
@@ -810,23 +806,44 @@ transform: translate(-50%, -50%);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
+flex-shrink: 0;
 }
 
 
 .whiteBox {
-    margin: 15px 0 15px 0;
+margin: 15px 0 15px 0;
 display: flex;
 flex-direction: row;
-
 padding: 20px 30px;
-gap: 30px;
-
 width: 1200px;
-
-
 background: #FFFFFF;
 border-radius: 16px;
 }
+
+
+@media only screen and (max-width: 1400px){
+
+    .whiteBox {max-width: 80vw;
+    }
+    .a {font-size: 14px !important; line-height: 16px !important;}
+    .q {font-size: 18px !important; line-height: 20px !important;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .whiteBoxStart {
     height: 88px;
