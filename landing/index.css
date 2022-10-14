@@ -403,19 +403,7 @@ color: #000000;
 
 
 
-.whiteSq {
-    position:relative;
-    top:-90px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-width: 580px;
-height: 353px;
-background: #FAFCFB;
-border-radius: 20px;
-z-index: 0;
-}
+
 
 
 .features .background-image{
@@ -573,7 +561,19 @@ color: #000000;
 }
 
 
-
+.whiteSq {
+    position:relative;
+    top:-90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+width: 580px;
+height: 353px;
+background: #FAFCFB;
+border-radius: 20px;
+z-index: 0;
+}
 
 
 .personaSq {
@@ -746,3 +746,172 @@ height: 500px;
     background-color: #414a4f;
     opacity: 0.15;
 }
+
+
+
+
+/*----------------------
+    Q&A Section
+----------------------*/
+
+.qA{
+position: relative;
+background: linear-gradient(0deg, #B9EFFF, #B9EFFF), url(Lovepik_com-400871421-floating-stars.png), #FFFFFF;
+}
+
+.buttonPlusMinus {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+position: relative;
+width: 48px;
+height: 48px;
+border-radius: 50%;
+background: #5ED7FC;
+z-index: 1100;
+}
+
+.cover {
+position: absolute;
+top: 0;
+left: 0;
+width: 48px;
+height: 48px;
+border-radius: 50%;
+background: gray;
+z-index: 1101;
+opacity: 0;
+
+
+}
+
+.buttonPlusMinus:hover {
+    cursor: pointer;
+    box-shadow: 15px;
+}
+
+
+
+.minus {
+    position: absolute;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    width: 15px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.plus {
+     position: absolute;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+    height: 15px;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+
+.whiteBox {
+    margin: 15px 0 15px 0;
+display: flex;
+flex-direction: row;
+
+padding: 20px 30px;
+gap: 30px;
+
+width: 1200px;
+
+
+background: #FFFFFF;
+border-radius: 16px;
+}
+
+.whiteBoxStart {
+    height: 88px;
+}
+
+.whiteBoxOpen {
+animation: moveDown .5s;
+animation-fill-mode: forwards;
+
+}
+
+.whiteBoxClosed {
+animation: moveUp .5s;
+animation-fill-mode: forwards;
+
+}
+
+@keyframes moveDown {
+    from { height: 88px } 
+    to { height : 258px; } 
+}
+@keyframes moveUp {
+    from { height: 258px } 
+    to { height : 88px; } 
+}
+
+.whiteBoxOpen .plus {
+
+    display: none;
+}
+
+
+.textHolderQa {
+
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 48px;
+/* identical to box height, or 240% */
+
+
+color: #000000;
+}
+
+.q {
+
+
+
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 700;
+font-size: 28px;
+line-height: 40px;
+/* identical to box height, or 150% */
+
+text-align: left;
+
+color: #000000;
+margin-bottom: 0 !important;
+
+}
+.a {
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 300;
+font-size: 26px;
+line-height: 40px;
+text-align: left;
+animation: showText .5s;
+animation-fill-mode: forwards;
+
+}
+
+@keyframes showText {
+    from { opacity: 0;
+    margin-top: 0; } 
+    to { opacity : 1;
+    margin-top: 25px; } 
+
+}
+
+
+.none {display: none;}
