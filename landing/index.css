@@ -589,9 +589,10 @@ animation-fill-mode: forwards;
 }
 
 .hidden {
-animation: showText2 1s;
+animation: showText2 0.5s;
 animation-fill-mode: forwards;
 }
+
 
 
 @keyframes showText2 {
@@ -716,6 +717,10 @@ height: 550px;
 
 @media (max-width: 600px){
 
+.hidden {
+
+    display: block !important;
+}
 .person {
 position: relative;
 top: 5%;
@@ -739,13 +744,14 @@ width:auto;
 
 .personaSq {
 width: 85vw;
-height: 500px;
+/*height: 500px;*/
 align-items: flex-start;
 }
 
 
 .personaSqStart {
-height: 500px;
+/*height: 500px;*/
+height: auto;
 }
 
 .personas .grid li h4{
@@ -755,8 +761,22 @@ line-height: 36px;
 }
 
 .personas .grid li p{
-font-size: 15px;
-line-height: 26px;
+font-size: 16px;
+line-height: 24px;
+}
+
+
+
+.personaSqOpen {
+animation: moveDown2 .0s;
+animation-fill-mode: forwards;
+
+}
+
+.personaSqClosed {
+animation: moveUp2 .0s;
+animation-fill-mode: forwards;
+
 }
 
 
@@ -771,7 +791,7 @@ line-height: 26px;
 
 
 @keyframes showText2 {
-    from { opacity: 0;
+    from { opacity: 1;
     margin-top: 0;
     height: 0; } 
     to { opacity : 1;
@@ -782,6 +802,7 @@ line-height: 26px;
 
 
 .readMore {
+    display: none;
 bottom: -25px;
 width: 86px;
 height: 30px;
@@ -791,6 +812,7 @@ line-height: 16px;
 }
 
 .readMoreBtn {
+    display: none;
 bottom: -25px;
 width: 86px;
 height: 30px;
@@ -1195,7 +1217,7 @@ color: #000000;
     position:relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 width: 360px;
 height: 508px;
@@ -1203,4 +1225,10 @@ background: #FFFFFF;
 border-radius: 20px;
 z-index: 0;
 margin-top: 45px;
+padding-top: 10%;
+}
+
+.green {
+
+    color: #3BB876 !important;
 }
