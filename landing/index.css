@@ -92,17 +92,18 @@ line-height: 60px;
 }
 
 section p{
-    max-width: 800px;
+/*    max-width: 800px;*/
     text-align: center;
     margin-bottom: 35px;
     padding: 0 20px;
-    line-height: 2;
-    
+    line-height: 2; 
 }
 
 ul.grid{
     width: 100%;
     display: flex;
+   /* flex-direction: column;*/
+    /*align-items: center;*/
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -390,7 +391,7 @@ z-index: 110;
 
 #lukulabFetures {
     margin-top:20px; 
-
+max-width: 800px;
 font-family: 'Manrope';
 font-style: normal;
 font-weight: 500;
@@ -522,7 +523,12 @@ width: 30vw;
 z-index: 110;
 }
 
-
+.pPers {
+    padding: 10px;
+}
+.pPersReadMore {
+    padding: 10px;
+}
 
 #lukulabFetures {
     margin-top:20px; 
@@ -594,16 +600,16 @@ animation-fill-mode: forwards;
     height: 0; } 
     to { opacity : 1;
     margin-top: 25px;
-    height: 200px; } 
+    height: 400px; } 
 }
 
 
 @keyframes moveDown2 {
     from { height: 500px } 
-    to { height : 700px; } 
+    to { height : 820px; } 
 }
 @keyframes moveUp2 {
-    from { height: 700px } 
+    from { height: 820px } 
     to { height : 500px; } 
 }
 
@@ -620,6 +626,7 @@ animation-fill-mode: forwards;
 .person {
 width:auto;
 height:599px;
+height: 30vw;
 margin: 0 5px 0 5px; 
 }
 
@@ -710,30 +717,35 @@ height: 550px;
 @media (max-width: 600px){
 
 .person {
-
+position: relative;
+top: 5%;
 width:auto;
-height:220px;
+height:23vw
 
 }
 
 #sheep {
 
 width:auto;
-height:220px;
+/*height:220px;*/
 
 }
 
 .textHolder {
+    position: relative;
     flex-grow: 2;
+    top: 5%;
 }
 
 .personaSq {
-width: 92vw;
+width: 85vw;
+height: 500px;
+align-items: flex-start;
 }
 
 
 .personaSqStart {
-height: 580px;
+height: 500px;
 }
 
 .personas .grid li h4{
@@ -749,15 +761,42 @@ line-height: 26px;
 
 
 @keyframes moveDown2 {
-    from { height: 580px } 
+    from { height: 500px } 
     to { height : 850px; } 
 }
 @keyframes moveUp2 {
-    from { height: 850px } 
-    to { height : 580px; } 
+    from { height: 750px } 
+    to { height : 850px; } 
 }
 
 
+@keyframes showText2 {
+    from { opacity: 0;
+    margin-top: 0;
+    height: 0; } 
+    to { opacity : 1;
+    margin-top: 25px;
+    height: 400px; } 
+}
+
+
+
+.readMore {
+bottom: -25px;
+width: 86px;
+height: 30px;
+border-radius: 25px;
+font-size: 13px;
+line-height: 16px;
+}
+
+.readMoreBtn {
+bottom: -25px;
+width: 86px;
+height: 30px;
+border-radius: 25px;
+
+}
 
 }
 
@@ -879,6 +918,7 @@ flex-shrink: 0;
 
 
 .whiteBox {
+    position: relative;
 margin: 15px 0 15px 0;
 display: flex;
 flex-direction: row;
@@ -891,27 +931,50 @@ border-radius: 16px;
 
 @media only screen and (max-width: 1280px){
 
-    .whiteBox {max-width: 80vw;
+    .whiteBox {max-width: 85vw;
     }
-    .a {font-size: 20px !important; line-height: 22px !important;}
-    .q {font-size: 24px !important; line-height: 26px !important; margin-top: 15px;}
+    .a {font-size: 20px !important; line-height: 26px !important;}
+    .q {font-size: 24px !important; line-height: 30px !important; margin-top: 0px;}
 }
 
 
 @media only screen and (max-width: 600px){
 
-    .whiteBox {max-width: 80vw;
+.buttonPlusMinus {
+width: 24px;
+height: 24px;
+}
+
+.cover {
+width: 24px;
+height: 24px;
+}
+
+.minus {
+    border: 1px solid #FFFFFF;
+    border-radius: 1px;
+    width: 8px;
+}
+.plus {
+    border: 1px solid #FFFFFF;
+    border-radius: 1px;
+    height: 8px;
+}
+
+
+
+    .whiteBox {max-width: 85vw;
     }
-    .a {font-size: 16px !important; line-height: 18px !important;}
-    .q {font-size: 18px !important; line-height: 20px !important; margin-top: 15px;}
+    .a {font-size: 16px !important; line-height: 22px !important;}
+    .q {font-size: 18px !important; line-height: 24px !important; margin-top: 0px;}
 }
 
 @media only screen and (max-width: 450px){
 
-    .whiteBox {max-width: 80vw;
+    .whiteBox {max-width: 85vw;
     }
-    .a {font-size: 13px !important; line-height: 16px !important;}
-    .q {font-size: 16px !important; line-height: 20px !important; margin-top: 15px;}
+    .a {font-size: 13px !important; line-height: 20px !important;}
+    .q {font-size: 16px !important; line-height: 23px !important; margin-top: -5px;}
 }
 
 
@@ -933,10 +996,10 @@ animation-fill-mode: forwards;
 
 @keyframes moveDown {
     from { height: 88px } 
-    to { height : 258px; } 
+    to { height : 420px; } 
 }
 @keyframes moveUp {
-    from { height: 258px } 
+    from { height: 420px } 
     to { height : 88px; } 
 }
 
@@ -947,7 +1010,9 @@ animation-fill-mode: forwards;
 
 
 .textHolderQa {
+position: relative;
 
+top: 0%;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
