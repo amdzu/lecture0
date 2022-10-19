@@ -78,7 +78,7 @@ if (personaSq.classList.contains('personaSqOpen') ) {
 personaSq.classList.remove('personaSqOpen');
 personaSq.classList.add('personaSqClosed');
 hidden.classList.add('none');
-lm.innerText='Lear more';
+lm.innerText='Learn more';
 
         }
 };
