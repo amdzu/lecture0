@@ -5,7 +5,70 @@ var buttonsPm=document.querySelectorAll('.cover');
 //var e;
 
 var buttonsReadMore=document.querySelectorAll('.readMoreBtn');
+var lm=document.querySelector('.lm');
+var btn=document.querySelector('.readMoreBtnF');
+var contacts = document.getElementById('contacts');
+var showContacts=document.getElementById('show-contacts');
+var x = document.querySelector('.x');
+console.log ('contacts= ',contacts);
+console.log ('x= ',x);
 
+
+const text = document.querySelector(".read-more");
+const wrapper = document.querySelector(".wrapper");
+
+showContacts.addEventListener('click',show);
+function show() {
+    contacts.classList.add('contacts');
+    contacts.classList.remove('none');
+}
+
+
+x.addEventListener('click', close)
+function close() {
+    console.log('CLOSE');
+contacts.classList.add('none');
+contacts.classList.remove('contacts');
+};
+
+
+btn.addEventListener("click", e => {
+  // toggle the class 'read-more_open'
+  //text.classList.toggle("read-more_open");
+  if (text.classList.contains("read-more")) {
+        text.classList.add('read-more_open');
+        text.classList.remove('read-more');
+        lm.innerHTML = "Read Less";
+  } else {
+        text.classList.add('read-more');
+        text.classList.remove('read-more_open');
+        lm.innerHTML = "Read More";
+  };
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('readMoreBtnF= ',btn );
 
 for (let i = 0; i < buttonsPm.length; i++) {
   buttonsPm[i].addEventListener("click", ClickHandler);
