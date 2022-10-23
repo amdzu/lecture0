@@ -328,7 +328,9 @@ line-height: 80px;
 .features{
     position: relative;
 background-color:  #80DDAB;
- background-image: url(Lovepik_com-400871421-floating-stars.png);
+
+  background-image: url(starz_big.png);
+
 }
 
 .features .grid li{
@@ -490,7 +492,7 @@ color: #000000;
 .personas{
     position: relative;
 background-color:  #18426E;
- background-image: url(Lovepik_com-400871421-floating-stars.png);
+  background-image: url(starz_big.png);
 }
 .personas .grid li{
 display: flex;
@@ -1033,7 +1035,7 @@ margin-top: 20px;}
 .personasNarrow {
     position: relative;
 background-color:  #18426E;
-background-image: url(Lovepik_com-400871421-floating-stars.png);
+  background-image: url(starz_small.png);
 }
 
 .personasNarrow .title {
@@ -1097,7 +1099,10 @@ max-width: 100%;
 
 .qA{
 position: relative;
-background: linear-gradient(0deg, #B9EFFF, #B9EFFF), url(Lovepik_com-400871421-floating-stars.png), #FFFFFF;
+background-color: #B9EFFF;
+background-image: url(starz_small.png);
+
+
 }
 
 .buttonPlusMinus {
@@ -1310,7 +1315,7 @@ animation-fill-mode: forwards;
 .pricing{
     position: relative;
 background-color:  #80DDAB;
- background-image: url(Lovepik_com-400871421-floating-stars.png);
+ background-image: url(starz_small.png);
 
 
 
@@ -1483,6 +1488,13 @@ color: #FFFFFF;
 /*----------------------
     Footer Section
 ----------------------*/
+footer {
+position: relative;
+    top: 50px;
+    font-size: 50%;
+    line-height: 100%;
+}
+
 .contacts {
 display: flex;
 justify-content: center;
@@ -1517,7 +1529,6 @@ z-index: 1000;
 #email {
     font-size: 2vw !important;
     line-height: 2.2vw;
-
 }
 .x {
     font-size: 2vw !important;
@@ -1529,8 +1540,11 @@ z-index: 1000;
 .link-holder {
     position: relative;
 }
-footer {
-position: relative;
-    top: 50px;
 
+.tna {
+    display: block;
+    position: relative;
+    margin: 100px;
+    padding: 100px;
+}
 }
