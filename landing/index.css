@@ -209,7 +209,7 @@ color: #3BB876;
     background-color: #2196F3;
     z-index: -1;
     background-position: right top; 
-    background-image: url(forest-cut.jpg);
+    background-image: url(forest-cut.jpg?v=3);
 }
 
 .hero .background-image:after{
@@ -248,13 +248,23 @@ line-height: 80px;
 
 @media (max-width: 800px){
 
+    .hero .background-image{
+
+background-position: right 10% top;
+
+    }
+
     .hero{
         min-height: 600px;
     }
 
     .hero h1{
-        font-size: 48px;
-            max-width: 100vw;
+        font-size: 28px;
+        line-height: 40px;
+            max-width: 120vw;
+                    margin-top: 120px;
+        text-align: left;
+
     }
 
     .hero h2{
@@ -265,13 +275,10 @@ line-height: 80px;
         padding: 15px 40px;
     }
     .hero .background-image {
-            background-image: url(forest-empty.jpg);
+       /*     background-image: url(forest-empty.jpg?v=2);*/
+                    background-image: url(forest-cut.jpg?v=3);
     }
-    .hero h1{
-        margin-top: 80px;
-        text-align: center;
-        font-size: 44px;
-    }
+
     }
 
 /*----------------------
@@ -329,7 +336,7 @@ line-height: 80px;
     position: relative;
 background-color:  #80DDAB;
 
-  background-image: url(starz_big.png);
+  background-image: url(starz_big.png?v=3);
 
 }
 
@@ -492,7 +499,7 @@ color: #000000;
 .personas{
     position: relative;
 background-color:  #18426E;
-  background-image: url(starz_big.png);
+  background-image: url(starz_big.png?v=2);
 }
 .personas .grid li{
 display: flex;
@@ -1035,7 +1042,7 @@ margin-top: 20px;}
 .personasNarrow {
     position: relative;
 background-color:  #18426E;
-  background-image: url(starz_small.png);
+  background-image: url(starz_small.png?v=2);
 }
 
 .personasNarrow .title {
@@ -1100,7 +1107,7 @@ max-width: 100%;
 .qA{
 position: relative;
 background-color: #B9EFFF;
-background-image: url(starz_small.png);
+background-image: url(starz_small.png?v=2);
 
 
 }
@@ -1315,7 +1322,7 @@ animation-fill-mode: forwards;
 .pricing{
     position: relative;
 background-color:  #80DDAB;
- background-image: url(starz_small.png);
+ background-image: url(starz_small.png?v=2);
 
 
 
