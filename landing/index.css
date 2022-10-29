@@ -695,7 +695,7 @@ animation-fill-mode: forwards;
 
 .person {
 width:auto;
-height:599px;
+/*height:599px;*/
 height: 30vw;
 margin: 0 5px 0 5px; 
 }
@@ -775,6 +775,25 @@ font-size: 22px;
 line-height: 32px;
 }
 
+
+.whiteSq { /* Features*/
+    width: 480px;
+    height: 400px;
+}
+.ellipse {
+    width: 150px;
+    height: 150px;
+}
+
+}
+
+
+@media (max-width: 1400px){
+
+.person {
+height: 45vw;
+
+}
 }
 
 
