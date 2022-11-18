@@ -75,7 +75,7 @@ section{
 
 section h3.title {
     color: #414a4f;
-    text-transform: capitalize; 
+ /*   text-transform: capitalize;*/ 
     font: bold 44px 'Manrope', sans-serif;
     margin-bottom: 35px;
     text-align: center;
@@ -1079,7 +1079,7 @@ max-width: 100%;
 
 .personaSqNarrow h4 {
     color: #000000;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     font: bold 24px 'Manrope', sans-serif;
     margin-bottom: 35px;
     text-align: center;
