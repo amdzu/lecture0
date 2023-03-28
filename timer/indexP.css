@@ -266,7 +266,10 @@ width: 150px;
 
     .one {
         /*background-color:  #ac92eb;*/
-        background-color:  #8744E0;
+       /* background-color:  #8744E0;*/
+
+        background-color:#c0d6e4;
+
         -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
                 box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
