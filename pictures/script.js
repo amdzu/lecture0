@@ -30,6 +30,13 @@ var words7=['обижаться','улыбаться','собираться','п
 var words01=['вопрос','земля','книга','школьник','солнце','спина','карта','старик','праздник','цветок','птица','плечо','игра','трава','завтрак','сердце'];
 var words02=['профессор','подруга','колбаса','строитель','лестница','картина','продавец','скамейка','игрушка','лекарство','охранник','доставка','принцесса','конфета','бутерброд','корзина'];
 var words03=['красный','большой','длинный','пустой','круглый','старший','мокрый','смешной','сладкий','бледный','светлый','свежий','старый','строгий','бедный','младший'];
+var words04=['три','дверь','врач','шесть','лист','снег','дождь','хлеб','след','ключ','мост','хвост','волк','лифт','флаг','гриб'];
+
+
+
+
+
+
 
 
 var picWordSwitch=1; // 1-pics',' 2-words	
@@ -44,6 +51,7 @@ document.getElementById('RAN7').addEventListener('change',fillWords);
 document.getElementById('RAN01').addEventListener('change',fillWords);
 document.getElementById('RAN02').addEventListener('change',fillWords);
 document.getElementById('RAN03').addEventListener('change',fillWords);
+document.getElementById('RAN04').addEventListener('change',fillWords);
 
 fillWords();
 
@@ -82,6 +90,9 @@ if (radioValue==22) {
 }
 if (radioValue==33) {
 		for (var y=0; y<words03.length;y++) {words.push(words03[y]);};
+}
+if (radioValue==44) {
+		for (var y=0; y<words04.length;y++) {words.push(words04[y]);};
 }
 }
 
@@ -171,13 +182,13 @@ var addOn=0;
 if (radioValue==6 || radioValue==7) { // ЕСЛИ КАРТИНОК МЕНЬШЕ, ЧЕМ 24
 	addOn=-6;
 }
-if (radioValue==11 || radioValue==22 || radioValue==33) {
+if (radioValue==11 || radioValue==22 || radioValue==33 || radioValue==44) {
 	addOn=-8;
 }
 
 
 folder='RAN'+radioValue+str;
-if (radioValue==11 || radioValue==22 || radioValue==33) {
+if (radioValue==11 || radioValue==22 || radioValue==33 || radioValue==44) {
 folder='ran'+radioValue+str;
 }
 
