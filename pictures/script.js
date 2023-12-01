@@ -177,6 +177,12 @@ if (radioValue==11 || radioValue==22 || radioValue==33) {
 
 
 folder='RAN'+radioValue+str;
+if (radioValue==11 || radioValue==22 || radioValue==33) {
+folder='ran'+radioValue+str;
+}
+
+
+
 menu.classList.add('menu-hidden');
 endButton.innerHTML='Пауза';
 endButton.removeEventListener('click',showPictures);
