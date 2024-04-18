@@ -164,7 +164,7 @@ function clickHandler() { //начало функции обработки кл�
                     for (var i=0;i<rl;i++) {
 
 
-                    	console.log("green[i]",green[i],i);
+                    	//console.log("green[i]",green[i],i);
 
                         red[i].classList.remove('red');
                         /*cardList[i].addEventListener('click',clickHandler);*/
@@ -180,15 +180,16 @@ function clickHandler() { //начало функции обработки кл�
 
             foundMistake=false;
 
-            //console.log("text2 ",text2);
+            console.log("text2 ",text2);
 
             for (var k=0;k<nMistakes;k++) {
 
-            if (err[k].includes(text2)) { //Берем не все содержимое карточки, а выбрасываем 4 символа слева, чтобы номер карточки не мешал
+          //  if (err[k].includes(text2)) { //Берем не все содержимое карточки, а выбрасываем 4 символа слева, чтобы номер карточки не мешал
+            if (err[k]==text2) { 
 
             	foundMistake=true;
 
-            	//console.log("k ",k," text2.slice(4)",text2.slice(4));
+            	console.log("k ",k," text2.slice(4)",text2.slice(4), " err[k] ",err[k], " text2 ", text2);
 
             }
 
