@@ -32,12 +32,9 @@ var words02=['профессор','подруга','колбаса','строи�
 var words03=['красный','большой','длинный','пустой','круглый','старший','мокрый','смешной','сладкий','бледный','светлый','свежий','старый','строгий','бедный','младший'];
 var words04=['три','дверь','врач','шесть','лист','снег','дождь','хлеб','след','ключ','мост','хвост','волк','лифт','флаг','гриб'];
 
-
-
-
-
-
-
+var words44=['лист','снег','спина','карта','трава','цветок','завтрак','плечо','колбаса','принцесса','строитель','скамейка','лекарства','конфета','бутерброд','доставка'];
+var words55=['три','дверь','вопрос','земля','книга','школьник','солнце','сердце','картина','подруга','профессор','лестница','продавец','игрушки','корзина','охранник'];
+var words66=['игра','праздник','птица','старик','картина','подруга','профессор','лестница','продавец','игрушки','корзина','охранник','колбаса','принцесса','строитель','скамейка'];
 
 var picWordSwitch=1; // 1-pics',' 2-words	
 
@@ -52,6 +49,10 @@ document.getElementById('RAN01').addEventListener('change',fillWords);
 document.getElementById('RAN02').addEventListener('change',fillWords);
 document.getElementById('RAN03').addEventListener('change',fillWords);
 document.getElementById('RAN04').addEventListener('change',fillWords);
+
+document.getElementById('RAN44').addEventListener('change',fillWords);
+document.getElementById('RAN55').addEventListener('change',fillWords);
+document.getElementById('RAN66').addEventListener('change',fillWords);
 
 fillWords();
 
@@ -94,6 +95,16 @@ if (radioValue==33) {
 if (radioValue==44) {
 		for (var y=0; y<words04.length;y++) {words.push(words04[y]);};
 }
+if (radioValue==444) {
+		for (var y=0; y<words44.length;y++) {words.push(words44[y]);};
+}
+if (radioValue==55) {
+		for (var y=0; y<words55.length;y++) {words.push(words55[y]);};
+}
+if (radioValue==66) {
+		for (var y=0; y<words66.length;y++) {words.push(words66[y]);};
+}
+
 }
 
 
@@ -182,13 +193,16 @@ var addOn=0;
 if (radioValue==6 || radioValue==7) { // ЕСЛИ КАРТИНОК МЕНЬШЕ, ЧЕМ 24
 	addOn=-6;
 }
-if (radioValue==11 || radioValue==22 || radioValue==33 || radioValue==44) {
+if (radioValue==11 || radioValue==22 || radioValue==33 || radioValue==44 || radioValue==444 || radioValue==55 || radioValue==66 ) {
 	addOn=-8;
 }
 
 
 folder='RAN'+radioValue+str;
 if (radioValue==11 || radioValue==22 || radioValue==33 || radioValue==44) {
+folder='ran'+radioValue+str;
+}
+if (radioValue==444 || radioValue==55 || radioValue==66) {
 folder='ran'+radioValue+str;
 }
 
