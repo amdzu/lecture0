@@ -1,4 +1,77 @@
 'use strict';
+
+
+function changeImage() {
+    var img = document.getElementById("rhino");
+    var txt=document.getElementById("trhino");
+    var img1 = document.getElementById("people");
+    var txt1=document.getElementById("tpeople");
+
+
+
+
+
+
+
+
+    if (img.src.includes("rhino.jpg")) {
+        img.src = "people.jpg"; // замените "new-rhino.jpg" на путь к новой картинке
+        txt.innerHTML="ЛЮДИ";
+
+
+audio1 = new Audio('rhino.mp3');
+audio = new Audio('success2.mp3');
+
+
+
+
+
+
+    } else {
+        img.src = "rhino.jpg"; // возвращаем исходную картинку, если нужно
+        txt.innerHTML="НОСОРОГИ";
+        audio = new Audio('rhino.mp3');
+        audio1 = new Audio('success2.mp3');
+
+    }
+
+    if (img1.src.includes("people.jpg")) {
+        img1.src = "rhino.jpg"; // замените "new-rhino.jpg" на путь к новой картинке
+        txt1.innerHTML="НОСОРОГИ";
+        audio1 = new Audio('rhino.mp3');
+        audio = new Audio('success2.mp3');
+
+
+    } else {
+        img1.src = "people.jpg"; // возвращаем исходную картинку, если нужно
+        txt1.innerHTML="ЛЮДИ";
+        audio = new Audio('rhino.mp3');
+        audio1 = new Audio('success2.mp3');
+
+    }
+}
+
+
+    var img = document.getElementById("rhino");
+
+    // Добавляем event listener для клика на изображение
+    img.addEventListener("click", changeImage);
+    var img1 = document.getElementById("people");
+
+    // Добавляем event listener для клика на изображение
+    img1.addEventListener("click", changeImage);
+
+
+
+
+
+
+
+
+
+
+
+
 function readFile(input) {
   let file = input.files[0];
   let reader = new FileReader();
@@ -96,9 +169,15 @@ function start () { //********* start of function Start************
 answer=false;
 
 
-audio = new Audio('rhino.mp3');
-audio1 = new Audio('success.mp3');
-audio3 = new Audio('tick.mp3');
+//audio = new Audio('rhino.mp3');
+//audio1 = new Audio('success.mp3');
+//audio3 = new Audio('tick.mp3');
+
+
+
+
+
+
 //distribute(mm0); перенесем в startTimer
 //Обработка клика по нижней  карте
 cards=document.querySelectorAll("div.btm");
@@ -119,6 +198,13 @@ console.log('topCardsNumber= ',topCardsNumber);
 
 
 function startTimer() {  //Функция запуска управления таймером******************************************
+
+
+    var img = document.getElementById("rhino");
+    img.removeEventListener("click", changeImage);
+    var img1 = document.getElementById("people");
+    img1.removeEventListener("click", changeImage); //Убрали возможность выбора игры носорогами после начала игры
+
 
 
 getData();
@@ -386,6 +472,9 @@ nTopCard=-1;
 counter=0;
 
 
+audio = new Audio('rhino.mp3');
+audio1 = new Audio('success2.mp3');
+audio3 = new Audio('tick.mp3');
 
 
 
