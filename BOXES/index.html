@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Drag and Drop Learning Tool</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      background-color: #fff;
+    }
+
+    .menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .menu-button {
+      width: 60px;
+      height: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .menu-button span {
+      height: 4px;
+      background-color: #fff;
+      border-radius: 2px;
+    }
+
+    .menu-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 35px;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.15);
+      padding: 10px;
+      z-index: 100;
+    }
+
+    .menu-content a {
+      display: block;
+      text-decoration: none;
+      color: #333;
+      padding: 5px 0;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .square {
+      width: 50px;
+      height: 50px;
+      cursor: grab;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      color: white;
+      font-weight: bold;
+      position: relative;
+      touch-action: none;
+    }
+
+    .square input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .delete-btn {
+      position: absolute;
+      top: 2px;
+      right: 4px;
+      font-size: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      text-align: center;
+      line-height: 14px;
+      cursor: pointer;
+      display: none;
+      z-index: 10;
+    }
+
+    .square:hover .delete-btn {
+      display: block;
+    }
+
+    .red { background-color: red; }
+    .blue { background-color: blue; }
+    .purple { background-color: purple; }
+
+    .drop-zone {
+      width: 800px;
+      height: 100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f9f9f9;
+      padding: 10px;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+    }
+
+    .slot {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      flex-shrink: 0;
+      touch-action: none;
+    }
+
+    .dropped-square {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: move;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      color: white;
+      font-weight: bold;
+    }
+
+    #colorSelector {
+      display:none;
+      position:absolute;
+      top:70px;
+      right:20px;
+      background:#fff;
+      border:1px solid #ccc;
+      padding:10px;
+      z-index:100;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu -->
+  <div class="menu">
+    <div class="menu-button" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-content" id="menuContent">
+      <a href="#" id="editButton">Edit</a>
+      <a href="#" id="addSquareButton">Add</a>
+    </div>
+  </div>
+
+  <!-- Color selector -->
+  <div id="colorSelector">
+    <label>Select Color:</label>
+    <select id="colorChoice">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="purple">Purple</option>
+    </select>
+    <button onclick="addNewSquare()">Add</button>
+  </div>
+
+  <!-- Draggable squares -->
+  <div class="container" id="topContainer">
+    <div class="square red" draggable="true" data-color="red" data-text=""></div>
+    <div class="square blue" draggable="true" data-color="blue" data-text=""></div>
+    <div class="square purple" draggable="true" data-color="purple" data-text=""></div>
+  </div>
+
+  <!-- Drop zone with slots -->
+  <div class="drop-zone" id="dropZone"></div>
+
+  <!-- ✨ Audio -->
+  <audio id="dropSound" src="drop.mp3"></audio>
+  <audio id="deleteSound" src="delete.mp3"></audio>
+
+  <script>
+    let editMode = false;
+
+    const dropZone = document.getElementById('dropZone');
+    const topContainer = document.getElementById('topContainer');
+    const dropSound = document.getElementById('dropSound');
+    const deleteSound = document.getElementById('deleteSound');
+    const SLOT_COUNT = Math.floor(800 / 60);
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.square input') && !e.target.closest('#editButton')) {
+        disableEditMode();
+      }
+    });
+
+    document.getElementById('editButton').addEventListener('click', (e) => {
+      e.preventDefault();
+      enableEditMode();
+    });
+
+    document.getElementById('addSquareButton').addEventListener('click', (e) => {
+      e.preventDefault();
+      const selector = document.getElementById('colorSelector');
+      selector.style.display = selector.style.display === 'block' ? 'none' : 'block';
+    });
+
+    function addNewSquare() {
+      const color = document.getElementById('colorChoice').value;
+      const newSquare = document.createElement('div');
+      newSquare.className = 'square ' + color;
+      newSquare.setAttribute('draggable', true);
+      newSquare.dataset.color = color;
+      newSquare.dataset.text = '';
+
+      newSquare.addEventListener('dragstart', (e) => {
+        const text = newSquare.textContent || newSquare.dataset.text || '';
+        e.dataTransfer.setData('color', color);
+        e.dataTransfer.setData('text', text);
+        e.dataTransfer.setData('source-slot', '');
+      });
+
+      topContainer.appendChild(newSquare);
+      document.getElementById('colorSelector').style.display = 'none';
+    }
+
+    for (let i = 0; i < SLOT_COUNT; i++) {
+      const slot = document.createElement('div');
+      slot.classList.add('slot');
+      slot.dataset.index = i;
+
+      slot.addEventListener('dragover', (e) => e.preventDefault());
+
+      slot.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const color = e.dataTransfer.getData('color') || e.dataTransfer.getData('move-color');
+        const text = e.dataTransfer.getData('text') || '';
+        const sourceSlot = e.dataTransfer.getData('source-slot');
+
+        if (sourceSlot !== '') {
+          const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
+          if (sourceSlotEl && sourceSlotEl !== slot) {
+            const movedSquare = sourceSlotEl.querySelector('.dropped-square');
+            if (movedSquare) {
+              sourceSlotEl.removeChild(movedSquare);
+            }
+          }
+        }
+
+        const existingSquare = slot.querySelector('.dropped-square');
+        if (existingSquare) slot.removeChild(existingSquare);
+
+        const newSquare = createSquare(color, text);
+        slot.appendChild(newSquare);
+        dropSound.play();
+      });
+
+      slot.addEventListener('touchmove', (e) => e.preventDefault());
+
+      dropZone.appendChild(slot);
+    }
+
+    document.querySelectorAll('.square').forEach(square => {
+      square.addEventListener('dragstart', (e) => {
+        const text = square.textContent || square.dataset.text || '';
+        e.dataTransfer.setData('color', square.dataset.color);
+        e.dataTransfer.setData('text', text);
+        e.dataTransfer.setData('source-slot', '');
+      });
+    });
+
+    function toggleMenu() {
+      const menu = document.getElementById('menuContent');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function enableEditMode() {
+      editMode = true;
+      document.querySelectorAll('#topContainer .square').forEach(square => makeEditableTop(square));
+    }
+
+    function disableEditMode() {
+      if (!editMode) return;
+      editMode = false;
+      document.querySelectorAll('#topContainer .square input').forEach(input => {
+        const parent = input.parentElement;
+        const text = input.value;
+        parent.innerHTML = text;
+        parent.dataset.text = text;
+        parent.classList.add(input.dataset.color);
+      });
+    }
+
+    function makeEditableTop(square) {
+      const currentText = square.dataset.text || square.textContent;
+      const colorClass = square.dataset.color;
+      square.innerHTML = `<input type="text" value="${currentText}" data-color="${colorClass}">`;
+      const input = square.querySelector('input');
+      input.focus();
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.textContent = '×';
+      deleteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        deleteSound.play();
+        topContainer.removeChild(square);
+      });
+      square.appendChild(deleteBtn);
+
+      input.addEventListener('input', () => {
+        if (!square.dataset.hasSpawned) {
+          square.dataset.hasSpawned = true;
+          const newSquare = document.createElement('div');
+          newSquare.className = 'square ' + colorClass;
+          newSquare.setAttribute('draggable', true);
+          newSquare.dataset.color = colorClass;
+          newSquare.dataset.text = '';
+          newSquare.addEventListener('dragstart', (e) => {
+            const text = newSquare.textContent || newSquare.dataset.text || '';
+            e.dataTransfer.setData('color', colorClass);
+            e.dataTransfer.setData('text', text);
+            e.dataTransfer.setData('source-slot', '');
+          });
+          topContainer.appendChild(newSquare);
+        }
+      });
+    }
+
+    function createSquare(color, text = '') {
+      const square = document.createElement('div');
+      square.classList.add('dropped-square');
+      square.style.backgroundColor = color;
+      square.setAttribute('draggable', true);
+      square.textContent = text;
+
+      square.addEventListener('dblclick', () => {
+        square.parentElement.removeChild(square);
+        deleteSound.play();
+      });
+
+      square.addEventListener('dragstart', (ev) => {
+        const draggedText = square.textContent;
+        ev.dataTransfer.setData('move-color', color);
+        ev.dataTransfer.setData('text', draggedText);
+        ev.dataTransfer.setData('source-slot', square.parentElement.dataset.index);
+      });
+
+      return square;
+    }
+  </script>
+</body>
+</html>

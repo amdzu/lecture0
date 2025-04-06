@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <title>Картинки</title>
+  <link rel="stylesheet" href="index.css">
+
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="manifest" href="../site.webmanifest">
+
+</head>
+<body>
+
+<div id="h1">
+<h1>Картинки</h1>
+</div>
+
+
+
+
+
+<div class="grid-container">
+  <div id="i1" class="grid-item invisible"></div>
+  <div id="i2" class="grid-item invisible"></div>
+  <div id="i3" class="grid-item invisible"></div>  
+  <div id="i4" class="grid-item invisible"></div>
+  <div id="i5" class="grid-item invisible"></div>
+  <div id="i6" class="grid-item invisible"></div>  
+  <div id="i7" class="grid-item invisible"></div>
+  <div id="i8" class="grid-item invisible"></div>
+  <div id="i9" class="grid-item invisible"></div>  
+  <div id="i10" class="grid-item invisible"></div>
+  <div id="i11" class="grid-item invisible"></div>
+  <div id="i12" class="grid-item invisible"></div>  
+  <div id="i13" class="grid-item invisible"></div>
+  <div id="i14" class="grid-item invisible"></div>
+  <div id="i15" class="grid-item invisible"></div>  
+  <div id="i16" class="grid-item invisible"></div>
+  <div id="i17" class="grid-item invisible"></div>
+  <div id="i18" class="grid-item invisible"></div>  
+  <div id="i19" class="grid-item invisible"></div>
+  <div id="i20" class="grid-item invisible"></div>  
+  <div id="i21" class="grid-item invisible"></div>
+  <div id="i22" class="grid-item invisible"></div>
+  <div id="i23" class="grid-item invisible"></div>  
+  <div id="i24" class="grid-item invisible"></div>
+</div>
+
+
+<section class="menu">
+
+<div id='menu1' class="menu-item"><input id="file" type="file" onchange="readFile(this)">
+</div>
+<div id='menu2' class="menu-item">
+  <form id="speed">
+  <label for="delay">Скорость</label>
+  <select onchange="getData()" id="delay" name="delay" >
+    <option value="200">0,2 сек</option>
+    <option value="500">0,5 сек</option>
+    <option value="700">0,7 сек</option>
+    <option value="1000" selected>1 сек</option>
+    <option value="1200">1,2 сек</option>
+    <option value="1500">1,5 сек</option>
+    <option value="1700">1,7 сек</option>
+    <option value="2000">2 сек</option>
+    <option value="2200">2.2 сек</option>
+    <option value="2400">2.4 сек</option>
+
+        <option value="2600">2.6 сек</option>
+    <option value="2800">2.8 сек</option>
+    <option value="3000">3 сек</option>
+    <option value="3200">3.2 сек</option>
+        <option value="3400">3.4 сек</option>
+    <option value="3600">3.6 сек</option>
+            <option value="3800">3.8 сек</option>
+    <option value="4000">4 сек</option>
+  </select>
+  </form>
+</div>
+
+
+<div id='menu4' class="menu-item"><button id="shuffle" class="btn1"><div class='warn'>Перемешать слова</div></button></div>
+<div id='menu5' class="menu-item"><button id="picWordSwitch" class="btn1"><div class='warn'>Показать слова</div></button></div>
+
+
+<div class="menu-item">
+<p>Наборы картинок<br> и слов:</p>
+
+<div>
+  <input type="radio" id="RAN01" name="ran" value="11">
+  <label for="RAN01">RAN01</label>
+</div>
+
+<div >
+  <input type="radio" id="RAN02" name="ran" value="22">
+  <label for="RAN02">RAN02</label>
+</div>
+
+<div>
+  <input type="radio" id="RAN03" name="ran" value="33">
+  <label for="RAN03">RAN03</label>
+</div>
+
+<div class='marginBottom'>
+  <input type="radio" id="RAN04" name="ran" value="44">
+  <label for="RAN03">RAN04</label>
+</div>
+
+
+<div>
+  <input type="radio" id="RAN44" name="ran" value="444">
+  <label for="RAN44">RAN44</label>
+</div>
+
+<div >
+  <input type="radio" id="RAN55" name="ran" value="55">
+  <label for="RAN55">RAN55</label>
+</div>
+
+<div class='marginBottom'>
+  <input type="radio" id="RAN66" name="ran" value="66">
+  <label for="RAN66">RAN66</label>
+</div>
+
+
+
+<div>
+  <input type="radio" id="RAN1" name="ran" value="1" checked>
+  <label for="RAN1">RAN1</label>
+</div>
+
+<div >
+  <input type="radio" id="RAN2" name="ran" value="2">
+  <label for="RAN2">RAN2</label>
+</div>
+
+
+<div >
+  <input type="radio" id="RAN3" name="ran" value="3">
+  <label for="RAN3">RAN3</label>
+</div>
+
+<div >
+  <input type="radio" id="RAN4" name="ran" value="4">
+  <label for="RAN4">RAN4</label>
+</div>
+<div >
+  <input type="radio" id="RAN5" name="ran" value="5">
+  <label for="RAN5">RAN5</label>
+</div>
+<div >
+  <input type="radio" id="RAN6" name="ran" value="6">
+  <label for="RAN6">RAN6</label>
+</div>
+<div >
+  <input type="radio" id="RAN7" name="ran" value="7">
+  <label for="RAN7">RAN7</label>
+</div>
+
+</div>
+
+
+</section>
+
+<div><button id="btn" class="btn"><div class='warn'>Старт</div></button></div>
+
+
+
+
+</body>
+
+<script src="script.js?<?echo time();?>"></script>
+
+</html>
