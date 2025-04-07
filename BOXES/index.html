@@ -62,13 +62,13 @@
     }
 
     .square {
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
       cursor: grab;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 14px;
+      font-size: 22px;
       color: white;
       font-weight: bold;
       position: relative;
@@ -82,7 +82,7 @@
       background: transparent;
       color: white;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 22px;
       text-align: center;
     }
 
@@ -113,8 +113,8 @@
     .purple { background-color: purple; }
 
     .drop-zone {
-      width: 800px;
-      height: 100px;
+      width: 1000px;
+      height: 200px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -126,16 +126,19 @@
     }
 
     .slot {
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
       position: relative;
       flex-shrink: 0;
       touch-action: none;
+
     }
 
+
+
     .dropped-square {
-      width: 50px;
-      height: 50px;
+      width: 80px;
+      height: 80px;
       position: absolute;
       top: 0;
       left: 0;
@@ -143,7 +146,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 14px;
+      font-size: 22px;
       color: white;
       font-weight: bold;
     }
@@ -161,7 +164,6 @@
   </style>
 </head>
 <body>
-
   <!-- Menu -->
   <div class="menu">
     <div class="menu-button" onclick="toggleMenu()">
@@ -202,12 +204,11 @@
 
   <script>
     let editMode = false;
-
     const dropZone = document.getElementById('dropZone');
     const topContainer = document.getElementById('topContainer');
     const dropSound = document.getElementById('dropSound');
     const deleteSound = document.getElementById('deleteSound');
-    const SLOT_COUNT = Math.floor(800 / 60);
+    const SLOT_COUNT = Math.floor(1000 / 90);
 
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.square input') && !e.target.closest('#editButton')) {
@@ -251,7 +252,6 @@
       slot.dataset.index = i;
 
       slot.addEventListener('dragover', (e) => e.preventDefault());
-
       slot.addEventListener('drop', (e) => {
         e.preventDefault();
         const color = e.dataTransfer.getData('color') || e.dataTransfer.getData('move-color');
@@ -262,9 +262,7 @@
           const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
           if (sourceSlotEl && sourceSlotEl !== slot) {
             const movedSquare = sourceSlotEl.querySelector('.dropped-square');
-            if (movedSquare) {
-              sourceSlotEl.removeChild(movedSquare);
-            }
+            if (movedSquare) sourceSlotEl.removeChild(movedSquare);
           }
         }
 
@@ -277,9 +275,54 @@
       });
 
       slot.addEventListener('touchmove', (e) => e.preventDefault());
-
       dropZone.appendChild(slot);
     }
+
+document.body.addEventListener('dragover', (e) => e.preventDefault());
+
+document.body.addEventListener('drop', (e) => {
+  const sourceSlot = e.dataTransfer.getData('source-slot');
+  if (sourceSlot !== '') {
+    const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
+    if (sourceSlotEl && !e.target.closest('.drop-zone')) {
+      const draggedSquare = sourceSlotEl.querySelector('.dropped-square');
+      if (draggedSquare) {
+        sourceSlotEl.removeChild(draggedSquare);
+        deleteSound.play();
+      }
+    }
+  }
+});
+
+    
+
+
+
+
+// Add border when dragging over a slot
+dropZone.querySelectorAll('.slot').forEach(slot => {
+  slot.addEventListener('dragover', (e) => {
+    e.preventDefault(); // Allow drop
+    slot.style.border = '2px dashed lightgrey'; // Show the border when dragging over
+  });
+
+  // Remove border when dragging leaves the slot
+  slot.addEventListener('dragleave', () => {
+    slot.style.border = ''; // Remove the border when leaving the slot
+  });
+
+  // Ensure the border is removed after dropping
+  slot.addEventListener('drop', () => {
+    slot.style.border = ''; // Remove the border after drop
+  });
+});
+
+
+
+
+
+
+
 
     document.querySelectorAll('.square').forEach(square => {
       square.addEventListener('dragstart', (e) => {
@@ -369,6 +412,23 @@
 
       return square;
     }
+
+    // Handle drop outside of drop-zone to delete square
+    document.body.addEventListener('dragover', (e) => e.preventDefault());
+
+    document.body.addEventListener('drop', (e) => {
+      const sourceSlot = e.dataTransfer.getData('source-slot');
+      if (sourceSlot !== '') {
+        const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
+        if (sourceSlotEl && !e.target.closest('.drop-zone')) {
+          const draggedSquare = sourceSlotEl.querySelector('.dropped-square');
+          if (draggedSquare) {
+            sourceSlotEl.removeChild(draggedSquare);
+            deleteSound.play();
+          }
+        }
+      }
+    });
   </script>
 </body>
 </html>
