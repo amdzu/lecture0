@@ -161,6 +161,27 @@
       padding:10px;
       z-index:100;
     }
+
+
+
+
+
+.circle {
+  width: 30px;
+  height: 30px;
+  /*border: solid 3px blue;*/
+  background-color: #FFD700;
+  border-radius: 50%;
+  position: absolute;
+  cursor: grab;
+  z-index: 5;
+}
+
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -197,6 +218,43 @@
 
   <!-- Drop zone with slots -->
   <div class="drop-zone" id="dropZone"></div>
+
+<div style="height: 50px;"></div>
+
+
+
+
+<div class="container">
+<div class="circle" draggable="true" data-original="true" data-id="circle-1"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-2"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-3"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-4"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-5"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-6"></div>
+
+<div class="circle" draggable="true" data-original="true" data-id="circle-7"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-8"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-9"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-10"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-11"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-12"></div>
+
+<div class="circle" draggable="true" data-original="true" data-id="circle-13"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-14"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-15"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-16"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-17"></div>
+<div class="circle" draggable="true" data-original="true" data-id="circle-18"></div>
+
+
+
+
+</div>
+
+
+
+
+
 
   <!-- ✨ Audio -->
   <audio id="dropSound" src="drop.mp3"></audio>
@@ -252,35 +310,64 @@
       slot.dataset.index = i;
 
       slot.addEventListener('dragover', (e) => e.preventDefault());
-      slot.addEventListener('drop', (e) => {
-        e.preventDefault();
-        const color = e.dataTransfer.getData('color') || e.dataTransfer.getData('move-color');
-        const text = e.dataTransfer.getData('text') || '';
-        const sourceSlot = e.dataTransfer.getData('source-slot');
 
-        if (sourceSlot !== '') {
-          const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
-          if (sourceSlotEl && sourceSlotEl !== slot) {
-            const movedSquare = sourceSlotEl.querySelector('.dropped-square');
-            if (movedSquare) sourceSlotEl.removeChild(movedSquare);
-          }
-        }
 
-        const existingSquare = slot.querySelector('.dropped-square');
-        if (existingSquare) slot.removeChild(existingSquare);
 
-        const newSquare = createSquare(color, text);
-        slot.appendChild(newSquare);
-        dropSound.play();
-      });
+slot.addEventListener('drop', (e) => {
+  e.preventDefault();
+
+  // If dragging a circle, don't process as a square drop
+  if (e.dataTransfer.getData('circle')) {
+    return;
+  }
+
+  const color = e.dataTransfer.getData('color') || e.dataTransfer.getData('move-color');
+  const text = e.dataTransfer.getData('text') || '';
+  const sourceSlot = e.dataTransfer.getData('source-slot');
+
+  if (sourceSlot !== '') {
+    const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
+    if (sourceSlotEl && sourceSlotEl !== slot) {
+      const movedSquare = sourceSlotEl.querySelector('.dropped-square');
+      if (movedSquare) sourceSlotEl.removeChild(movedSquare);
+    }
+  }
+
+  const existingSquare = slot.querySelector('.dropped-square');
+  if (existingSquare) slot.removeChild(existingSquare);
+
+  const newSquare = createSquare(color, text);
+  slot.appendChild(newSquare);
+  dropSound.play();
+});
+
 
       slot.addEventListener('touchmove', (e) => e.preventDefault());
       dropZone.appendChild(slot);
     }
 
-document.body.addEventListener('dragover', (e) => e.preventDefault());
 
 document.body.addEventListener('drop', (e) => {
+  const isCircle = e.dataTransfer.getData('circle');
+  const circleId = e.dataTransfer.getData('circle-id');
+
+if (isCircle && circleId) {
+  const draggedElement = document.querySelector(`.circle[data-id='${circleId}']`);
+
+  // 🛡 Do NOT remove original circles
+  if (
+    draggedElement &&
+    !e.target.closest('.dropped-square') &&
+    draggedElement.dataset.original !== 'true'
+  ) {
+    draggedElement.remove();
+  }
+
+  return;
+}
+
+
+
   const sourceSlot = e.dataTransfer.getData('source-slot');
   if (sourceSlot !== '') {
     const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
@@ -293,6 +380,7 @@ document.body.addEventListener('drop', (e) => {
     }
   }
 });
+
 
     
 
@@ -418,19 +506,147 @@ dropZone.querySelectorAll('.slot').forEach(slot => {
     // Handle drop outside of drop-zone to delete square
     document.body.addEventListener('dragover', (e) => e.preventDefault());
 
-    document.body.addEventListener('drop', (e) => {
-      const sourceSlot = e.dataTransfer.getData('source-slot');
-      if (sourceSlot !== '') {
-        const sourceSlotEl = document.querySelector(`.slot[data-index="${sourceSlot}"]`);
-        if (sourceSlotEl && !e.target.closest('.drop-zone')) {
-          const draggedSquare = sourceSlotEl.querySelector('.dropped-square');
-          if (draggedSquare) {
-            sourceSlotEl.removeChild(draggedSquare);
-            deleteSound.play();
-          }
-        }
-      }
+
+
+
+document.querySelectorAll('.circle').forEach(circle => {
+  circle.addEventListener('dragstart', (e) => {
+    const id = circle.dataset.id || Math.random().toString(36).substr(2, 9);
+    circle.dataset.id = id; // Ensure it exists
+    e.dataTransfer.setData('circle', 'true');
+    e.dataTransfer.setData('circle-id', id);
+  });
+});
+
+
+function updateCirclePositions(squareEl) {
+  const circles = Array.from(squareEl.querySelectorAll('.circle'));
+  const squareSize = 80;
+  const circleSize = 30; // must match CSS
+  const gap = 10;
+
+  if (circles.length === 1) {
+    const center = (squareSize - circleSize) / 2;
+    circles[0].style.top = `${center}px`;
+    circles[0].style.left = `${center}px`;
+  } else if (circles.length === 2) {
+    // Place them side by side with a gap in the middle
+    const totalWidth = (2 * circleSize) + gap;
+    const startLeft = (squareSize - totalWidth) / 2;
+
+    circles[0].style.top = `${(squareSize - circleSize) / 2}px`;
+    circles[0].style.left = `${startLeft}px`;
+
+    circles[1].style.top = `${(squareSize - circleSize) / 2}px`;
+    circles[1].style.left = `${startLeft + circleSize + gap}px`;
+  }
+}
+
+
+
+
+
+// Добавим обработчик прямо на dropZone для делегирования
+dropZone.addEventListener('drop', (e) => {
+  const isCircle = e.dataTransfer.getData('circle');
+  if (!isCircle) return;
+
+  const square = e.target.closest('.dropped-square');
+  if (square && square.querySelectorAll('.circle').length < 2) {
+    e.stopImmediatePropagation(); // 🛑 
+
+    const circleId = e.dataTransfer.getData('circle-id');
+    const original = document.querySelector(`.circle[data-id='${circleId}']`);
+    if (!original) return;
+
+    const clone = original.cloneNode(true);
+    const uniqueId = 'clone-' + Math.random().toString(36).substr(2, 9);
+    clone.dataset.id = uniqueId;
+    delete clone.dataset.original;
+
+    clone.setAttribute('draggable', true);
+    clone.style.position = 'absolute';
+
+    clone.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('circle', 'true');
+      e.dataTransfer.setData('circle-id', clone.dataset.id);
     });
+
+    square.appendChild(clone);
+    updateCirclePositions(square);
+  }
+});
+
+
+
+
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+
+  const isCircle = e.dataTransfer.getData('circle');
+  const circleId = e.dataTransfer.getData('circle-id');
+  if (!isCircle || !circleId) return;
+
+  const original = document.querySelector(`.circle[data-id='${circleId}']`);
+  if (!original) return;
+
+  const slots = Array.from(dropZone.querySelectorAll('.slot'));
+
+  // Найти индекс самого правого квадратика
+  let lastSquareIndex = -1;
+  slots.forEach((slot, index) => {
+    if (slot.querySelector('.dropped-square')) {
+      lastSquareIndex = index;
+    }
+  });
+
+  // Если нет ни одного квадратика — не разрешаем
+  if (lastSquareIndex === -1) return;
+
+  // Найти первый допустимый слот справа от самого правого квадратика
+  let targetSlot = null;
+  for (let i = lastSquareIndex + 1; i < slots.length; i++) {
+    if (slots[i].children.length === 0) {
+      // Проверяем, что предыдущие между lastSquareIndex и i — все заняты
+      const hasGap = slots.slice(lastSquareIndex + 1, i).some(s => s.children.length === 0);
+      if (!hasGap) {
+        targetSlot = slots[i];
+        break;
+      }
+    }
+  }
+
+  if (!targetSlot) return;
+
+  // Клонируем кружок
+  const clone = original.cloneNode(true);
+  const uniqueId = 'clone-' + Math.random().toString(36).substr(2, 9);
+  clone.dataset.id = uniqueId;
+  delete clone.dataset.original;
+
+  clone.setAttribute('draggable', true);
+  clone.style.position = 'absolute';
+
+  clone.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('circle', 'true');
+    e.dataTransfer.setData('circle-id', clone.dataset.id);
+  });
+
+  targetSlot.appendChild(clone);
+
+  // Центрируем кружок
+  const circleSize = 30;
+  const slotSize = 80;
+  const centerOffset = (slotSize - circleSize) / 2;
+  clone.style.top = `${centerOffset}px`;
+  clone.style.left = `${centerOffset}px`;
+});
+
+
+
+
+
+
   </script>
 </body>
 </html>
