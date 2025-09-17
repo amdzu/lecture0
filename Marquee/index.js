@@ -1,165 +1,113 @@
-//document.addEventListener('DOMContentLoaded', _ => {
-  /*
-    Quick whip-up of an idea posed by a client: a bar filled with logo's that move to the left slowly and infinitely.
-    I checked if the <marquee> tag was still working (and it is), but it's considered invalid html now so I needed something else.
-  */
+// Плавная бегущая строка + слайдер скорости + красивый выбор файла
+(function () {
+  const container = document.getElementById('containerElem');
+  const list = document.getElementById('list');
+  const pauseBtn = document.getElementById('btn');
+  const speedRange = document.getElementById('speedRange');
+  const speedValue = document.getElementById('speedValue');
+  const turboCheckbox = document.getElementById('slider');
+  const fileInput = document.getElementById('file');
+  const fileNameEl = document.getElementById('fileName');
 
+  // Таблица значений скорости (px/sec) по фиксированным делениям 1..9
+  const speedTable = { 1: 40, 2: 60, 3: 80, 4: 110, 5: 150, 6: 200, 7: 260, 8: 330, 9: 420 };
+  const TURBO_MULTIPLIER = 2;
 
-  function creep() {
+  let running = true;
+  let currentX = 0;
+  let targetSpeed = speedTable[Number(speedRange.value)];
+  let displayedSpeed = targetSpeed;
+  let lastTime = performance.now();
 
-  document.getElementById('btn').disabled=false;
-  document.getElementById('delay').disabled=true;
-  document.getElementById('file').disabled=true;
-  document.getElementById('slider').disabled=true;
-
-
-  //delay = 5;
-  items = [...document.getElementsByClassName('list__item')];
-  containerElem = document.getElementById('containerElem');
-  leftSideOfContainer = containerElem.getBoundingClientRect().left;
-  listElem = document.getElementById('list');
-  currentLeftValue = 1150;
-
-  console.log('leftSideOfContainer=  ',leftSideOfContainer);
-  
-  // Kick off for the animation function.
-  timerID=window.setInterval(animationLoop, delay);
-  console.log('delay= ',delay);
-  
-  /* 
-    Looks at first item in the list and checks if it goes out of the visible area 
-    by comparing the right position of the first list item to the left position 
-    of the containing element. 
-  */
-
-
-
-}
-
-
-  function animationLoop() {
-    const firstListItem = listElem.querySelector('.list__item:first-child');
-    
-    let rightSideOfFirstItem = firstListItem.getBoundingClientRect().right;
-    
- //   console.log('rightSideOfFirstItem= ',rightSideOfFirstItem);
-
-
-    /* 
-      If first list item is out of viewable area, move it to the end of the list. 
-      Also, set the current left value to -1 so we won't stutter.
-    */
-    if(rightSideOfFirstItem < leftSideOfContainer){
-      currentLeftValue = 1150;
-      listElem.appendChild(firstListItem);
+  // Основной цикл отрисовки
+  function tick(now) {
+    if (!running) {
+      requestAnimationFrame(tick);
+      lastTime = now;
+      return;
     }
-    
-    // The part that keeps it all going: animating the margin left value of the list.
-    listElem.style.marginLeft = `${currentLeftValue}px`;
-  
-  //  currentLeftValue--;
 
-currentLeftValue=currentLeftValue-step;
+    const dt = (now - lastTime) / 1000; // сек
+    lastTime = now;
+
+    // Плавная инерция изменения скорости
+    displayedSpeed += (targetSpeed - displayedSpeed) * 0.08;
+
+    const turbo = turboCheckbox?.checked ? TURBO_MULTIPLIER : 1;
+    const dx = -displayedSpeed * turbo * dt; // движение влево
+    currentX += dx;
+
+    // Когда первый элемент полностью ушёл влево — переносим его в конец
+    let first = list.firstElementChild;
+    if (!first) return requestAnimationFrame(tick);
+
+    const firstWidth = first.offsetWidth;
+    while (-currentX >= firstWidth) {
+      currentX += firstWidth;
+      list.appendChild(first);
+      first = list.firstElementChild;
+    }
+
+    list.style.transform = `translate3d(${currentX}px,0,0)`;
+    requestAnimationFrame(tick);
   }
 
-
-//});
-
-function readFile(input) {
-  let file = input.files[0];
-
-  let reader = new FileReader();
-
-  reader.readAsText(file);
-
-  reader.onload = function() {
-
-
-    var res = reader.result;
-
-    fromFile = res.replace(/(\r\n|\n|\r)/gm," ");
-
-    fromFile = fromFile.replace(/\s+/g," ");
-    console.log(fromFile);
-
-console.log(fromFile);
-
-const listItem = document.getElementById('list__item');
-
-listItem.innerHTML=fromFile;
-
-x= document.getElementById("slider").checked;
-
-if (x==true) {step=2;}
-
-console.log("x=  ",x);
-
-creep();
-
-
-  };
-
-  reader.onerror = function() {
-    console.log(reader.error);
-  };
-
-}
-
-  function getData()
-  {
-     // получаем индекс выбранного элемента
-    var selind = document.getElementById("delay").options.selectedIndex;
-   var txt= document.getElementById("delay").options[selind].text;
-   var val= document.getElementById("delay").options[selind].value;
-   x= document.getElementById("slider").checked;
-   if (x==true) {step=1.3;}
-
-console.log("x=  ",x);
-
-
-   //alert("Теxt= "+ txt +" " + "Value= " + val);
-
-
-   delay=parseInt(val);
-
+  // Инициализация
+  function init() {
+    list.style.transform = 'translate3d(0,0,0)';
+    speedValue.textContent = `${speedRange.value}/9`;
+    requestAnimationFrame(tick);
   }
 
+  // Управление паузой
+  pauseBtn.addEventListener('click', () => {
+    running = !running;
+    pauseBtn.querySelector('.warn').textContent = running ? 'Пауза' : 'Пуск';
+  });
 
+  // Изменение скорости
+  speedRange.addEventListener('input', () => {
+    targetSpeed = speedTable[Number(speedRange.value)];
+    speedValue.textContent = `${speedRange.value}/9`;
+  });
 
-var endButton = document.querySelector('.btn');
+  // Отображение имени файла
+  fileInput.addEventListener('change', () => {
+    const name = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : 'Файл не выбран';
+    fileNameEl.textContent = name;
+  });
 
-endButton.addEventListener('click', pauseCreep);
+  // Загрузка текста из файла + старт справа (вне экрана)
+  window.readFile = function (input) {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const text = String(e.target.result || '');
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      list.innerHTML = '';
 
-function pauseCreep () {
+      for (const line of lines) {
+        const li = document.createElement('li');
+        li.className = 'list__item';
+        li.textContent = line;
+        list.appendChild(li);
+      }
 
+      // Начальное положение: полностью за правым краем контейнера
+      // чтобы «не было на экране», а затем плавно въезжало
+      const containerWidth = container.clientWidth || 1200;
+      currentX = containerWidth + 20; // небольшой запас вправо
+      list.style.transform = `translate3d(${currentX}px,0,0)`;
 
-if (toggle==1) {
+      // Если анимация была на паузе — запустим
+      if (!running) {
+        running = true;
+        pauseBtn.querySelector('.warn').textContent = 'Пауза';
+      }
+    };
+    reader.readAsText(file, 'utf-8');
+  };
 
-toggle=0;
-timerID=window.setInterval(animationLoop, delay);
-console.log('toggle= ',toggle,' delay= ',delay);
-
-
-
-}
-
-else if (toggle==0) {
-  clearInterval(timerID); 
-  toggle=1;
-
-  console.log('toggle= ',toggle,' delay= ',delay);
-
-}
-
-
-
-}
-
-
-
-
-
-document.getElementById('btn').disabled=true;
-
-
-var delay=5, timerID, toggle=0, listElem,items,containerElem,leftSideOfContainer,currentLeftValue,x,step=1;
+  init();
+})();
