@@ -237,7 +237,7 @@ function tick() {
   remainingEnd -= 1;
 
   // Reveal bottom at threshold
-  if (!isBottomShown && remainingEnd == delay) {
+  if (!isBottomShown && remainingEnd == delayRound) {
     topCard.classList.add('none');
     bottomCards[0].classList.remove('none');
     bottomCards[1].classList.remove('none');
@@ -353,7 +353,7 @@ var timeOutDistribute =  setTimeout(function(){
                     }, 400);
 
 
-                    var delayTop=delay*2;
+                    delayRound = delay; var delayTop=delayRound*2;
                     if (delayTop>=10) {
                       delayTop=delayTop-2;
                     } else if (delayTop==8) {
@@ -477,6 +477,9 @@ var topCards,topCardsNumber,cardsNumber,cards;
 var nRhinos=0, nPeople=0;
 var tDelay="5";
 var delay=parseInt(tDelay);
+// Captured per-round delay values to avoid mid-round changes breaking logic
+var delayRound=0;
+var delayTopRound=0;
 
 var rhinos=document.querySelector('.countEnemy');
 var people=document.querySelector('.countPlayer');
