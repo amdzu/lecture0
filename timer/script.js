@@ -8,6 +8,12 @@ function changeImage() {
     var txt1=document.getElementById("tpeople");
 
 
+
+
+
+
+
+
     if (img.src.includes("rhino.jpg")) {
         img.src = "people.jpg"; // замените "new-rhino.jpg" на путь к новой картинке
         txt.innerHTML="ЛЮДИ";
@@ -54,6 +60,15 @@ audio = new Audio('success2.mp3');
 
     // Добавляем event listener для клика на изображение
     img1.addEventListener("click", changeImage);
+
+
+
+
+
+
+
+
+
 
 
 
@@ -181,60 +196,48 @@ console.log('topCardsNumber= ',topCardsNumber);
 
 
 
-// === ПАУЗА/ПРОДОЛЖЕНИЕ ===
+
+
+// ====== PLAY / PAUSE with robust resume ======
 function toggleGame() {
   const btnLabel = document.querySelector('#game .warn');
-
-  // Первый запуск
-  if ((timerID == null || timerID === undefined) && counter === 0) {
+  // First start
+  if ((timerID == null || timerID === undefined) && counter === 0 && !isPaused && remainingEnd===0) {
     startTimer();
-    btnLabel.textContent = 'ПАУЗА';
+    if (btnLabel) btnLabel.textContent = 'PAUSE';
     return;
   }
-
-  // Поставить на паузу
+  // Pause
   if (!isPaused) {
     if (timerID) clearInterval(timerID);
     if (timeoutID) clearTimeout(timeoutID);
-    if (timeoutIDTop) clearTimeout(timeoutIDTop);
+    if (timeoutIDtop) clearTimeout(timeoutIDtop);
     timerID = null;
     isPaused = true;
-    btnLabel.textContent = 'ИГРА';
-    // во время паузы можно менять время
-    document.getElementById('delay').disabled = false;
-    // блокируем клики по картам
-    for (var l=0; l<cardsNumber; l++) {
-      cards[l].removeEventListener('click', checkAnswer);
-    }
+    if (btnLabel) btnLabel.textContent = 'PLAY';
+    // allow changing time while paused
+    var d = document.getElementById('delay'); if (d) d.disabled = false;
+    // disable clicks on cards
+    for (var l=0; l<cardsNumber; l++) { cards[l].removeEventListener('click', checkAnswer); }
     return;
   }
-
-  // Продолжить игру (с новым временем ожидания)
-  getData(); // читаем текущее значение селекта delay
+  // Resume
   isPaused = false;
-  btnLabel.textContent = 'ПАУЗА';
-  document.getElementById('delay').disabled = true;
-
-  // снова разрешаем клики по картам
-  for (var l=0; l<cardsNumber; l++) {
-    cards[l].addEventListener('click', checkAnswer);
-  }
-
-  // перезапускаем тикер и «хвост» раунда с оставшимся временем
-  if (time) {
+  if (btnLabel) btnLabel.textContent = 'PAUSE';
+  var d = document.getElementById('delay'); if (d) d.disabled = true;
+  for (var l=0; l<cardsNumber; l++) { cards[l].addEventListener('click', checkAnswer); }
+  if (remainingEnd > 0) {
     timerID = setInterval(tick, 1000);
-    timeoutID = setTimeout(roundEnd, time.getSeconds() * 1000);
   }
 }
 
-// Отдельный тик — логика того, что происходит каждую секунду
+// one-second tick using integer countdowns
 function tick() {
-  time.setSeconds(time.getSeconds() - 1);
-  var seconds = time.getSeconds();
-  var milliseconds = time.getMilliseconds();
+  if (remainingEnd <= 0) return;
+  remainingEnd -= 1;
 
-  // Переход к нижним картам: теперь условие гибкое, чтобы работало при смене delay на паузе
-  if (!isBottomShown && seconds <= delay) {
+  // Reveal bottom at threshold
+  if (!isBottomShown && remainingEnd == delay) {
     topCard.classList.add('none');
     bottomCards[0].classList.remove('none');
     bottomCards[1].classList.remove('none');
@@ -244,40 +247,34 @@ function tick() {
     isBottomShown = true;
   }
 
-  // Конец отсчёта — прячем, начисляем очки при необходимости
-  if (seconds === 0) {
+  // Draw on last seconds window
+  if ((remainingEnd < (delay + 1) && remainingEnd >= 0)) {
+    timer.innerHTML = String(remainingEnd);
+    if (typeof audio3 !== 'undefined' && audio3 && audio3.play) { try { audio3.play(); } catch(e){} }
+  }
+
+  // End of round
+  if (remainingEnd == 0) {
     bottomCards[0].classList.add('none');
     bottomCards[1].classList.add('none');
     bottomCards[2].classList.add('none');
     bottomCards[3].classList.add('none');
     timer.classList.add('none');
-
-    if (answer === false) { nRhinos++; rhinos.innerHTML = String(nRhinos); audio.play(); }
+    if (answer === false) { nRhinos++; rhinos.innerHTML = String(nRhinos); if (typeof audio !== 'undefined' && audio && audio.play) { try { audio.play(); } catch(e){} } }
     isBottomShown = false;
-  }
-
-  // Отрисовка таймера
-  if ((seconds < (delay + 1) && seconds >= 0) && milliseconds < 900) {
-    timer.innerHTML = String(seconds);
-    audio3.play();
+    roundEnd();
   }
 }
 
-// Унифицированное завершение раунда
+// Unified round end
 function roundEnd() {
-  clearInterval(timerID);
+  if (timerID) clearInterval(timerID);
   timerID = null;
   counter++;
-  console.log('startTimer counter = ', counter);
   if (counter < 32) {
     startTimer();
   }
 }
-
-
-
-
-
 function startTimer() {  //Функция запуска управления таймером******************************************
 
 
@@ -289,10 +286,10 @@ function startTimer() {  //Функция запуска управления т
 
 
 getData();
-isPaused = false;
-document.querySelector('#game .warn').textContent = 'ПАУЗА';
-document.getElementById("delay").disabled = true;
 
+document.querySelector('#game .warn') && (document.querySelector('#game .warn').textContent='PAUSE');
+document.getElementById('delay').disabled = true;
+isPaused=false;
 answer=false;
 var timeOutDistribute =  setTimeout(function(){
 
@@ -340,9 +337,7 @@ var timeOutDistribute =  setTimeout(function(){
 
   cards[l].addEventListener('click', checkAnswer);
 };
-                time = new Date('August 19, 1975 23:15:30');
-                isBottomShown = false;
-
+                const time = new Date('August 19, 1975 23:15:30');
                 var lBtm=bottomCards.length;
                 console.log(bottomCards);
 
@@ -351,7 +346,7 @@ var timeOutDistribute =  setTimeout(function(){
                         bottomCards[2].classList.add('none');
                         bottomCards[3].classList.add('none');
             
-                   timeoutIDTop = setTimeout(() => {
+                   timeoutIDtop = setTimeout(() => {
                        topCard.classList.remove('none');
                        timer.classList.add('none');
                         //остановка таймера через 8 сек
@@ -364,21 +359,14 @@ var timeOutDistribute =  setTimeout(function(){
                     } else if (delayTop==8) {
                       delayTop=7;
                     }
-                    time.setSeconds(delayTop);
-                    var seconds=time.getSeconds();
-                    seconds=String(seconds);
-
-   //                 alert("seconds =" + seconds + "delay = " + delay);
-                    var timeS=seconds;
-                //    var timer =document.querySelector('.time');
-                    //timer.innerHTML=timeS;
+                    isBottomShown = false;
+remainingEnd = delayTop;
+// reveal bottom when remainingEnd == delay
+// Start ticking
+if (timerID) clearInterval(timerID);
+timerID = setInterval(tick, 1000);
     
-    
-                    timerID = setInterval(tick, 1000);
-
-    
-                    timeoutID = setTimeout(roundEnd, (delayTop) * 1000);
-
+                    // timeout removed — handled by integer tick //HERE! was delay+3
     
 }; //конец функции управления таймером*********************************************************************
 
@@ -476,9 +464,7 @@ function checkAnswer() { //ФУНКЦИЯ ПРОВЕРКИ ОТВЕТА*********
 
 
 
-
-var fromFile,imported, counter,timerID,timeoutID,timeoutIDTop,time,result,answer=false,isPaused=false,isBottomShown=false;
-
+var fromFile,imported, counter,timerID,timeoutID,timeoutIDtop,result,answer=false,isPaused=false,isBottomShown=false,remainingEnd=0,remainingToBottom=0;
 var mm,mm0,mm1,mm2,mm3,mm4,mm5,mm6,mm7,mm8,mm9,mm10,mm11,mm12,mm13,mm14,mm15,topWords;
 var audio,audio1,audio3;
 var nTopCard;
