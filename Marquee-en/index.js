@@ -60,7 +60,7 @@
     speedRange.step = '1';
     speedRange.value = String(sliderIndex);
     if (speedValue) {
-      speedValue.textContent = `${currentWpm} сл/м`;
+      speedValue.textContent = `${currentWpm} wpm`;
     }
   }
 
@@ -70,7 +70,7 @@
     const newWpm = WPM_VALUES[idx];
     wpmSelect.value = String(newWpm);
     if (speedValue) {
-      speedValue.textContent = `${newWpm} сл/м`;
+      speedValue.textContent = `${newWpm} wpm`;
     }
   }
 
@@ -159,7 +159,7 @@
     let durationSec = 0;
     if (speedMode === SPEED_MODE.wpm) {
       targetSpeed = computeWpmSpeed();
-      if (wpmValue) wpmValue.textContent = `${wpmSelect.value} сл/мин`;
+      if (wpmValue) wpmValue.textContent = `${wpmSelect.value} wpm`;
       durationSec = wordCount ? computeWpmDuration() : 0;
     } else {
       targetSpeed = computeSliderSpeed();
@@ -217,7 +217,7 @@
   // Управление паузой
   pauseBtn.addEventListener('click', () => {
     running = !running;
-    pauseBtn.querySelector('.warn').textContent = running ? 'Пауза' : 'Пуск';
+    pauseBtn.querySelector('.warn').textContent = running ? 'Pause' : 'Start';
   });
 
   // Изменение скорости
@@ -248,7 +248,7 @@
 
   // Выбор слов в минуту
   wpmSelect?.addEventListener('change', () => {
-    if (wpmValue) wpmValue.textContent = `${wpmSelect.value} сл/мин`;
+    if (wpmValue) wpmValue.textContent = `${wpmSelect.value} wpm`;
     if (speedMode === SPEED_MODE.wpm) {
       syncSliderWithWpm();
     }
@@ -257,7 +257,7 @@
 
   // Отображение имени файла
   fileInput.addEventListener('change', () => {
-    const name = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : 'Файл не выбран';
+    const name = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : 'file not loaded';
     fileNameEl.textContent = name;
   });
 
@@ -286,7 +286,7 @@
       // Если анимация была на паузе — запустим
       if (!running) {
         running = true;
-        pauseBtn.querySelector('.warn').textContent = 'Пауза';
+        pauseBtn.querySelector('.warn').textContent = 'Pause';
       }
     };
     reader.readAsText(file, 'utf-8');
