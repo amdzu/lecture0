@@ -2,12 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Бегущая строка</title>
+  <title>Ticker</title>
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <div class="wrap wrap--text">
-    <p>Бегущая строка</p>
+    <p>Ticker</p>
   </div>
 
   <div class="wrap wrap--logobar" id="containerElem">
@@ -21,22 +21,22 @@
       <div class="stats" aria-hidden="true">
         <span class="stat">
           <span id="wordCountDisplay">0</span>
-          <span class="stat-label">слов</span>
+          <span class="stat-label">words</span>
         </span>
         <span class="stat">
           <span id="durationDisplay">0</span>
-          <span class="stat-label">сек</span>
+          <span class="stat-label">sec</span>
         </span>
       </div>
 
-      <div class="mode-control" role="group" aria-label="Режим выбора скорости">
+      <div class="mode-control" role="group" aria-label="speed selection mode">
         <label>
           <input type="radio" name="speedMode" value="slider" checked>
-          Шкала 1–9
+          1-9 Scale
         </label>
         <label>
           <input type="radio" name="speedMode" value="wpm">
-          Слова/мин
+          WPM
         </label>
       </div>
     </div>
@@ -45,7 +45,7 @@
     <div class="speed-panel">
       <div class="speed-control" id="sliderControl" role="group" aria-labelledby="speedLabel">
         <div class="speed-row">
-          <label id="speedLabel" for="speedRange">Скорость</label>
+          <label id="speedLabel" for="speedRange">Speed</label>
           <input type="range" id="speedRange" min="1" max="9" step="1" list="speedMarks" value="5" />
           <datalist id="speedMarks">
             <option value="1" label="1"></option>
@@ -66,21 +66,21 @@
       </div>
 
       <div class="speed-control speed-control--wpm hidden" id="wpmControl" role="group" aria-labelledby="wpmLabel">
-        <label id="wpmLabel" for="wpmSelect">Скорость, слов/мин</label>
+        <label id="wpmLabel" for="wpmSelect">WPM/label>
         <select id="wpmSelect">
-          <option value="10">10 сл/м</option>
-          <option value="20">20 сл/м</option>
-          <option value="30">30 сл/м</option>
-          <option value="40">40 сл/м</option>
-          <option value="50">50 сл/м</option>
-          <option value="60" selected>60 сл/м</option>
-          <option value="70">70 сл/м</option>
-          <option value="80">80 сл/м</option>
-          <option value="90">90 сл/м</option>
-          <option value="100">100 сл/м</option>
-          <option value="120">120 сл/м</option>
+          <option value="10">10 wpm</option>
+          <option value="20">20 wpm</option>
+          <option value="30">30 wpm</option>
+          <option value="40">40 wpm</option>
+          <option value="50">50 wpm</option>
+          <option value="60" selected>60 wpm</option>
+          <option value="70">70 wpm</option>
+          <option value="80">80 wpm</option>
+          <option value="90">90 wpm</option>
+          <option value="100">100 wpm</option>
+          <option value="120">120 wpm</option>
         </select>
-        <output id="wpmValue" for="wpmSelect">60 сл/мин</output>
+        <output id="wpmValue" for="wpmSelect">60 wpm</output>
       </div>
     </div>
 
@@ -88,20 +88,20 @@
       <!-- Красивая кнопка выбора файла + имя файла -->
       <div class="file-control">
         <input id="file" type="file" accept=".txt" onchange="readFile(this)">
-        <label for="file" class="btn-file">Выбрать текст</label>
-        <span id="fileName" class="file-name">Файл не выбран</span>
+        <label for="file" class="btn-file">Upload  text</label>
+        <span id="fileName" class="file-name">file not loaded</span>
       </div>
 
       <!-- Переключатель Турбо-режима (оставлен) -->
-      <label class="switch" title="Турбо-режим">
-        <input id="slider" type="checkbox" aria-label="Турбо-режим">
+      <label class="switch" title="Turbo mode">
+        <input id="slider" type="checkbox" aria-label="Turbo mode">
         <span class="slider round"></span>
       </label>
-      <div id="turbo"> Турбо-режим</div>
+      <div id="turbo"> Turbo mode</div>
     </div>
   </section>
 
-  <button id="btn" class="btn"><div class='warn'>Пауза</div></button>
+  <button id="btn" class="btn"><div class='warn'>Pause</div></button>
 
   <script src="index.js"></script>
 </body>
