@@ -206,7 +206,7 @@ textsC2 =['b','c','f'];
 textsC1 =['a'];           
 }
 if (letterSet==2) {
-textsC1 =['a','e'];  
+textsC1 =['a','i'];  
 textsC2 =['b','c','f','g','l','m'];   // a e + b c f g l m       
 }
 if (letterSet==3) {
