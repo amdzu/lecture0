@@ -66,7 +66,7 @@ left:50px;
             justify-content: center;
 
     
-      font-size: 80px;
+      font-size: 95px;
     
     z-index: 999;
         }
@@ -85,7 +85,7 @@ left:50px;
     /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
 
    /*  background-color: #FFAEBC;*/
-     text-transform: uppercase;
+     /*text-transform: uppercase;*/
      
      left: -300px;
 
@@ -103,7 +103,7 @@ left:50px;
     /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
 
    /*  background-color: #FFAEBC;*/
-     text-transform: uppercase;
+     /*text-transform: uppercase;*/
      left: -300px;
                -webkit-box-pack: right;
                    -ms-flex-pack: right;
@@ -118,7 +118,7 @@ left:50px;
         width: 60px;
         /*background-color: #A0E7E5;*/
 
-         text-transform: uppercase;
+         /*text-transform: uppercase;*/
 
          left: 300px;
          
@@ -134,7 +134,7 @@ left:50px;
            width: 500px;
         /*background-color: #A0E7E5;*/
 
-         text-transform: uppercase;
+         /*text-transform: uppercase;*/
          left: 300px;
                    -webkit-box-pack: left;
                        -ms-flex-pack: left;
@@ -296,7 +296,7 @@ top: 0px;
 
     h1{
     margin-top: 40px;
-    font-family: Arial, sans-serif; font-size: 42px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 47px;
+    font-family: Arial, sans-serif; font-size: 84px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 90px;
     color: #434344;
     }
     
