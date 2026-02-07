@@ -229,6 +229,24 @@ if (letterSet==7) {
 textsC1 =['a','i','e','o','u','y'];  
 textsC2 =['b','c','f','g','l','m','t','s','p','n','d','k','z','j','r','v','w']; 
 }
+if (letterSet==8) {
+textsC1 =['a','i','e','o','u','y'];  
+textsC2 =['p','t','k']; 
+}
+if (letterSet==9) {
+textsC1 =['a','i','e','o','u','y'];  
+textsC2 =['b','d','g']; 
+}
+if (letterSet==10) {
+textsC1 =['a','i','e','o','u','y'];  
+textsC2 =['m','n']; 
+}
+if (letterSet==11) {
+textsC1 =['a','i','e','o','u','y'];  
+textsC2 =['f','s','v','z']; 
+}
+
+
 
    start();
 }
