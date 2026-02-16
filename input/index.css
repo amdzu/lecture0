@@ -86,7 +86,7 @@ left:50px;
     /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
 
      background-color: #FFAEBC;
-     text-transform: uppercase;
+     text-transform: lowercase;
 
     }
 
@@ -105,7 +105,7 @@ left:50px;
     #c2 {
         background-color: #A0E7E5;
 
-         text-transform: uppercase;
+         text-transform: lowercase;
     }
 
 
@@ -127,7 +127,7 @@ left:50px;
     #c3 {
 
          background-color: #B4F8C8;
-         text-transform: uppercase;
+         text-transform: lowercase;
     }
 
     #c3:hover {
