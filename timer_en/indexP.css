@@ -191,7 +191,7 @@ width: 150px;
     margin: 0 auto 0 auto;
     font-size: 40px; /* уменьшить, если надо много текста*/
     text-align: center;
-    text-transform: uppercase;
+    text-transform: lowercase;
     
     }
     .down {
@@ -199,9 +199,9 @@ width: 150px;
         -ms-grid-row-align: center;
         align-self: center;
     margin: 0 auto 0 auto;
-    font-size: 16px; /* уменьшить, если надо много текста*/
+    font-size: 24px; /* уменьшить, если надо много текста*/
     text-align: center;
-    text-transform: uppercase;
+    text-transform: lowercase;
     
     }
     
