@@ -56,14 +56,50 @@ function shuffle(arr){
 	return arr;
 }
 
+function normalizeWord(word) {
+  if (word === undefined || word === null) {
+    return '';
+  }
+  return String(word).replace(/^\uFEFF/, '').trim();
+}
+
+function parseRowWords(mm) {
+  var forcedTop = '';
+  var forcedTopCount = 0;
+  var words = [];
+  for (var i = 0; i < mm.length; i++) {
+    var token = normalizeWord(mm[i]);
+    if (token === '') continue;
+
+    if (token.charAt(token.length - 1) === '*') {
+      forcedTopCount++;
+      token = normalizeWord(token.slice(0, -1));
+      if (token !== '' && forcedTop === '') {
+        forcedTop = token;
+      }
+    }
+
+    if (token !== '') {
+      words.push(token);
+    }
+  }
+  if (forcedTopCount > 1) {
+    console.warn('Multiple "*" markers in one row. Using the first marked word:', forcedTop, 'Row:', words.join(','));
+  }
+  return { words: words, forcedTop: forcedTop };
+}
+
 
 
 //***РАСПРЕДЕЛЕНИЕ ТЕКСТА ПО КАРТАМ***********************************************************
 function distribute(mm) {
-var mmjSelect=[];
-var mmj=mm.slice();
-    for (var n=0; n<4;n++) {
+var parsed = parseRowWords(mm);
+var mmj = parsed.words.slice();
+if (mmj.length === 0) return;
 
+var mmjSelect=[];
+    var picks = Math.min(4, mmj.length);
+    for (var n=0; n<picks; n++) {
         m=mmj.length;
         j = Math.random()*m;
         k = Math.floor(j);
@@ -71,20 +107,32 @@ var mmj=mm.slice();
         mmjSelect.push(p);
         mmj.splice(k,1);
     };
-    var mmjSelectShuffled = shuffle(mmjSelect); // перемещиваем в случайном порядке
+
+    if (parsed.forcedTop !== '' && mmjSelect.indexOf(parsed.forcedTop) === -1) {
+      if (mmjSelect.length < 4) {
+        mmjSelect.push(parsed.forcedTop);
+      } else {
+        mmjSelect[Math.floor(Math.random() * mmjSelect.length)] = parsed.forcedTop;
+      }
+    }
+
+    var mmjSelectShuffled = shuffle(mmjSelect.slice()); // перемещиваем в случайном порядке
     var downCards=document.querySelectorAll(".down"); // выбираем все divы для вставления эмоджи
     var ll = downCards.length;
    
     for (var kk=0; kk<ll;kk++) {
         down[kk]=downCards[kk];
-        down[kk].innerHTML = mmjSelectShuffled[kk];
+        down[kk].innerHTML = mmjSelectShuffled[kk] !== undefined ? mmjSelectShuffled[kk] : '';
       //  console.log(emo[kk].innerHTML);
     };
     var topEmo = document.querySelector('.emo');
 
-    var mmjForTop=shuffle(mmjSelectShuffled);
-
-    topEmo.innerHTML=mmjForTop[0];
+    if (parsed.forcedTop !== '') {
+      topEmo.innerHTML = parsed.forcedTop;
+    } else {
+      var mmjForTop=shuffle(mmjSelectShuffled.slice());
+      topEmo.innerHTML=mmjForTop[0];
+    }
     //  topEmo.innerHTML=mm[0];
 }
 //******************************************************************************************
