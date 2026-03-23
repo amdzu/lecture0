@@ -81,6 +81,10 @@ left:50px;
     cursor: pointer;
     }
 
+    .cardWrapper.hidden {
+        display: none;
+    }
+
     #c1 {
 
     /*animation: fadeoutText 1s; /***Transition delay 3s fadeout is class***/
@@ -198,7 +202,31 @@ left:50px;
     color: #434344;
     }
     
-    
+    .controls {
+        position: fixed;
+        left: 50%;
+        top: 14px;
+        -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+                transform: translateX(-50%);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        opacity: 0.75;
+        color: #5a5a5a;
+    }
 
+    .modeLabel {
+        letter-spacing: 0.2px;
+    }
 
+    .modeSelect,
+    #fileInput {
+        font-size: 12px;
+    }
 

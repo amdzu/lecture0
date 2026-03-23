@@ -52,12 +52,16 @@
 
 
 
-<!---  <script src="./script1.js"></script>  --->
+<div class="controls">
+  <label class="modeLabel" for="modeSelect">режим</label>
+  <select id="modeSelect" class="modeSelect">
+    <option value="3" selected>3 части</option>
+    <option value="2">2 части</option>
+  </select>
+  <input id="fileInput" type="file" accept=".txt,text/plain" onchange="readFile(this)">
+</div>
 
-<script src="script1.js?<?echo time();?>"></script>
-
-
-<input type="file" onchange="readFile(this)">
+<script src="script1.js"></script>
 
 </body>
 </html>
