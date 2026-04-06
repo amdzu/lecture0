@@ -148,10 +148,10 @@
 
   function applyModeVisibility() {
     if (sliderControl) {
-      sliderControl.classList.remove('hidden');
+      sliderControl.classList.toggle('hidden', speedMode === SPEED_MODE.wpm);
     }
     if (wpmControl) {
-      wpmControl.classList.add('hidden');
+      wpmControl.classList.toggle('hidden', speedMode !== SPEED_MODE.wpm);
     }
   }
 
@@ -187,15 +187,13 @@
     const dx = -displayedSpeed * turbo * dt; // движение влево
     currentX += dx;
 
-    // Когда первый элемент полностью ушёл влево — переносим его в конец
-    let first = list.firstElementChild;
-    if (!first) return requestAnimationFrame(tick);
+    if (!list.firstElementChild) {
+      requestAnimationFrame(tick);
+      return;
+    }
 
-    const firstWidth = first.offsetWidth;
-    while (-currentX >= firstWidth) {
-      currentX += firstWidth;
-      list.appendChild(first);
-      first = list.firstElementChild;
+    if (currentX + listWidth <= 0) {
+      resetStartPosition();
     }
 
     list.style.transform = `translate3d(${currentX}px,0,0)`;

@@ -6,9 +6,15 @@
 */
 
 * { -webkit-box-sizing: border-box; box-sizing: border-box; }
-body { position: relative; font-family: "Verdana", Helvetica, Arial, sans-serif; }
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  padding: 12px 16px 220px;
+  font-family: "Verdana", Helvetica, Arial, sans-serif;
+}
 
-.wrap { margin: 0 auto; width: 1200px; }
+.wrap { margin: 0 auto; width: min(1200px, calc(100vw - 32px)); }
 .wrap--text { margin-bottom: 10px; padding: 0 10px; text-align: center; }
 
 .wrap--logobar {
@@ -18,6 +24,7 @@ body { position: relative; font-family: "Verdana", Helvetica, Arial, sans-serif;
   -webkit-transform: translate(-50%,-50%);
       -ms-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
+  width: min(1200px, calc(100vw - 32px));
   height: 200px;
   overflow: hidden;
 }
@@ -39,29 +46,32 @@ body { position: relative; font-family: "Verdana", Helvetica, Arial, sans-serif;
           flex-grow: 0;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  padding: 20px;
+  padding: 20px 16px;
   text-align: center;
   white-space: nowrap;
-  font-size: 50px;
+  font-size: clamp(34px, 4.6vw, 50px);
 }
 
 /* Панель управления */
 .inputs {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  -webkit-column-gap: 24px;
-          column-gap: 24px;
-  margin: 2px;
-  padding: 2px;
-  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  gap: clamp(10px, 1.8vw, 24px);
+  margin: 0;
+  padding: 8px 12px 28px;
+  position: fixed;
   left: 50%;
+  top: 66px;
   -webkit-transform: translate(-50%,0%);
       -ms-transform: translate(-50%,0%);
           transform: translate(-50%,0%);
-  align-items: center;
-  width: 1350px;
-  overflow-x: auto;
-  overflow-y: hidden; /* убираем вертикальный скролл и стрелки */
+  align-items: flex-start;
+  justify-content: space-between;
+  width: min(1280px, calc(100vw - 32px));
+  overflow: visible;
 }
 
 .left-controls,
@@ -70,18 +80,33 @@ body { position: relative; font-family: "Verdana", Helvetica, Arial, sans-serif;
   display: -ms-flexbox;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: clamp(8px, 1vw, 12px);
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.left-controls {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.right-controls {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  justify-content: flex-end;
 }
 
 .stats {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   color: #b5b5b5;
   font-size: 14px;
   min-width: 60px;
-  margin-left: -10px; /* чуть левее относительно переключателя режима */
+  margin-left: 0;
 }
 .stat {
   display: -webkit-box;
@@ -103,14 +128,19 @@ body { position: relative; font-family: "Verdana", Helvetica, Arial, sans-serif;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 12px;
+  gap: clamp(8px, 1vw, 12px);
   font-size: 14px;
   color: #444;
-  padding-left: 25px;
+  padding-left: 0;
 }
 .mode-control input { margin-right: 6px; }
+.mode-control label { white-space: nowrap; }
 
 .speed-panel {
+  --speed-label-width: clamp(52px, 5vw, 64px);
+  --speed-value-width: clamp(44px, 5vw, 60px);
+  --speed-gap: clamp(8px, 1vw, 10px);
+  --range-width: clamp(160px, 24vw, 300px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,31 +148,31 @@ body { position: relative; font-family: "Verdana", Helvetica, Arial, sans-serif;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 440px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 440px;
-          flex: 0 0 440px;
-  justify-self: center; /* центрируем панель со слайдером в средней колонке */
-  margin-left: -40px; /* лёгкий сдвиг панели (и слайдера) влево */
+  width: min(100%, 444px);
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* Слайдер скорости */
 .speed-control {
   display: grid;
-  gap: 4px;
-  justify-items: center;
-  align-items: center;
-  padding: 0;
+  gap: 6px;
+  justify-items: stretch;
+  align-items: start;
+  padding: 0 0 14px;
   position: relative;
 }
 .speed-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: grid;
+  grid-template-columns: var(--speed-label-width) minmax(0, var(--range-width)) var(--speed-value-width);
   align-items: center;
-  gap: 10px;
+  -webkit-column-gap: var(--speed-gap);
+          column-gap: var(--speed-gap);
+  justify-content: center;
 }
-.speed-row label { width: 70px; text-align: right; }
+.speed-row label { width: auto; text-align: right; }
 #speedLabel {
   font-size: 15px;
   color: grey;
@@ -162,12 +192,10 @@ body { position: relative; font-family: "Verdana", Helvetica, Arial, sans-serif;
 .speed-control--wpm #wpmValue {
   display: none;
 }
-.speed-control--wpm {
-  display: none;
-}
 
 input[type="range"] {
-  width: 320px;
+  width: 100%;
+  min-width: 0;
   -webkit-appearance: none;
           appearance: none;
   background: transparent;
@@ -195,11 +223,15 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .tick-labels {
-  width: 320px; display: grid; grid-template-columns: repeat(9, 1fr);
-  font-size: 11px; color: #888;
-  position: absolute;
-  left: 80px; /* ширина label (70) + gap (10) */
-  top: 22px; /* чуть ниже трека слайдера */
+  width: var(--range-width);
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  font-size: 11px;
+  line-height: 1.2;
+  color: #888;
+  position: static;
+  margin-left: calc(var(--speed-label-width) + var(--speed-gap) + 25px);
 }
 .tick-labels span { text-align: center; }
 
@@ -212,6 +244,7 @@ input[type="range"]::-moz-range-thumb {
   display: flex;
   align-items: center;
   gap: 10px;
+  white-space: nowrap;
 }
 #file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; } /* visually hidden */
 .btn-file {
@@ -230,9 +263,9 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
-  -webkit-transform: translateX(-25%);
-      -ms-transform: translateX(-25%);
-          transform: translateX(-25%);
+  -webkit-transform: none;
+      -ms-transform: none;
+          transform: none;
 }
 .btn-file:active { -webkit-box-shadow: inset 2px 1px 8px rgba(0,0,0,.25); box-shadow: inset 2px 1px 8px rgba(0,0,0,.25); }
 .btn-file:focus { outline: 2px solid rgba(33,150,243,.35); outline-offset: 2px; }
@@ -240,8 +273,48 @@ input[type="range"]::-moz-range-thumb {
 .file-name { display: none !important; }
 
 /* Остальные элементы */
-#turbo { margin: 5px; }
+#turbo { margin: 0; white-space: nowrap; }
 p { font-size: 25px; }
+
+@media (max-width: 1100px) {
+  .inputs {
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .stats,
+  .mode-control,
+  #turbo,
+  #speedValue {
+    font-size: 13px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+  }
+
+  .btn-file {
+    font-size: 14px;
+    padding: 0 14px;
+  }
+
+  .switch {
+    width: 56px;
+    height: 32px;
+  }
+
+  .slider:before {
+    height: 24px;
+    width: 24px;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(24px);
+        -ms-transform: translateX(24px);
+            transform: translateX(24px);
+  }
+}
 
 button {
   position: fixed;
