@@ -249,8 +249,10 @@ if (letterSet==12) {
 textsC1 =['b','c','f','g','l','m','t','s','p','n','d','k','z','j','r','v','w'];  
 textsC2 =['y']; 
 }
-
-
+if (letterSet==13) {
+textsC1 =['a','i','e','o','u'];  
+textsC2 =['b','d','g']; 
+}
 
 
    start();
